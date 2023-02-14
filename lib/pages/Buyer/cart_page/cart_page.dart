@@ -1,16 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/controller/cart_controller.dart';
 import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/confirm_order.dart';
-
 import 'package:fresh_om/widgets/reusable_big_text.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:fresh_om/widgets/reusable_small_text.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
 
@@ -46,7 +44,8 @@ class CartPage extends StatelessWidget {
       ),
       backgroundColor: AppColors.mainBackGround,
       body: StreamBuilder(
-        stream: FireStoreServices.getCart(currentUser!.uid),
+        stream:
+            FireStoreServices.getCart(FirebaseAuth.instance.currentUser!.uid),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return const Center(

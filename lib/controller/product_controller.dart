@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/utils/colors.dart';
 import 'package:get/get.dart';
@@ -70,7 +71,7 @@ class ProductController extends GetxController {
         'qty': qty,
         'seller_id': sellerID,
         'tPrice': tPrice,
-        'added_by': currentUser!.uid
+        'added_by': FirebaseAuth.instance.currentUser!.uid
       }).catchError((error) {
         VxToast.show(context, msg: error.toString());
       });

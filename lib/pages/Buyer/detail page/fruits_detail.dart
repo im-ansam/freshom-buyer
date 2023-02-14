@@ -3,7 +3,6 @@ import 'package:fresh_om/controller/product_controller.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/cart_page.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widgets/expandable_text.dart';
@@ -91,7 +90,7 @@ class FruitsDetail extends StatelessWidget {
                       topLeft: Radius.circular(Dimensions.radius25),
                       topRight: Radius.circular(Dimensions.radius25))),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

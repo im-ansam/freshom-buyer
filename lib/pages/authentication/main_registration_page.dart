@@ -98,7 +98,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                             .make()
                         : "Signin to Continue"
                             .text
-                            .size(18)
+                            .size(Dimensions.fontSize18)
                             .letterSpacing(2)
                             .color(Colors.white54)
                             .semiBold
@@ -117,7 +117,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                 duration: const Duration(milliseconds: 300),
                 padding: EdgeInsets.all(Dimensions.height25),
                 height: isSignUpScreen
-                    ? Dimensions.height350 + 10
+                    ? Dimensions.height350 + Dimensions.height10
                     : Dimensions.height270,
                 width: Dimensions.screenWidth - Dimensions.height40,
                 margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
@@ -128,7 +128,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                       BoxShadow(
                           color: Colors.black.withOpacity(0.3),
                           blurRadius: Dimensions.radius15,
-                          spreadRadius: 5)
+                          spreadRadius: Dimensions.width5)
                     ]),
                 child: SingleChildScrollView(
                   child: Column(
@@ -246,7 +246,8 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
             obscureText: isObscure ? true : false,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(vertical: 5),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: Dimensions.width5),
                 prefixIcon: const Icon(
                   Icons.lock,
                   color: AppColors.inactiveTextColor,
@@ -406,7 +407,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
         obscureText: isPassword,
         keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
         decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 5),
+            contentPadding: EdgeInsets.symmetric(vertical: Dimensions.width5),
             prefixIcon: Icon(
               icon,
               color: AppColors.inactiveTextColor,

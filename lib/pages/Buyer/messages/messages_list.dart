@@ -69,9 +69,9 @@ class _AllMessageListState extends State<AllMessageList> {
                                         data[index]['toId'],
                                       ]);
                                 },
-                                leading: const CircleAvatar(
-                                  backgroundColor: AppColors.nicePurple,
-                                  child: Icon(
+                                leading: CircleAvatar(
+                                  backgroundColor: Vx.randomColor,
+                                  child: const Icon(
                                     Icons.person,
                                     color: Colors.white,
                                   ),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/home/search_screens/fruit_search_screen.dart';
 import 'package:fresh_om/pages/Buyer/home/search_screens/veg_search_screen.dart';
@@ -138,7 +139,8 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
           children: [
             //top small detail container
             StreamBuilder(
-                stream: FireStoreServices.getUser(currentUser!.uid),
+                stream: FireStoreServices.getUser(
+                    FirebaseAuth.instance.currentUser!.uid),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (!snapshot.hasData) {

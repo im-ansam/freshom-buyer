@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
@@ -14,14 +15,15 @@ Widget chatBubble(DocumentSnapshot data) {
       data['created_on'] == null ? DateTime.now() : data['created_on'].toDate();
   var time = intl.DateFormat("h,mma").format(t);
   return Directionality(
-    textDirection:
-        data['uid'] == currentUser!.uid ? TextDirection.rtl : TextDirection.ltr,
+    textDirection: data['uid'] == FirebaseAuth.instance.currentUser!.uid
+        ? TextDirection.rtl
+        : TextDirection.ltr,
     child: Container(
       padding: EdgeInsets.all(Dimensions.height12),
       margin: EdgeInsets.only(bottom: Dimensions.width8),
       decoration: BoxDecoration(
         color: AppColors.nicePurple,
-        borderRadius: data['uid'] == currentUser!.uid
+        borderRadius: data['uid'] == FirebaseAuth.instance.currentUser!.uid
             ? BorderRadius.only(
                 topRight: Radius.circular(Dimensions.radius20),
                 topLeft: Radius.circular(Dimensions.radius20),

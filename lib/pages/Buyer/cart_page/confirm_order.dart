@@ -3,9 +3,7 @@ import 'package:fresh_om/controller/cart_controller.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/payment_methods.dart';
 import 'package:fresh_om/utils/colors.dart';
 import 'package:fresh_om/utils/dimensions.dart';
-import 'package:fresh_om/widgets/custom_textfield.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ConfirmOrder extends StatelessWidget {
@@ -62,7 +60,7 @@ class ConfirmOrder extends StatelessWidget {
               TextField(
                 controller: controller.addressController,
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(color: Colors.black26),
+                  hintStyle: const TextStyle(color: Colors.black26),
                   hintText: "Enter Address",
                   contentPadding: EdgeInsets.only(
                       top: Dimensions.height20, left: Dimensions.width10),
@@ -70,12 +68,12 @@ class ConfirmOrder extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.grey.shade300,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: AppColors.tealColor),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
+                    borderSide: const BorderSide(color: AppColors.tealColor),
                   ),
                 ),
               ),
@@ -90,7 +88,7 @@ class ConfirmOrder extends StatelessWidget {
               TextField(
                 controller: controller.cityController,
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(color: Colors.black26),
+                  hintStyle: const TextStyle(color: Colors.black26),
                   hintText: "eg. sulthan bathery",
                   contentPadding: EdgeInsets.only(
                       top: Dimensions.height20, left: Dimensions.width10),
@@ -98,12 +96,12 @@ class ConfirmOrder extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.grey.shade300,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: AppColors.tealColor),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
+                    borderSide: const BorderSide(color: AppColors.tealColor),
                   ),
                 ),
               ),
@@ -118,7 +116,7 @@ class ConfirmOrder extends StatelessWidget {
               TextField(
                 controller: controller.postalCodeController,
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(color: Colors.black26),
+                  hintStyle: const TextStyle(color: Colors.black26),
                   hintText: "Postal code",
                   contentPadding: EdgeInsets.only(
                       top: Dimensions.height20, left: Dimensions.width10),
@@ -126,12 +124,12 @@ class ConfirmOrder extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.grey.shade300,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: AppColors.tealColor),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
+                    borderSide: const BorderSide(color: AppColors.tealColor),
                   ),
                 ),
               ),
@@ -146,7 +144,7 @@ class ConfirmOrder extends StatelessWidget {
               TextField(
                 controller: controller.phoneController,
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(color: Colors.black26),
+                  hintStyle: const TextStyle(color: Colors.black26),
                   hintText: "Phone",
                   contentPadding: EdgeInsets.only(
                       top: Dimensions.height20, left: Dimensions.width10),
@@ -154,12 +152,12 @@ class ConfirmOrder extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.grey.shade300,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: AppColors.tealColor),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5),
+                    borderSide: const BorderSide(color: AppColors.tealColor),
                   ),
                 ),
               ),

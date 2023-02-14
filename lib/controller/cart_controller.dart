@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/controller/home_controller.dart';
@@ -38,9 +39,9 @@ class CartController extends GetxController {
       await firestore.collection(ordersCollection).doc().set({
         'order_code': "233911400",
         'order_date': FieldValue.serverTimestamp(),
-        'order_by': currentUser!.uid,
+        'order_by': FirebaseAuth.instance.currentUser!.uid,
         'order_by_name': Get.find<HomeController>().userName,
-        'order_by_email': currentUser!.email,
+        'order_by_email': FirebaseAuth.instance.currentUser!.email,
         'order_by_address': addressController.text,
         'order_by_city': cityController.text,
         'order_by_postal': postalCodeController.text,

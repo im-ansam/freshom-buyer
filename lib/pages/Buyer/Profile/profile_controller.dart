@@ -32,7 +32,8 @@ class BuyerProfileController extends GetxController {
 
   uploadProfileImg() async {
     var fileName = basename(profileImgPath.value);
-    var destination = 'buyerImages/${currentUser?.uid}/$fileName';
+    var destination =
+        'buyerImages/${FirebaseAuth.instance.currentUser?.uid}/$fileName';
     Reference ref = FirebaseStorage.instance.ref().child(destination);
     await ref.putFile(File(profileImgPath.value));
 
@@ -40,7 +41,9 @@ class BuyerProfileController extends GetxController {
   }
 
   updateProfile({name, password, imageUrl}) async {
-    var store = firestore.collection(buyerCollection).doc(currentUser!.uid);
+    var store = firestore
+        .collection(buyerCollection)
+        .doc(FirebaseAuth.instance.currentUser!.uid);
     await store.set({'name': name, 'password': password, 'imageUrl': imageUrl},
         SetOptions(merge: true));
 
@@ -50,8 +53,10 @@ class BuyerProfileController extends GetxController {
   //update Authentication password
   changeAuthPassword({email, password, newPassword}) async {
     final cred = EmailAuthProvider.credential(email: email, password: password);
-    await currentUser!.reauthenticateWithCredential(cred).then((value) {
-      currentUser!.updatePassword(newPassword);
+    await FirebaseAuth.instance.currentUser!
+        .reauthenticateWithCredential(cred)
+        .then((value) {
+      FirebaseAuth.instance.currentUser!.updatePassword(newPassword);
     }).catchError((error) {
       print(error.toString());
     });

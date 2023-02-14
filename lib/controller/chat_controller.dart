@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/controller/home_controller.dart';
@@ -9,7 +10,7 @@ class ChatsController extends GetxController {
   var friendName = Get.arguments[0];
   var friendId = Get.arguments[1];
   var senderName = Get.find<HomeController>().userName;
-  var currentId = currentUser!.uid;
+  var currentId = FirebaseAuth.instance.currentUser!.uid;
   var msgController = TextEditingController();
 
   dynamic chatDocId;

@@ -30,8 +30,8 @@ class ReusableButtonContainer extends StatelessWidget {
           color: color,
           boxShadow: [
             isSelected
-                ? BoxShadow(color: Colors.grey, blurRadius: 6)
-                : BoxShadow(
+                ? const BoxShadow(color: Colors.grey, blurRadius: 6)
+                : const BoxShadow(
                     color: Colors.white,
                     blurRadius: 0,
                   )

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/pages/Buyer/home/buyer_home_page.dart';
@@ -48,7 +49,7 @@ class FireStoreServices {
   static getAllOrders() {
     return firestore
         .collection(ordersCollection)
-        .where('order_by', isEqualTo: currentUser!.uid)
+        .where('order_by', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
   }
 
@@ -56,7 +57,7 @@ class FireStoreServices {
   static getAllMessages() {
     return firestore
         .collection(chatsCollection)
-        .where('fromId', isEqualTo: currentUser!.uid)
+        .where('fromId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
   }
 
@@ -64,14 +65,14 @@ class FireStoreServices {
     var res = await Future.wait([
       firestore
           .collection(cartCollection)
-          .where('added_by', isEqualTo: currentUser!.uid)
+          .where('added_by', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
         return value.docs.length;
       }),
       firestore
           .collection(ordersCollection)
-          .where('order_by', isEqualTo: currentUser!.uid)
+          .where('order_by', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
         return value.docs.length;

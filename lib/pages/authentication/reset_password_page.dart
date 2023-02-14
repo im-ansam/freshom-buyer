@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/controller/auth_controller.dart';
-
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
@@ -109,16 +106,18 @@ class _ResetPasswordState extends State<ResetPassword> {
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: Dimensions.width5),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.email_outlined,
                               color: AppColors.inactiveTextColor,
                             ),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey),
                                 borderRadius:
                                     BorderRadius.circular(Dimensions.radius35)),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey),
                                 borderRadius:
                                     BorderRadius.circular(Dimensions.radius35)),
                             hintText: "Recovery email",
@@ -142,7 +141,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.redAccent,
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
@@ -154,7 +153,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                           color: Colors.black.withOpacity(.3),
                           spreadRadius: 1,
                           blurRadius: 1,
-                          offset: Offset(0, 1))
+                          offset: const Offset(0, 1))
                     ]),
                 child: Icon(
                   Icons.arrow_back_rounded,
@@ -195,7 +194,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.redAccent,
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
@@ -210,7 +209,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                             offset: Offset(0, 1))
                       ]),
                   child: isLoading == true
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
                             color: Colors.white,
                           ),

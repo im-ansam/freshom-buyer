@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/pages/Buyer/Profile/profile_controller.dart';
@@ -26,7 +27,8 @@ class UserProfile extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.mainBackGround,
         body: StreamBuilder(
-          stream: FireStoreServices.getUser(currentUser!.uid),
+          stream:
+              FireStoreServices.getUser(FirebaseAuth.instance.currentUser!.uid),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {

@@ -1,0 +1,233 @@
+import 'package:flutter/material.dart';
+import 'package:fresh_om/pages/Buyer/orders_screen/components/order_place_details.dart';
+import 'package:fresh_om/pages/Buyer/orders_screen/components/order_status.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+import '../../../utils/colors.dart';
+
+import 'package:intl/intl.dart' as intl;
+
+import '../../../utils/dimensions.dart';
+
+class OrdersDetail extends StatelessWidget {
+  final dynamic data;
+  const OrdersDetail({Key? key, this.data}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print(Dimensions.screenHeight);
+    return Scaffold(
+      backgroundColor: AppColors.mainBackGround,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.mainBackGround,
+        foregroundColor: AppColors.tealColor,
+        title: "Order Details"
+            .text
+            .semiBold
+            .color(AppColors.tealColor)
+            .size(18)
+            .make(),
+      ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            orderStatus(
+                color: Colors.green,
+                title: "Placed",
+                icon: Icons.done,
+                showDone: data['order_placed']),
+            orderStatus(
+                color: Colors.blueAccent,
+                title: "Confirmed",
+                icon: Icons.thumb_up,
+                showDone: data['order_confirmed']),
+            orderStatus(
+                color: Colors.orange,
+                title: "On Delivery",
+                icon: Icons.delivery_dining,
+                showDone: data['order_on_delivery']),
+            orderStatus(
+                color: AppColors.purpleColor,
+                title: "Delivered",
+                icon: Icons.done_all_rounded,
+                showDone: data['order_delivered']),
+            Divider(
+              color: Colors.grey.shade300,
+              thickness: 2,
+              indent: Dimensions.width20,
+              endIndent: Dimensions.width20,
+            ),
+            10.heightBox,
+
+            //center address details container
+            Container(
+              padding: EdgeInsets.all(Dimensions.height12),
+              height: Dimensions.height370,
+              width: Dimensions.height360,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade200,
+                    blurRadius: Dimensions.radius10,
+                  )
+                ],
+                color: Colors.white,
+              ),
+              child: Column(
+                children: [
+                  orderPlaceDetails(
+                      data: data,
+                      title1: "Order Code",
+                      d1: data['order_code'],
+                      title2: "Delivery Method",
+                      d2: data['delivery_method']),
+                  orderPlaceDetails(
+                      data: data,
+                      title1: "Order Date",
+                      d1: intl.DateFormat()
+                          .add_yMd()
+                          .format(data['order_date'].toDate()),
+                      title2: "Payment Method",
+                      d2: data['payment_method']),
+                  orderPlaceDetails(
+                      data: data,
+                      title1: "Payment Status",
+                      d1: "Unpaid",
+                      title2: "Delivery Status",
+                      d2: "Order Placed"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          "Delivery Address"
+                              .text
+                              .semiBold
+                              .size(Dimensions.fontSize15)
+                              .color(AppColors.tealColor)
+                              .make(),
+                          addressDetails(
+                              data: data['order_by_name'],
+                              leading: "Name    :"),
+                          addressDetails(
+                              data: data['order_by_email'],
+                              leading: "Email     :"),
+                          addressDetails(
+                              data: data['order_by_address'],
+                              leading: "Address:"),
+                          addressDetails(
+                              data: data['order_by_city'],
+                              leading: "City        :"),
+                          addressDetails(
+                              data: data['order_by_phone'],
+                              leading: "Phone    :"),
+                          addressDetails(
+                              data: data['order_by_postal'],
+                              leading: "Postal    :"),
+                        ],
+                      ),
+                      SizedBox(
+                        height: Dimensions.height110,
+                        width: Dimensions.height120,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            "Total Amount"
+                                .text
+                                .semiBold
+                                .size(Dimensions.fontSize15)
+                                .color(AppColors.tealColor)
+                                .make(),
+                            Dimensions.height30.heightBox,
+                            "Rs.${data['total_amount']}"
+                                .text
+                                .bold
+                                .size(Dimensions.fontSize20)
+                                .color(AppColors.priceColor)
+                                .make(),
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            20.heightBox,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 1,
+                  width: Dimensions.width50 * 2,
+                  color: Colors.grey.shade400,
+                ),
+                "Ordered Products"
+                    .text
+                    .semiBold
+                    .color(AppColors.tealColor)
+                    .size(Dimensions.fontSize20)
+                    .makeCentered(),
+                Container(
+                  height: 1,
+                  width: Dimensions.width50 * 2,
+                  color: Colors.grey.shade400,
+                ),
+              ],
+            ),
+            Dimensions.height15.heightBox,
+
+            //bottom order products container
+            Container(
+              alignment: Alignment.center,
+              height: Dimensions.height100 * 2,
+              width: Dimensions.height360,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade200,
+                    blurRadius: 10,
+                  )
+                ],
+                color: Colors.white,
+              ),
+              padding: EdgeInsets.all(Dimensions.height15),
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                children: List.generate(data['orders'].length, (index) {
+                  return Column(
+                    children: [
+                      Divider(
+                        color: Colors.grey.shade300,
+                        thickness: 1,
+                      ),
+                      orderPlaceDetails(
+                          data: data,
+                          title1: data['orders'][index]['title'],
+                          title2: "Rs .${data['orders'][index]['tPrice']}",
+                          d1: "Quantity",
+                          d2: "${data['orders'][index]['qty']} kg"),
+                      Divider(
+                        color: Colors.grey.shade300,
+                        thickness: 1,
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
+            Dimensions.height50.heightBox
+          ],
+        ),
+      ),
+    );
+  }
+}

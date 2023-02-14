@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/pages/Buyer/detail%20page/fruits_detail.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../utils/Reusables_functions.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widgets/reusable_bold_text.dart';
-import '../lists/list.dart';
 
 class FruitCategory extends StatefulWidget {
   const FruitCategory({Key? key}) : super(key: key);
@@ -42,11 +40,11 @@ class _FruitCategoryState extends State<FruitCategory> {
                 .snapshots(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.data!.docs.isEmpty) {
-                return Center(
+                return const Center(
                   child: BoldText(
                     fontWeight: FontWeight.bold,
                     text: "No Items",
@@ -107,8 +105,9 @@ class _FruitCategoryState extends State<FruitCategory> {
                         position: fruitIndex.toDouble(),
                         decorator: DotsDecorator(
                           activeColor: AppColors.buttonColor,
-                          size: const Size.square(9.0),
-                          activeSize: const Size(18.0, 9.0),
+                          size: Size.square(Dimensions.width8 + 1),
+                          activeSize:
+                              Size(Dimensions.height18, Dimensions.width8 + 1),
                           activeShape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(Dimensions.radius5)),
@@ -129,13 +128,13 @@ class _FruitCategoryState extends State<FruitCategory> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(
                     color: AppColors.tealColor,
                   ),
                 );
               } else if (snapshot.data!.docs.isEmpty) {
-                return Center(
+                return const Center(
                   child: BoldText(
                     fontWeight: FontWeight.bold,
                     text: "No Items",
@@ -144,7 +143,7 @@ class _FruitCategoryState extends State<FruitCategory> {
               } else {
                 var data = snapshot.data!.docs;
                 return GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: data.length,
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

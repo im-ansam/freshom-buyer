@@ -4,9 +4,7 @@ import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/controller/chat_controller.dart';
 import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widgets/reusable_bold_text.dart';
@@ -34,7 +32,7 @@ class MessageSeller extends StatelessWidget {
         child: Column(
           children: [
             Obx(() => controller.isLoading.value
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: AppColors.tealColor,
                     ),
@@ -46,9 +44,9 @@ class MessageSeller extends StatelessWidget {
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(
-                              color: AppColors.tealColor,
+                              color: AppColors.nicePurple,
                             ),
                           );
                         } else if (snapshot.data!.docs.isEmpty) {
@@ -60,7 +58,7 @@ class MessageSeller extends StatelessWidget {
                           );
                         } else {
                           return ListView(
-                            physics: BouncingScrollPhysics(),
+                            physics: const BouncingScrollPhysics(),
                             children: snapshot.data!.docs
                                 .mapIndexed((currentValue, index) {
                               var data = snapshot.data!.docs[index];
@@ -85,11 +83,13 @@ class MessageSeller extends StatelessWidget {
                   Expanded(
                       child: TextFormField(
                     controller: controller.msgController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColors.tealColor)),
+                            borderSide:
+                                BorderSide(color: AppColors.nicePurple)),
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: AppColors.tealColor)),
+                            borderSide:
+                                BorderSide(color: AppColors.nicePurple)),
                         hintText: "Enter Message",
                         border: InputBorder.none),
                   )),
@@ -98,7 +98,10 @@ class MessageSeller extends StatelessWidget {
                       controller.sendMSg(controller.msgController.text);
                       controller.msgController.clear();
                     },
-                    icon: const Icon(Icons.send),
+                    icon: Icon(
+                      Icons.send,
+                      size: Dimensions.icon30,
+                    ),
                     color: AppColors.tealColor,
                   )
                 ],

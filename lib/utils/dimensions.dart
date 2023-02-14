@@ -28,6 +28,7 @@ class Dimensions {
   static double height10 = screenHeight / 80.29;
   static double height12 = screenHeight / 65.09;
   static double height15 = screenHeight / 53.53;
+  static double height18 = screenHeight / 43.39;
   static double height20 = screenHeight / 40.145;
   static double height25 = screenHeight / 32.12;
   static double height30 = screenHeight / 26.76;
@@ -43,15 +44,22 @@ class Dimensions {
   static double height120 = screenHeight / 6.69;
   static double height140 = screenHeight / 5.735;
   static double height160 = screenHeight / 5.02;
+  static double height167 = screenHeight / 4.68;
+
   static double height190 = screenHeight / 4.226;
+  static double height230 = screenHeight / 3.4;
+  static double height250 = screenHeight / 3.124;
   static double height260 = screenHeight / 3.088;
   static double height270 = screenHeight / 2.974;
   static double height300 = screenHeight / 2.68;
   static double height350 = screenHeight / 2.294;
   static double height360 = screenHeight / 2.17;
   static double height370 = screenHeight / 2.11;
+  static double height380 = screenHeight / 2.06;
   static double height400 = screenHeight / 2.01;
   static double height450 = screenHeight / 1.736;
+  static double height495 = screenHeight / 1.578;
+  static double height500 = screenHeight / 1.562;
   static double height530 = screenHeight / 1.52;
 
   static double height1350 = screenHeight / 0.59;
@@ -70,6 +78,7 @@ class Dimensions {
   static double fontSize25 = screenHeight / 31.24;
   static double fontSize30 = screenHeight / 26.76;
   static double fontSize40 = screenHeight / 20.07;
+  static double fontSize50 = screenHeight / 15.62;
 
   //icon size
 
@@ -82,11 +91,13 @@ class Dimensions {
   //circular radius
   static double radius5 = screenHeight / 160.58;
   static double radius10 = screenHeight / 78.109;
+  static double radius12 = screenHeight / 65.09;
   static double radius20 = screenHeight / 40.145;
   static double radius18 = screenHeight / 44.61;
   static double radius15 = screenHeight / 52.07;
   static double radius25 = screenHeight / 32.12;
   static double radius30 = screenHeight / 26.76;
+  static double radius35 = screenHeight / 25.32;
   static double radius50 = screenHeight / 16.058;
   static double radius120 = screenHeight / 6.69;
   static double radius130 = screenHeight / 6.176;

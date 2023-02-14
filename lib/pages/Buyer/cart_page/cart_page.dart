@@ -9,7 +9,6 @@ import 'package:fresh_om/widgets/reusable_big_text.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:fresh_om/widgets/reusable_small_text.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../utils/colors.dart';
@@ -30,29 +29,29 @@ class CartPage extends StatelessWidget {
             Icon(
               Icons.shopping_basket,
               color: Colors.white,
-              size: 25,
+              size: Dimensions.icon25,
             ),
             SizedBox(
-              width: 20,
+              width: Dimensions.width20,
             ),
             BigText(
               text: "Your Items",
               color: Colors.white,
               fontWeight: FontWeight.w600,
-              size: 20,
+              size: Dimensions.fontSize20,
             ),
           ],
         ),
-        backgroundColor: AppColors.tealColor,
+        backgroundColor: AppColors.nicePurple,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.mainBackGround,
       body: StreamBuilder(
         stream: FireStoreServices.getCart(currentUser!.uid),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.tealColor,
+                color: AppColors.nicePurple,
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
@@ -60,7 +59,8 @@ class CartPage extends StatelessWidget {
               child: BoldText(
                 fontWeight: FontWeight.bold,
                 text: "Cart Is Empty",
-                size: 20,
+                color: AppColors.nicePurple,
+                size: Dimensions.fontSize20,
               ),
             );
           } else {
@@ -68,8 +68,11 @@ class CartPage extends StatelessWidget {
             controller.calculate(data);
             controller.productSnapshot = data;
             return Padding(
-              padding: const EdgeInsets.only(
-                  top: 10, left: 20, right: 8, bottom: 80),
+              padding: EdgeInsets.only(
+                  top: Dimensions.height10,
+                  left: Dimensions.width20,
+                  right: Dimensions.width8,
+                  bottom: Dimensions.height80),
               child: Column(
                 children: [
                   //cart item heading
@@ -83,11 +86,12 @@ class CartPage extends StatelessWidget {
                             return ListTile(
                               // visualDensity: VisualDensity(vertical: 2),
                               leading: Container(
-                                width: 90,
-                                height: 100,
+                                width: Dimensions.height90,
+                                height: Dimensions.height100,
                                 clipBehavior: Clip.antiAlias,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius10)),
                                 child: Image.network(
                                   "${data[index]['img']}",
                                   fit: BoxFit.cover,
@@ -97,7 +101,7 @@ class CartPage extends StatelessWidget {
                                   "${data[index]['title']}  (x${data[index]['qty']}kg)"
                                       .text
                                       .semiBold
-                                      .size(16)
+                                      .size(Dimensions.fontSize16)
                                       .make(),
                               subtitle: "${data[index]['tPrice']}"
                                   .numCurrency
@@ -107,7 +111,7 @@ class CartPage extends StatelessWidget {
                                   .size(14)
                                   .make(),
                               trailing: IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.delete,
                                   color: AppColors.priceColor,
                                 ),
@@ -123,23 +127,24 @@ class CartPage extends StatelessWidget {
                   Container(
                     width: Dimensions.screenWidth - 60,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius10),
                         color: AppColors.darkCream),
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(Dimensions.height12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         BoldText(
                           fontWeight: FontWeight.w700,
                           text: "Total Price",
-                          size: 18,
+                          size: Dimensions.fontSize18,
                           color: Colors.black87,
                         ),
                         Obx(() => "${controller.totalPrice.value}"
                             .text
                             .semiBold
                             .color(AppColors.priceColor)
-                            .size(16)
+                            .size(Dimensions.fontSize16)
                             .make())
                       ],
                     ),
@@ -153,15 +158,16 @@ class CartPage extends StatelessWidget {
                     },
                     child: Container(
                         alignment: Alignment.center,
-                        height: 50,
+                        height: Dimensions.height50,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.teal),
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius10),
+                            color: AppColors.nicePurple),
                         width: Dimensions.screenWidth - 60,
                         child: SmallText(
                           text: "Place Order",
                           color: Colors.white,
-                          size: 20,
+                          size: Dimensions.fontSize20,
                         )),
                   )
                 ],

@@ -25,29 +25,29 @@ class VegSearchScreen extends StatelessWidget {
             Get.back();
             controller.vegSearchController.clear();
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
-            color: AppColors.tealColor,
+            color: AppColors.nicePurple,
           ),
         ),
         foregroundColor: AppColors.tealColor,
         backgroundColor: AppColors.mainBackGround,
         elevation: 0,
-        title: title?.text.semiBold.size(18).make(),
+        title: title?.text.semiBold.size(Dimensions.fontSize18).make(),
       ),
       body: FutureBuilder(
         future: FireStoreServices.searchVegetables(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.tealColor,
+                color: AppColors.nicePurple,
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
             return "No results found..."
                 .text
-                .size(20)
+                .size(Dimensions.fontSize20)
                 .semiBold
                 .color(AppColors.tealColor)
                 .makeCentered();
@@ -64,18 +64,21 @@ class VegSearchScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     mainAxisSpacing: Dimensions.height10,
                     // crossAxisSpacing: Dimensions.width10,
-                    mainAxisExtent: 240),
+                    mainAxisExtent: Dimensions.height120 * 2),
                 children: filtered
                     .mapIndexed((currentValue, index) => Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 10, right: 10),
+                          padding: EdgeInsets.only(
+                              top: Dimensions.width10,
+                              left: Dimensions.width10,
+                              right: Dimensions.width10),
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius10),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black12,
-                                  blurRadius: 10,
+                                  blurRadius: Dimensions.radius10,
                                 )
                               ],
                               color: Colors.white,

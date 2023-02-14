@@ -4,15 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/detail%20page/vegetable_detail.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../constants/firebase_consts.dart';
 import '../../../utils/Reusables_functions.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
-import '../Services/firestore_services.dart';
-import '../lists/list.dart';
 
 class VegCategory extends StatefulWidget {
   const VegCategory({Key? key}) : super(key: key);
@@ -45,11 +41,11 @@ class _VegCategoryState extends State<VegCategory> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.data!.docs.isEmpty) {
-                return Center(
+                return const Center(
                   child: BoldText(
                     fontWeight: FontWeight.bold,
                     text: "No Items",
@@ -108,8 +104,9 @@ class _VegCategoryState extends State<VegCategory> {
                         position: vegIndex.toDouble(),
                         decorator: DotsDecorator(
                           activeColor: AppColors.buttonColor,
-                          size: const Size.square(9.0),
-                          activeSize: const Size(18.0, 9.0),
+                          size: Size.square(Dimensions.width8 + 1),
+                          activeSize:
+                              Size(Dimensions.height18, Dimensions.width8 + 1),
                           activeShape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(Dimensions.radius5)),
@@ -130,13 +127,13 @@ class _VegCategoryState extends State<VegCategory> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(
                     color: AppColors.tealColor,
                   ),
                 );
               } else if (snapshot.data!.docs.isEmpty) {
-                return Center(
+                return const Center(
                   child: BoldText(
                     fontWeight: FontWeight.bold,
                     text: "No Items",

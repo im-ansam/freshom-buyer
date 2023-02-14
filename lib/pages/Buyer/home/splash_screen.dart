@@ -19,8 +19,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   AuthController controller = Get.put(AuthController());
   changeScreen() async {
-    Future.delayed(
-        const Duration(seconds: 3), () => Get.off(() => MainRegisterPage()));
+    Future.delayed(const Duration(seconds: 3),
+        () => Get.off(() => const MainRegisterPage()));
   }
 
   @override
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.niceBlue,
+      backgroundColor: AppColors.nicePurple,
       body: Center(
         child: Column(
           children: [

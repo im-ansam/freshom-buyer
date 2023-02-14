@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/messages/message_screen.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../utils/colors.dart';
@@ -25,7 +24,7 @@ class _AllMessageListState extends State<AllMessageList> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.mainBackGround,
-        foregroundColor: AppColors.tealColor,
+        foregroundColor: AppColors.nicePurple,
         title: BoldText(
           fontWeight: FontWeight.w800,
           size: Dimensions.fontSize20,
@@ -37,9 +36,9 @@ class _AllMessageListState extends State<AllMessageList> {
         stream: FireStoreServices.getAllMessages(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.tealColor,
+                color: AppColors.nicePurple,
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
@@ -47,7 +46,7 @@ class _AllMessageListState extends State<AllMessageList> {
                 .text
                 .semiBold
                 .color(AppColors.tealColor)
-                .size(20)
+                .size(Dimensions.fontSize20)
                 .makeCentered();
           } else {
             var data = snapshot.data!.docs;
@@ -67,11 +66,11 @@ class _AllMessageListState extends State<AllMessageList> {
                                   Get.to(() => const MessageSeller(),
                                       arguments: [
                                         data[index]['friend_name'],
-                                        data[index]['to_id'],
+                                        data[index]['toId'],
                                       ]);
                                 },
-                                leading: CircleAvatar(
-                                  backgroundColor: Colors.teal,
+                                leading: const CircleAvatar(
+                                  backgroundColor: AppColors.nicePurple,
                                   child: Icon(
                                     Icons.person,
                                     color: Colors.white,
@@ -80,20 +79,20 @@ class _AllMessageListState extends State<AllMessageList> {
                                 title: "${data[index]['friend_name']}"
                                     .text
                                     .bold
-                                    .color(AppColors.tealColor)
-                                    .size(18)
+                                    .color(AppColors.nicePurple)
+                                    .size(Dimensions.fontSize18)
                                     .make(),
                                 subtitle: "${data[index]['last_msg']}"
                                     .text
                                     .semiBold
                                     .color(Colors.black54)
-                                    .size(16)
+                                    .size(Dimensions.fontSize16)
                                     .make(),
                                 trailing: "10:04"
                                     .text
                                     .semiBold
                                     .color(Colors.black54)
-                                    .size(16)
+                                    .size(Dimensions.fontSize16)
                                     .make(),
                               ),
                             );

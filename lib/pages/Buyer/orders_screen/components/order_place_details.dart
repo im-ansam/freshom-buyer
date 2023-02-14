@@ -57,7 +57,7 @@ Widget addressDetails({data, leading}) {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       "$leading".text.semiBold.color(Colors.grey.shade800).make(),
-      10.widthBox,
+      Dimensions.height10.widthBox,
       SizedBox(
         width: Dimensions.height110,
         child: "$data".text.semiBold.color(Colors.grey.shade800).make(),

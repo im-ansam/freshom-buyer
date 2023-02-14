@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_om/controller/product_controller.dart';
+import 'package:fresh_om/pages/Buyer/cart_page/cart_page.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../utils/colors.dart';
@@ -10,6 +10,7 @@ import '../../../widgets/expandable_text.dart';
 import '../../../widgets/reusable_bold_text.dart';
 import '../../../widgets/reusable_small_text.dart';
 import '../messages/message_screen.dart';
+import 'package:intl/intl.dart' as intl;
 
 class FruitsDetail extends StatelessWidget {
   final dynamic data;
@@ -18,6 +19,9 @@ class FruitsDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProductController());
+    var date =
+        intl.DateFormat('dd-MM-yyyy').format(data['f_uploaded_date'].toDate());
+
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.transparent,
@@ -59,7 +63,9 @@ class FruitsDetail extends StatelessWidget {
                     Icons.shopping_cart_outlined,
                     color: Colors.white,
                     size: Dimensions.icon30,
-                  )
+                  ).onTap(() {
+                    Get.to(() => const CartPage());
+                  })
                 ],
               )),
           //food detail
@@ -77,7 +83,7 @@ class FruitsDetail extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                         color: Colors.grey.shade600,
-                        blurRadius: 20,
+                        blurRadius: Dimensions.radius20,
                         spreadRadius: 1)
                   ],
                   color: AppColors.mainBackGround,
@@ -118,7 +124,7 @@ class FruitsDetail extends StatelessWidget {
                         SmallText(
                           text: "Quantity Available  -",
                           size: Dimensions.fontSize18,
-                          color: AppColors.tealColor,
+                          color: AppColors.nicePurple,
                         ),
                         Text(
                           "${data['f_qty']}kg left",
@@ -157,7 +163,7 @@ class FruitsDetail extends StatelessWidget {
                                   height: Dimensions.height5,
                                 ),
                                 SmallText(
-                                  text: "Ansam CD",
+                                  text: "${data['seller_name']}",
                                   color: Colors.black,
                                 )
                               ],
@@ -170,11 +176,11 @@ class FruitsDetail extends StatelessWidget {
                                 data['seller_id']
                               ]);
                             },
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Icon(
                                 Icons.message_rounded,
-                                color: AppColors.tealColor,
+                                color: AppColors.nicePurple,
                               ),
                             ),
                           )
@@ -192,13 +198,13 @@ class FruitsDetail extends StatelessWidget {
                         BoldText(
                           fontWeight: FontWeight.bold,
                           text: "Product Uploaded Date :",
-                          size: 20,
-                          color: AppColors.tealColor,
+                          size: Dimensions.fontSize20,
+                          color: AppColors.nicePurple,
                         ),
                         BoldText(
                           fontWeight: FontWeight.bold,
-                          text: "",
-                          size: 16,
+                          text: date,
+                          size: Dimensions.fontSize16,
                           color: Colors.redAccent,
                         ),
                       ],
@@ -206,7 +212,7 @@ class FruitsDetail extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.grey,
                       thickness: 1,
                     ),
@@ -329,7 +335,7 @@ class FruitsDetail extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius20),
-                        color: AppColors.buttonColor),
+                        color: AppColors.nicePurple),
                     child: Text(
                       'Rs ${controller.f_totalPrice.value.numCurrency} | Add to cart',
                       style: TextStyle(

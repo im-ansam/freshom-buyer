@@ -54,7 +54,7 @@ class _ExpadableTextState extends State<ExpadableText> {
                     color: AppColors.tealColor,
                   ),
                   SizedBox(
-                    height: 10,
+                    height:  Dimensions.height10,
                   ),
                   InkWell(
                     onTap: () {
@@ -64,7 +64,7 @@ class _ExpadableTextState extends State<ExpadableText> {
                     },
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           "Show more",
                           style: TextStyle(color: AppColors.buttonColor),
                         ),

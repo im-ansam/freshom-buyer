@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/orders_screen/components/order_place_details.dart';
 import 'package:fresh_om/pages/Buyer/orders_screen/components/order_status.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/colors.dart';
-
 import 'package:intl/intl.dart' as intl;
-
 import '../../../utils/dimensions.dart';
 
 class OrdersDetail extends StatelessWidget {
@@ -26,7 +23,7 @@ class OrdersDetail extends StatelessWidget {
             .text
             .semiBold
             .color(AppColors.tealColor)
-            .size(18)
+            .size(Dimensions.fontSize18)
             .make(),
       ),
       body: SingleChildScrollView(
@@ -59,7 +56,7 @@ class OrdersDetail extends StatelessWidget {
               indent: Dimensions.width20,
               endIndent: Dimensions.width20,
             ),
-            10.heightBox,
+            Dimensions.height10.heightBox,
 
             //center address details container
             Container(
@@ -193,7 +190,7 @@ class OrdersDetail extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade200,
-                    blurRadius: 10,
+                    blurRadius: Dimensions.radius10,
                   )
                 ],
                 color: Colors.white,

@@ -31,7 +31,7 @@ class PaymentMethod extends StatelessWidget {
             child: Container(
                 alignment: Alignment.center,
                 height: Dimensions.height60,
-                color: Colors.teal,
+                color: AppColors.nicePurple,
                 child: controller.placingOrder.value
                     ? const CircularProgressIndicator(
                         color: Colors.white,
@@ -46,7 +46,7 @@ class PaymentMethod extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             foregroundColor: Colors.white,
-            backgroundColor: AppColors.tealColor,
+            backgroundColor: AppColors.nicePurple,
             title: "Payment".text.semiBold.color(Colors.white).make(),
           ),
           body: Padding(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/controller/cart_controller.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/payment_methods.dart';
 import 'package:fresh_om/utils/colors.dart';
+import 'package:fresh_om/utils/dimensions.dart';
 import 'package:fresh_om/widgets/custom_textfield.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -31,20 +32,23 @@ class ConfirmOrder extends StatelessWidget {
         },
         child: Container(
           alignment: Alignment.center,
-          height: 60,
-          color: Colors.teal,
+          height: Dimensions.height60,
+          color: AppColors.nicePurple,
           child: "Continue".text.semiBold.color(Colors.white).size(20).make(),
         ),
       ),
       appBar: AppBar(
         elevation: 0,
         foregroundColor: Colors.white,
-        backgroundColor: AppColors.tealColor,
+        backgroundColor: AppColors.nicePurple,
         title: "Address Details".text.semiBold.color(Colors.white).make(),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 50, left: 10, right: 10),
+          padding: EdgeInsets.only(
+              top: Dimensions.height50,
+              left: Dimensions.width10,
+              right: Dimensions.width10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -52,15 +56,16 @@ class ConfirmOrder extends StatelessWidget {
                   .text
                   .semiBold
                   .color(AppColors.tealColor)
-                  .size(18)
+                  .size(Dimensions.fontSize18)
                   .make(),
-              10.heightBox,
+              Dimensions.height10.heightBox,
               TextField(
                 controller: controller.addressController,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(color: Colors.black26),
                   hintText: "Enter Address",
-                  contentPadding: const EdgeInsets.only(top: 20, left: 10),
+                  contentPadding: EdgeInsets.only(
+                      top: Dimensions.height20, left: Dimensions.width10),
                   isDense: true,
                   filled: true,
                   fillColor: Colors.grey.shade300,
@@ -74,20 +79,21 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                 ),
               ),
-              10.heightBox,
+              Dimensions.height10.heightBox,
               "Home City"
                   .text
                   .semiBold
                   .color(AppColors.tealColor)
-                  .size(18)
+                  .size(Dimensions.fontSize18)
                   .make(),
-              10.heightBox,
+              Dimensions.height10.heightBox,
               TextField(
                 controller: controller.cityController,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(color: Colors.black26),
                   hintText: "eg. sulthan bathery",
-                  contentPadding: const EdgeInsets.only(top: 20, left: 10),
+                  contentPadding: EdgeInsets.only(
+                      top: Dimensions.height20, left: Dimensions.width10),
                   isDense: true,
                   filled: true,
                   fillColor: Colors.grey.shade300,
@@ -106,15 +112,16 @@ class ConfirmOrder extends StatelessWidget {
                   .text
                   .semiBold
                   .color(AppColors.tealColor)
-                  .size(18)
+                  .size(Dimensions.fontSize18)
                   .make(),
-              10.heightBox,
+              Dimensions.height10.heightBox,
               TextField(
                 controller: controller.postalCodeController,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(color: Colors.black26),
                   hintText: "Postal code",
-                  contentPadding: const EdgeInsets.only(top: 20, left: 10),
+                  contentPadding: EdgeInsets.only(
+                      top: Dimensions.height20, left: Dimensions.width10),
                   isDense: true,
                   filled: true,
                   fillColor: Colors.grey.shade300,
@@ -128,20 +135,21 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                 ),
               ),
-              10.heightBox,
+              Dimensions.height10.heightBox,
               "Contact Number"
                   .text
                   .semiBold
                   .color(AppColors.tealColor)
-                  .size(18)
+                  .size(Dimensions.fontSize18)
                   .make(),
-              10.heightBox,
+              Dimensions.height10.heightBox,
               TextField(
                 controller: controller.phoneController,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(color: Colors.black26),
                   hintText: "Phone",
-                  contentPadding: const EdgeInsets.only(top: 20, left: 10),
+                  contentPadding: EdgeInsets.only(
+                      top: Dimensions.height20, left: Dimensions.width10),
                   isDense: true,
                   filled: true,
                   fillColor: Colors.grey.shade300,

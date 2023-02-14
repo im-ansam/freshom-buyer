@@ -28,7 +28,7 @@ bool categoryIsClicked2 = false;
 bool categoryIsClicked3 = false;
 
 class BuyerHomePage extends StatefulWidget {
-  BuyerHomePage({Key? key}) : super(key: key);
+  const BuyerHomePage({Key? key}) : super(key: key);
 
   @override
   State<BuyerHomePage> createState() => _BuyerHomePageState();
@@ -37,11 +37,10 @@ class BuyerHomePage extends StatefulWidget {
 class _BuyerHomePageState extends State<BuyerHomePage> {
   var homeController = Get.put(HomeController());
 
-  @override
   int selectedIndex = 0;
 
   final screens = [
-    BuyerHomeBody(),
+    const BuyerHomeBody(),
     const CartPage(),
     const UserProfile(),
   ];
@@ -57,12 +56,14 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
         return false;
       },
       child: Scaffold(
-        //drawer parent container
         bottomNavigationBar: Padding(
           padding: EdgeInsets.all(Dimensions.height10),
           child: Container(
             decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 15)],
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black26, blurRadius: Dimensions.radius15)
+                ],
                 color: AppColors.buttonBackGroundColor,
                 borderRadius: BorderRadius.circular(Dimensions.radius50)
                 // borderRadius: BorderRadius.only(
@@ -70,7 +71,7 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                 //   topRight: Radius.circular(Dimensions.radius25),
                 // ),
                 ),
-            padding: EdgeInsets.all(4),
+            padding: const EdgeInsets.all(4),
             child: GNav(
               onTabChange: (index) => setState(() => selectedIndex = index),
               selectedIndex: selectedIndex,
@@ -78,15 +79,15 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
               tabMargin: EdgeInsets.all(Dimensions.height5),
               padding: EdgeInsets.all(Dimensions.height10),
               activeColor: Colors.white,
-              tabBackgroundColor: Colors.teal,
+              tabBackgroundColor: AppColors.nicePurple,
               tabShadow: [
                 BoxShadow(
                     color: AppColors.buttonBackGroundColor,
-                    blurRadius: 10,
+                    blurRadius: Dimensions.radius10,
                     spreadRadius: 1)
               ],
               gap: Dimensions.height5,
-              tabs: [
+              tabs: const [
                 GButton(
                   icon: Icons.home_outlined,
                   text: "Home",
@@ -103,10 +104,8 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
             ),
           ),
         ),
-
         backgroundColor: AppColors.mainBackGround,
         extendBody: true,
-
         body: screens[selectedIndex],
       ),
     );
@@ -114,7 +113,7 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
 }
 
 class BuyerHomeBody extends StatefulWidget {
-  BuyerHomeBody({Key? key}) : super(key: key);
+  const BuyerHomeBody({Key? key}) : super(key: key);
 
   @override
   State<BuyerHomeBody> createState() => _BuyerHomeBodyState();
@@ -143,9 +142,9 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(
-                        color: AppColors.tealColor,
+                        color: AppColors.nicePurple,
                       ),
                     );
                   } else {
@@ -156,7 +155,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                       width: double.infinity,
                       height: Dimensions.height300,
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
+                        color: AppColors.lightBlue1,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(Dimensions.fontSize20)),
                       ),
@@ -214,16 +213,16 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                   right: Dimensions.width30),
               child: Column(
                 children: [
-                  DrawerRow(
+                  const DrawerRow(
                     icon: Icons.list_alt_outlined,
                     text: 'My Orders',
                   ).onTap(() {
-                    Get.to(() => MyOrders());
+                    Get.to(() => const MyOrders());
                   }),
                   SizedBox(
                     height: Dimensions.height40,
                   ),
-                  DrawerRow(
+                  const DrawerRow(
                     icon: Icons.message_rounded,
                     text: 'Messages',
                   ).onTap(() {
@@ -235,7 +234,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                   GestureDetector(
                       onTap: () async {
                         await auth.signOut();
-                        Get.offAll(() => MainRegisterPage());
+                        Get.offAll(() => const MainRegisterPage());
                       },
                       child: const DrawerRow(
                         icon: Icons.logout,
@@ -289,7 +288,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                           fontFamily: "Michroma",
                           color: Colors.grey.shade800,
                           fontWeight: FontWeight.w500,
-                          fontSize: 16),
+                          fontSize: Dimensions.fontSize16),
                       controller: controller.vegSearchController,
                       autocorrect: false,
                       decoration: InputDecoration(
@@ -312,7 +311,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: Dimensions.fontSize16,
                         ),
                       ),
                     )
@@ -347,7 +346,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                             hintStyle: TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                              fontSize: Dimensions.fontSize16,
                             ),
                           ),
                         ))
@@ -365,7 +364,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                 "Shop",
                 style: TextStyle(fontSize: Dimensions.fontSize23),
               ),
-              BigText(
+              const BigText(
                   text: " Fruits And Vegetables", fontWeight: FontWeight.w600)
             ],
           ),
@@ -390,7 +389,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                     });
                   },
                   color: categoryIsClicked1 == true
-                      ? Colors.teal
+                      ? AppColors.nicePurple
                       : AppColors.inactiveTextColor,
                   isSelected: categoryIsClicked1 ? true : false,
                 ),
@@ -404,7 +403,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                     });
                   },
                   color: categoryIsClicked2 == true
-                      ? Colors.teal
+                      ? AppColors.nicePurple
                       : AppColors.inactiveTextColor,
                   isSelected: categoryIsClicked2 ? true : false,
                 ),
@@ -416,10 +415,9 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                       categoryIsClicked2 = false;
                       categoryIsClicked3 = true;
                     });
-                    print("3 clicked");
                   },
                   color: categoryIsClicked3 == true
-                      ? Colors.teal
+                      ? AppColors.nicePurple
                       : AppColors.inactiveTextColor,
                   isSelected: categoryIsClicked3 ? true : false,
                 )
@@ -431,7 +429,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
           ),
           Expanded(
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: EdgeInsets.only(top: Dimensions.height5),
                 child: Container(
@@ -452,10 +450,10 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                     ),
                   ),
                   child: categoryIsClicked1
-                      ? HomeCategory()
+                      ? const HomeCategory()
                       : categoryIsClicked2
-                          ? VegCategory()
-                          : FruitCategory(),
+                          ? const VegCategory()
+                          : const FruitCategory(),
                 ),
               ),
             ),

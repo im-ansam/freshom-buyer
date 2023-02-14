@@ -1,18 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
-import 'package:fresh_om/controller/auth_controller.dart';
 import 'package:fresh_om/pages/Buyer/Profile/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
-import '../../../widgets/custom_textfield.dart';
 import '../../../widgets/reusable_bold_text.dart';
-import '../../../widgets/reusable_small_text.dart';
 
 class EditBuyerProfile extends StatelessWidget {
   final dynamic userData;
@@ -20,7 +15,6 @@ class EditBuyerProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("email:${currentUser!.email}");
     var isLoading = false.obs;
     var controller = Get.find<BuyerProfileController>();
 
@@ -35,9 +29,9 @@ class EditBuyerProfile extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          foregroundColor: AppColors.tealColor,
+          foregroundColor: AppColors.nicePurple,
           elevation: 0,
-          backgroundColor: AppColors.tealColor,
+          backgroundColor: AppColors.nicePurple,
           title: BoldText(
             text: "Edit Profile",
             fontWeight: FontWeight.bold,
@@ -53,24 +47,24 @@ class EditBuyerProfile extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Container(
-                  color: AppColors.tealColor,
+                  color: AppColors.nicePurple,
                   height: Dimensions.height260,
                 )),
             Positioned(
                 top: Dimensions.height50,
-                left: 10,
-                right: 10,
+                left: Dimensions.width10,
+                right: Dimensions.width10,
                 child: Container(
-                  padding: EdgeInsets.all(20),
-                  height: 500,
+                  padding: EdgeInsets.all(Dimensions.height20),
+                  height: Dimensions.height500,
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black26,
-                            blurRadius: 10,
-                            offset: Offset(0, 4))
+                            blurRadius: Dimensions.radius10,
+                            offset: const Offset(0, 4))
                       ],
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(Dimensions.radius10),
                       color: Colors.white),
                   child: Obx(() => Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,7 +74,7 @@ class EditBuyerProfile extends StatelessWidget {
                             clipBehavior: Clip.antiAlias,
                             height: Dimensions.height90,
                             width: Dimensions.height90,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                             ),
                             child:
@@ -122,7 +116,7 @@ class EditBuyerProfile extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radius5),
-                                    color: AppColors.tealColor),
+                                    color: AppColors.nicePurple),
                                 child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -148,26 +142,29 @@ class EditBuyerProfile extends StatelessWidget {
                               BoldText(
                                 fontWeight: FontWeight.bold,
                                 text: "Name",
-                                size: 18,
-                                color: AppColors.tealColor,
+                                size: Dimensions.fontSize18,
+                                color: AppColors.nicePurple,
                               ),
-                              10.heightBox,
+                              Dimensions.height10.heightBox,
                               TextField(
                                 controller: controller.nameController,
                                 decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.only(top: 20, left: 10),
+                                  contentPadding: EdgeInsets.only(
+                                      top: Dimensions.height20,
+                                      left: Dimensions.width10),
                                   isDense: true,
                                   filled: true,
                                   fillColor: Colors.grey.shade300,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius5),
                                     borderSide: BorderSide.none,
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide:
-                                        BorderSide(color: AppColors.tealColor),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius5),
+                                    borderSide: const BorderSide(
+                                        color: AppColors.nicePurple),
                                   ),
                                 ),
                               ),
@@ -175,28 +172,31 @@ class EditBuyerProfile extends StatelessWidget {
                               BoldText(
                                 fontWeight: FontWeight.bold,
                                 text: "Old Password",
-                                size: 18,
-                                color: AppColors.tealColor,
+                                size: Dimensions.fontSize18,
+                                color: AppColors.nicePurple,
                               ),
-                              10.heightBox,
+                              Dimensions.height10.heightBox,
                               TextField(
                                 obscureText: true,
                                 controller: controller.oldPassController,
                                 decoration: InputDecoration(
                                   hintText: "Old Password",
-                                  contentPadding:
-                                      EdgeInsets.only(top: 20, left: 10),
+                                  contentPadding: EdgeInsets.only(
+                                      top: Dimensions.height20,
+                                      left: Dimensions.width10),
                                   isDense: true,
                                   filled: true,
                                   fillColor: Colors.grey.shade300,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius5),
                                     borderSide: BorderSide.none,
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide:
-                                        BorderSide(color: AppColors.tealColor),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius5),
+                                    borderSide: const BorderSide(
+                                        color: AppColors.nicePurple),
                                   ),
                                 ),
                               ),
@@ -204,32 +204,35 @@ class EditBuyerProfile extends StatelessWidget {
                               BoldText(
                                 fontWeight: FontWeight.bold,
                                 text: "New Password",
-                                size: 18,
-                                color: AppColors.tealColor,
+                                size: Dimensions.fontSize18,
+                                color: AppColors.nicePurple,
                               ),
-                              10.heightBox,
+                              Dimensions.height10.heightBox,
                               TextField(
                                 obscureText: true,
                                 controller: controller.newPassController,
                                 decoration: InputDecoration(
                                   hintText: "New password",
-                                  contentPadding:
-                                      EdgeInsets.only(top: 20, left: 10),
+                                  contentPadding: EdgeInsets.only(
+                                      top: Dimensions.height20,
+                                      left: Dimensions.width10),
                                   isDense: true,
                                   filled: true,
                                   fillColor: Colors.grey.shade300,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius5),
                                     borderSide: BorderSide.none,
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide:
-                                        BorderSide(color: AppColors.tealColor),
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius5),
+                                    borderSide: const BorderSide(
+                                        color: AppColors.nicePurple),
                                   ),
                                 ),
                               ),
-                              20.heightBox,
+                              Dimensions.height20.heightBox,
                               GestureDetector(
                                 onTap: () async {
                                   isLoading(true);
@@ -269,10 +272,11 @@ class EditBuyerProfile extends StatelessWidget {
                                 child: Container(
                                   alignment: Alignment.center,
                                   width: double.infinity,
-                                  height: 40,
+                                  height: Dimensions.height40,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: AppColors.tealColor),
+                                      borderRadius: BorderRadius.circular(
+                                          Dimensions.radius5),
+                                      color: AppColors.nicePurple),
                                   child: isLoading.value == true
                                       ? const CircularProgressIndicator(
                                           color: Colors.white,

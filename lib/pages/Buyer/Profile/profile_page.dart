@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/pages/Buyer/Profile/profile_controller.dart';
@@ -22,7 +21,7 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<AuthController>();
+    var controller = Get.put(AuthController());
     var profileController = Get.put(BuyerProfileController());
     return Scaffold(
         backgroundColor: AppColors.mainBackGround,
@@ -31,7 +30,7 @@ class UserProfile extends StatelessWidget {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(
                   color: AppColors.tealColor,
                 ),
@@ -47,7 +46,7 @@ class UserProfile extends StatelessWidget {
                       left: 0,
                       right: 0,
                       child: Container(
-                        color: AppColors.tealColor,
+                        color: AppColors.nicePurple,
                         height: Dimensions.height450,
                       )),
 
@@ -171,7 +170,7 @@ class UserProfile extends StatelessWidget {
                                 child: const Icon(
                                   Icons.edit,
                                   color: Colors.white,
-                                ),
+                                ).paddingOnly(left: Dimensions.width20),
                                 onTap: () {
                                   profileController.nameController.text =
                                       data['name'];
@@ -243,11 +242,10 @@ class UserProfile extends StatelessWidget {
                                         side: const BorderSide(
                                             color: Colors.white70)),
                                     onPressed: () async {
-                                      // final ref =
-                                      //     await SharedPreferences.getInstance();
-                                      // ref.remove('email');
                                       await controller.signOutMethod(context);
-                                      Get.offAll(() => MainRegisterPage());
+                                      controller.update();
+                                      Get.offAll(
+                                          () => const MainRegisterPage());
                                     },
                                     child: BigText(
                                       text: "Logout",
@@ -291,7 +289,7 @@ class UserProfile extends StatelessWidget {
                                                 text: '${countData[0]}',
                                                 // text: controller.profileData['cart_count'],
                                                 size: Dimensions.fontSize18,
-                                                color: Colors.teal,
+                                                color: AppColors.nicePurple,
                                               ),
                                               BoldText(
                                                 fontWeight: FontWeight.w500,
@@ -321,7 +319,7 @@ class UserProfile extends StatelessWidget {
                                                 text: '${countData[1]}',
                                                 // text: controller.profileData['order_count'],
                                                 size: Dimensions.fontSize18,
-                                                color: Colors.teal,
+                                                color: AppColors.nicePurple,
                                               ),
                                               BoldText(
                                                 fontWeight: FontWeight.w500,
@@ -351,9 +349,9 @@ class UserProfile extends StatelessWidget {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Icon(
+                                                const Icon(
                                                   Icons.message_rounded,
-                                                  color: Colors.teal,
+                                                  color: AppColors.nicePurple,
                                                 ),
                                                 BoldText(
                                                   fontWeight: FontWeight.w500,

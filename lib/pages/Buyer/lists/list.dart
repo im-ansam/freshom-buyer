@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/firebase_consts.dart';
+import '../../../utils/colors.dart';
 
 const popularFruitsList = [
   "images/fruit1.jpeg",
@@ -20,15 +21,15 @@ const profileButtonsText = ["My Orders", "Email", "Address"];
 const profileButtonsIcons = [
   Icon(
     Icons.list,
-    color: Colors.teal,
+    color: AppColors.nicePurple,
   ),
   Icon(
     Icons.email_rounded,
-    color: Colors.teal,
+    color: AppColors.nicePurple,
   ),
   Icon(
     Icons.maps_home_work_outlined,
-    color: Colors.teal,
+    color: AppColors.nicePurple,
   )
 ];
 //payment imaged list

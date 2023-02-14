@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/authentication/reset_password_page.dart';
 
@@ -13,7 +12,7 @@ import '../../utils/dimensions.dart';
 import '../Buyer/home/buyer_home_page.dart';
 
 class MainRegisterPage extends StatefulWidget {
-  MainRegisterPage({Key? key}) : super(key: key);
+  const MainRegisterPage({Key? key}) : super(key: key);
 
   @override
   State<MainRegisterPage> createState() => _MainRegisterPageState();
@@ -37,19 +36,37 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        height:
+            isSignUpScreen ? Dimensions.height167 : Dimensions.height100 * 2,
+        child: Column(
+          children: [
+            Image.asset("images/logoMain2.png"),
+            Dimensions.height10.heightBox,
+            "Fresh'Om"
+                .text
+                .bold
+                .color(AppColors.nicePurple)
+                .size(Dimensions.fontSize25)
+                .make(),
+          ],
+        ),
+      ),
       backgroundColor: AppColors.lightBlue1,
       body: Stack(
         alignment: Alignment.center,
         children: [
-          //top teal background color
+          //top background color
           Positioned(
               top: 0,
               left: 0,
               right: 0,
               child: Container(
-                padding: EdgeInsets.only(top: Dimensions.height100, left: 20),
+                padding: EdgeInsets.only(
+                    top: Dimensions.height100, left: Dimensions.width20),
                 height: Dimensions.height300,
-                color: AppColors.niceBlue,
+                color: AppColors.nicePurple,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -74,7 +91,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                     isSignUpScreen
                         ? "Signup to Continue"
                             .text
-                            .size(18)
+                            .size(Dimensions.fontSize18)
                             .letterSpacing(2)
                             .color(Colors.white54)
                             .semiBold
@@ -92,17 +109,17 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
           buildBottomHalfContainer(true),
           //center main container
           AnimatedPositioned(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.bounceInOut,
-              top: isSignUpScreen ? 200 : 230,
+              duration: const Duration(milliseconds: 300),
+              top: isSignUpScreen
+                  ? Dimensions.height100 * 2
+                  : Dimensions.height230,
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                curve: Curves.bounceInOut,
+                duration: const Duration(milliseconds: 300),
                 padding: EdgeInsets.all(Dimensions.height25),
                 height: isSignUpScreen
-                    ? Dimensions.height350
+                    ? Dimensions.height350 + 10
                     : Dimensions.height270,
-                width: Dimensions.screenWidth - 40,
+                width: Dimensions.screenWidth - Dimensions.height40,
                 margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -110,7 +127,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.3),
-                          blurRadius: 15,
+                          blurRadius: Dimensions.radius15,
                           spreadRadius: 5)
                     ]),
                 child: SingleChildScrollView(
@@ -129,15 +146,15 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                               children: [
                                 "LOGIN"
                                     .text
-                                    .size(20)
+                                    .size(Dimensions.fontSize20)
                                     .extraBold
                                     .color(isSignUpScreen
                                         ? AppColors.inactiveTextColor
-                                        : AppColors.purpleColor)
+                                        : AppColors.nicePurple)
                                     .make(),
                                 if (!isSignUpScreen)
                                   Container(
-                                    margin: EdgeInsets.only(top: 3),
+                                    margin: const EdgeInsets.only(top: 3),
                                     height: 2,
                                     width: Dimensions.height55,
                                     color: Colors.orange,
@@ -155,15 +172,15 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                               children: [
                                 "SIGNUP"
                                     .text
-                                    .size(20)
+                                    .size(Dimensions.fontSize20)
                                     .extraBold
                                     .color(isSignUpScreen
-                                        ? AppColors.purpleColor
+                                        ? AppColors.nicePurple
                                         : AppColors.inactiveTextColor)
                                     .make(),
                                 if (isSignUpScreen)
                                   Container(
-                                    margin: EdgeInsets.only(top: 3),
+                                    margin: const EdgeInsets.only(top: 3),
                                     height: 2,
                                     width: Dimensions.height55,
                                     color: Colors.orange,
@@ -190,7 +207,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
 
   Container buildLoginContainer() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: EdgeInsets.only(top: Dimensions.height20),
       child: Column(
         children: [
           buildTextField(Icons.email_outlined, "Email", false, true,
@@ -201,13 +218,13 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
             alignment: Alignment.centerRight,
             child: TextButton(
                 onPressed: () {
-                  Get.to(() => ResetPassword());
+                  Get.to(() => const ResetPassword());
                 },
                 child: "Forgot Password?"
                     .text
                     .semiBold
-                    .size(16)
-                    .color(AppColors.niceBlue)
+                    .size(Dimensions.fontSize16)
+                    .color(AppColors.nicePurple)
                     .make()),
           )
         ],
@@ -229,17 +246,17 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
             obscureText: isObscure ? true : false,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 5),
-                prefixIcon: Icon(
+                contentPadding: const EdgeInsets.symmetric(vertical: 5),
+                prefixIcon: const Icon(
                   Icons.lock,
                   color: AppColors.inactiveTextColor,
                 ),
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(35.0)),
+                    borderSide: const BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(Dimensions.radius35)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(35.0)),
+                    borderSide: const BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(Dimensions.radius35)),
                 hintText: "Password",
                 suffixIcon: Icon(
                   Icons.remove_red_eye,
@@ -269,9 +286,10 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
 
   Widget buildBottomHalfContainer(bool showShadow) {
     return AnimatedPositioned(
-        duration: Duration(milliseconds: 300),
-        curve: Curves.bounceInOut,
-        top: isSignUpScreen ? 495 : 440,
+        duration: const Duration(milliseconds: 300),
+        top: isSignUpScreen
+            ? Dimensions.height495
+            : Dimensions.height450 - Dimensions.height10,
         child: Container(
           alignment: Alignment.center,
           height: Dimensions.height90,
@@ -283,9 +301,9 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                 if (showShadow)
                   BoxShadow(
                       color: Colors.black.withOpacity(.3),
-                      blurRadius: 10,
+                      blurRadius: Dimensions.radius10,
                       spreadRadius: 1.5,
-                      offset: Offset(0, 1))
+                      offset: const Offset(0, 1))
               ]),
           child: Container(
             height: Dimensions.height60,
@@ -293,7 +311,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.redAccent,
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
@@ -305,7 +323,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                       color: Colors.black.withOpacity(.3),
                       spreadRadius: 1,
                       blurRadius: 1,
-                      offset: Offset(0, 1))
+                      offset: const Offset(0, 1))
                 ]),
             child: isLoading == true
                 ? const Center(
@@ -315,7 +333,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                   )
                 : Icon(
                     Icons.arrow_forward_rounded,
-                    size: 30,
+                    size: Dimensions.icon30,
                     color: Colors.white,
                   ),
           ),
@@ -340,7 +358,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                     password: passwordController.text,
                   );
                 }).then((value) {
-                  Get.offAll(() => BuyerHomePage());
+                  Get.offAll(() => const BuyerHomePage());
                 });
                 setState(() {
                   isLoading = false;
@@ -356,53 +374,49 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
               VxToast.show(context, msg: "Enter correct details");
             }
           } else {
-            if (controller.buyerEmailController.text.isNotEmpty &&
-                controller.buyerPasswordController.text.isNotEmpty) {
-              await controller.buyerSignInMethod().then((value) async {
-                setState(() {
-                  isLoading = true;
-                });
-                if (value != null) {
-                  Get.snackbar("Logged", "Logged In Successfully");
-                  setState(() {
-                    isLoading = false;
-                  });
-                  await Get.offAll(() => BuyerHomePage());
-                }
-              });
-            } else {
-              setState(() {
-                isLoading = false;
-              });
-              VxToast.show(context, msg: "Enter required fields");
-            }
             setState(() {
-              isLoading = false;
+              isLoading = true;
             });
+            await controller.buyerSignInMethod().then((value) async {
+              setState(() {
+                isLoading = true;
+              });
+              if (value != null) {
+                Get.snackbar("Logged", "Logged In Successfully");
+                setState(() {
+                  isLoading = false;
+                });
+                await Get.offAll(() => const BuyerHomePage());
+              }
+            });
+            VxToast.show(context, msg: "Enter required fields");
           }
+          setState(() {
+            isLoading = false;
+          });
         }));
   }
 
   Padding buildTextField(IconData icon, String hintText, bool isPassword,
       bool isEmail, TextEditingController controller) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.only(bottom: Dimensions.width8),
       child: TextFormField(
         controller: controller,
         obscureText: isPassword,
         keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 5),
+            contentPadding: const EdgeInsets.symmetric(vertical: 5),
             prefixIcon: Icon(
               icon,
               color: AppColors.inactiveTextColor,
             ),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(35.0)),
+                borderSide: const BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.circular(Dimensions.radius35)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(35.0)),
+                borderSide: const BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.circular(Dimensions.radius35)),
             hintText: hintText,
             hintStyle: TextStyle(
                 fontSize: Dimensions.fontSize15,

@@ -31,7 +31,7 @@ class MyOrders extends StatelessWidget {
         stream: FireStoreServices.getAllOrders(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(
                 color: AppColors.tealColor,
               ),

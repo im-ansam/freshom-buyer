@@ -4,13 +4,14 @@ import 'package:fresh_om/utils/colors.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:fresh_om/widgets/reusable_small_text.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../utils/dimensions.dart';
 
 import '../../../widgets/expandable_text.dart';
+import '../cart_page/cart_page.dart';
 import '../messages/message_screen.dart';
+import 'package:intl/intl.dart' as intl;
 
 class VegetableDetail extends StatelessWidget {
   final dynamic data;
@@ -19,6 +20,8 @@ class VegetableDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var productController = Get.put(ProductController());
+    var date =
+        intl.DateFormat('dd-MM-yyyy').format(data['v_uploaded_date'].toDate());
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.transparent,
@@ -60,7 +63,9 @@ class VegetableDetail extends StatelessWidget {
                     Icons.shopping_cart_outlined,
                     color: Colors.white,
                     size: Dimensions.icon30,
-                  )
+                  ).onTap(() {
+                    Get.to(() => const CartPage());
+                  })
                 ],
               )),
           //food detail
@@ -78,7 +83,7 @@ class VegetableDetail extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                         color: Colors.grey.shade600,
-                        blurRadius: 20,
+                        blurRadius: Dimensions.radius20,
                         spreadRadius: 1)
                   ],
                   color: AppColors.mainBackGround,
@@ -86,7 +91,7 @@ class VegetableDetail extends StatelessWidget {
                       topLeft: Radius.circular(Dimensions.radius25),
                       topRight: Radius.circular(Dimensions.radius25))),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,7 +124,7 @@ class VegetableDetail extends StatelessWidget {
                         SmallText(
                           text: "Quantity Available  -",
                           size: Dimensions.fontSize18,
-                          color: AppColors.tealColor,
+                          color: AppColors.nicePurple,
                         ),
                         Text(
                           "${data['v_qty']}kg left",
@@ -171,11 +176,11 @@ class VegetableDetail extends StatelessWidget {
                                 data['seller_id']
                               ]);
                             },
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Icon(
                                 Icons.message_rounded,
-                                color: AppColors.tealColor,
+                                color: AppColors.nicePurple,
                               ),
                             ),
                           )
@@ -193,13 +198,13 @@ class VegetableDetail extends StatelessWidget {
                         BoldText(
                           fontWeight: FontWeight.bold,
                           text: "Product Uploaded Date :",
-                          size: 20,
-                          color: AppColors.tealColor,
+                          size: Dimensions.fontSize20,
+                          color: AppColors.nicePurple,
                         ),
                         BoldText(
                           fontWeight: FontWeight.bold,
-                          text: "",
-                          size: 16,
+                          text: date,
+                          size: Dimensions.fontSize16,
                           color: Colors.redAccent,
                         ),
                       ],
@@ -207,7 +212,7 @@ class VegetableDetail extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.grey,
                       thickness: 1,
                     ),
@@ -330,7 +335,7 @@ class VegetableDetail extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius20),
-                        color: AppColors.buttonColor),
+                        color: AppColors.nicePurple),
                     child: Text(
                       'Rs ${productController.v_totalPrice.value.numCurrency} | Add to cart',
                       style: TextStyle(

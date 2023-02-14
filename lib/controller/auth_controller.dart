@@ -80,9 +80,9 @@ class AuthController extends GetxController {
       VxToast.show(context, msg: e.toString());
     }
   }
-}
 
-verifyEmail() async {
-  await auth.currentUser!.sendEmailVerification();
-  Get.snackbar('email', 'send');
+  verifyEmail() async {
+    await auth.currentUser!.sendEmailVerification();
+    Get.snackbar('email', 'send');
+  }
 }

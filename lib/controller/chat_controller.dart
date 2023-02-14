@@ -53,8 +53,8 @@ class ChatsController extends GetxController {
       chats.doc(chatDocId).update({
         'created_on': FieldValue.serverTimestamp(),
         'last_msg': msg,
-        'to_id': friendId,
-        'from_id': currentId
+        'toId': friendId,
+        'fromId': currentId
       });
       chats.doc(chatDocId).collection(messagesCollection).doc().set({
         'created_on': FieldValue.serverTimestamp(),

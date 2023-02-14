@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/pages/Buyer/detail%20page/fruits_detail.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../utils/Reusables_functions.dart';
@@ -50,11 +49,11 @@ class _HomeCategoryState extends State<HomeCategory> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
-                return CircularProgressIndicator(
-                  color: AppColors.tealColor,
+                return const CircularProgressIndicator(
+                  color: AppColors.nicePurple,
                 );
               } else if (snapshot.data!.docs.isEmpty) {
-                return Center(
+                return const Center(
                   child: BoldText(
                     fontWeight: FontWeight.bold,
                     text: "No Items",
@@ -113,8 +112,9 @@ class _HomeCategoryState extends State<HomeCategory> {
                       position: fruitIndex.toDouble(),
                       decorator: DotsDecorator(
                         activeColor: AppColors.buttonColor,
-                        size: const Size.square(9.0),
-                        activeSize: const Size(18.0, 9.0),
+                        size: Size.square(Dimensions.width8 + 1),
+                        activeSize:
+                            Size(Dimensions.height18, Dimensions.width8 + 1),
                         activeShape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius5)),
@@ -138,11 +138,11 @@ class _HomeCategoryState extends State<HomeCategory> {
                 .snapshots(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.data!.docs.isEmpty) {
-                return Center(
+                return const Center(
                   child: BoldText(
                     fontWeight: FontWeight.bold,
                     text: "No Items",
@@ -196,8 +196,9 @@ class _HomeCategoryState extends State<HomeCategory> {
                       position: vegIndex.toDouble(),
                       decorator: DotsDecorator(
                         activeColor: AppColors.buttonColor,
-                        size: const Size.square(9.0),
-                        activeSize: const Size(18.0, 9.0),
+                        size: Size.square(Dimensions.width8 + 1),
+                        activeSize:
+                            Size(Dimensions.height18, Dimensions.width8 + 1),
                         activeShape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius5)),

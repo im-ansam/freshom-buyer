@@ -15,6 +15,7 @@ class CartController extends GetxController {
   var paymentIndex = 0.obs;
   late dynamic productSnapshot;
   var products = [];
+  var sellers = [];
 
   var placingOrder = false.obs;
   calculate(data) {
@@ -51,7 +52,8 @@ class CartController extends GetxController {
         'order_delivered': false,
         'order_on_delivery': false,
         'total_amount': totalAmount,
-        'orders': FieldValue.arrayUnion(products)
+        'orders': FieldValue.arrayUnion(products),
+        'sellers': FieldValue.arrayUnion(sellers)
       });
       placingOrder(false);
       VxToast.show(context, msg: 'Order Placed Successfully');
@@ -65,6 +67,7 @@ class CartController extends GetxController {
 
   getProductDetails() {
     products.clear();
+    sellers.clear();
     for (var i = 0; i < productSnapshot.length; i++) {
       products.add({
         'img': productSnapshot[i]['img'],
@@ -73,6 +76,7 @@ class CartController extends GetxController {
         'qty': productSnapshot[i]['qty'],
         'title': productSnapshot[i]['title']
       });
+      sellers.add(productSnapshot[i]['seller_id']);
     }
   }
 

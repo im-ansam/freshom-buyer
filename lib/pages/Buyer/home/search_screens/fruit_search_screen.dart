@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/detail%20page/fruits_detail.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../utils/colors.dart';
@@ -25,29 +24,29 @@ class FruitSearchScreen extends StatelessWidget {
             controller.fruitSearchController.clear();
             Get.back();
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
-            color: AppColors.tealColor,
+            color: AppColors.nicePurple,
           ),
         ),
-        foregroundColor: AppColors.tealColor,
+        foregroundColor: AppColors.nicePurple,
         backgroundColor: AppColors.mainBackGround,
         elevation: 0,
-        title: title?.text.semiBold.size(18).make(),
+        title: title?.text.semiBold.size(Dimensions.fontSize18).make(),
       ),
       body: FutureBuilder(
         future: FireStoreServices.searchFruits(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.tealColor,
+                color: AppColors.nicePurple,
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
             return "No results found..."
                 .text
-                .size(20)
+                .size(Dimensions.fontSize20)
                 .semiBold
                 .color(AppColors.tealColor)
                 .makeCentered();
@@ -62,7 +61,7 @@ class FruitSearchScreen extends StatelessWidget {
             if (filtered.isEmpty) {
               return "No results found..."
                   .text
-                  .size(20)
+                  .size(Dimensions.fontSize20)
                   .semiBold
                   .color(AppColors.tealColor)
                   .makeCentered();
@@ -72,18 +71,21 @@ class FruitSearchScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     mainAxisSpacing: Dimensions.height10,
                     // crossAxisSpacing: Dimensions.width10,
-                    mainAxisExtent: 240),
+                    mainAxisExtent: Dimensions.height120 * 2),
                 children: filtered
                     .mapIndexed((currentValue, index) => Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 10, right: 10),
+                          padding: EdgeInsets.only(
+                              top: Dimensions.width10,
+                              left: Dimensions.width10,
+                              right: Dimensions.width10),
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius10),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black12,
-                                  blurRadius: 10,
+                                  blurRadius: Dimensions.radius10,
                                 )
                               ],
                               color: Colors.white,
@@ -93,7 +95,7 @@ class FruitSearchScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
+                                SizedBox(
                                   // padding: const EdgeInsets.all(8),
                                   // clipBehavior: Clip.antiAlias,
                                   height: Dimensions.height160,

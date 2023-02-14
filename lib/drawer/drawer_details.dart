@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/colors.dart';
 import '../utils/dimensions.dart';
 
 class DrawerRow extends StatelessWidget {
@@ -23,7 +24,7 @@ class DrawerRow extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: Colors.teal,
+                backgroundColor: AppColors.nicePurple,
                 radius: Dimensions.radius18,
                 child: Icon(
                   icon,

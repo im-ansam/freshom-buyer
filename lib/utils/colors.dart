@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color mainBackGround = Color(0xfff5f5f5);
+  static const Color mainBackGround = Color(0xfff7f6f2); //0xfff5f5f5
   static const Color darkCream = Color(0xffece0d4);
   static const Color buttonColor = Color(0xfff5b7ba);
   static const Color lightPink = Color(0xffffe6ee);
@@ -24,4 +24,5 @@ class AppColors {
   static const Color mattOrange = Color(0xffdb9b6e);
   static const Color mattRed = Color(0xffcf6754);
   static const Color textYellow = Color(0xffd4bf63);
+  static const Color nicePurple = Color(0xff2d2b4e);
 }

@@ -22,8 +22,14 @@ class ConfirmOrder extends StatelessWidget {
             VxToast.show(context, msg: "Enter your city");
           } else if (controller.postalCodeController.text.isEmpty) {
             VxToast.show(context, msg: "Postal code is required");
-          } else if (controller.phoneController.text.isEmpty) {
-            VxToast.show(context, msg: "Phone is required");
+          } else if (controller.phoneController.text.isEmpty ||
+              controller.phoneController.text.length < 10) {
+            VxToast.show(context, msg: "Phone number invalid");
+          } else if (controller.postalCodeController.text != "673592" &&
+              controller.postalCodeController.text != "673596" &&
+              controller.postalCodeController.text != "673595" &&
+              controller.postalCodeController.text != "673591") {
+            VxToast.show(context, msg: "Not deliverable to this location");
           } else {
             Get.to(() => const PaymentMethod());
           }
@@ -53,7 +59,7 @@ class ConfirmOrder extends StatelessWidget {
               "Your Address"
                   .text
                   .semiBold
-                  .color(AppColors.tealColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -73,7 +79,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.tealColor),
+                    borderSide: const BorderSide(color: AppColors.nicePurple),
                   ),
                 ),
               ),
@@ -81,7 +87,7 @@ class ConfirmOrder extends StatelessWidget {
               "Home City"
                   .text
                   .semiBold
-                  .color(AppColors.tealColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -101,7 +107,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.tealColor),
+                    borderSide: const BorderSide(color: AppColors.nicePurple),
                   ),
                 ),
               ),
@@ -109,7 +115,7 @@ class ConfirmOrder extends StatelessWidget {
               "Pin Code"
                   .text
                   .semiBold
-                  .color(AppColors.tealColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -129,7 +135,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.tealColor),
+                    borderSide: const BorderSide(color: AppColors.nicePurple),
                   ),
                 ),
               ),
@@ -137,7 +143,7 @@ class ConfirmOrder extends StatelessWidget {
               "Contact Number"
                   .text
                   .semiBold
-                  .color(AppColors.tealColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -157,7 +163,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.tealColor),
+                    borderSide: const BorderSide(color: AppColors.nicePurple),
                   ),
                 ),
               ),

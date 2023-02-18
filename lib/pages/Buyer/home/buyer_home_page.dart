@@ -125,6 +125,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
   Widget build(BuildContext context) {
     var controller = Get.find<HomeController>();
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.mainBackGround,
       drawer: Container(
         width: Dimensions.screenWidth / 1.4,
@@ -430,33 +431,30 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
             height: Dimensions.height20,
           ),
           Expanded(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.only(top: Dimensions.height5),
-                child: Container(
-                  padding: EdgeInsets.only(
-                      left: Dimensions.height20, right: Dimensions.height20),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade400,
-                        // spreadRadius: 1,
-                        blurRadius: 5,
-                      )
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Dimensions.radius30),
-                      topRight: Radius.circular(Dimensions.radius30),
-                    ),
+            child: Padding(
+              padding: EdgeInsets.only(top: Dimensions.height5),
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: Dimensions.height20, right: Dimensions.height20),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade400,
+                      // spreadRadius: 1,
+                      blurRadius: 5,
+                    )
+                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(Dimensions.radius30),
+                    topRight: Radius.circular(Dimensions.radius30),
                   ),
-                  child: categoryIsClicked1
-                      ? const HomeCategory()
-                      : categoryIsClicked2
-                          ? const VegCategory()
-                          : const FruitCategory(),
                 ),
+                child: categoryIsClicked1
+                    ? const HomeCategory()
+                    : categoryIsClicked2
+                        ? const VegCategory()
+                        : const FruitCategory(),
               ),
             ),
           )

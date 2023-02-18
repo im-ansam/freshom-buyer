@@ -10,6 +10,7 @@ import 'package:fresh_om/pages/Buyer/orders_screen/orders_screen.dart';
 import 'package:fresh_om/pages/authentication/main_registration_page.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../controller/auth_controller.dart';
 import '../../../utils/colors.dart';
@@ -85,14 +86,16 @@ class UserProfile extends StatelessWidget {
                                         context: context,
                                         builder: (context) {
                                           return AlertDialog(
-                                            content: BoldText(
+                                            content: BigText(
+                                              letterSpacing: 1,
                                               overFlow: TextOverflow.visible,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                               text: "${data['email']}",
                                               // text: controller.profileData['email'],
                                               size: Dimensions.fontSize18,
                                             ),
-                                            title: const BoldText(
+                                            title: const BigText(
+                                              letterSpacing: 1,
                                               fontWeight: FontWeight.bold,
                                               text: "Your Email",
                                             ),
@@ -119,12 +122,13 @@ class UserProfile extends StatelessWidget {
                                             content: BoldText(
                                               overFlow: TextOverflow.visible,
                                               fontWeight: FontWeight.w500,
-                                              text: "${data['address']}",
+                                              text:
+                                                  "Ansam CD\nAlan\nBasil\nArchana",
                                               size: Dimensions.fontSize18,
                                             ),
                                             title: const BoldText(
                                               fontWeight: FontWeight.bold,
-                                              text: "Your Address",
+                                              text: "Developers",
                                             ),
                                             actions: [
                                               TextButton(
@@ -215,7 +219,8 @@ class UserProfile extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      BoldText(
+                                      BigText(
+                                        letterSpacing: 1,
                                         fontWeight: FontWeight.w500,
                                         text: "${data['name']}",
                                         // text: controller.profileData['name'],
@@ -223,9 +228,10 @@ class UserProfile extends StatelessWidget {
                                         color: Colors.white70,
                                       ),
                                       BigText(
+                                        letterSpacing: 1,
                                         text: '${data['email']}',
                                         // text: controller.profileData['email'],
-                                        fontWeight: FontWeight.w100,
+                                        fontWeight: FontWeight.w400,
                                         size: Dimensions.fontSize14,
                                         color: Colors.redAccent,
                                       )
@@ -245,7 +251,10 @@ class UserProfile extends StatelessWidget {
                                             color: Colors.white70)),
                                     onPressed: () async {
                                       await controller.signOutMethod(context);
-                                      controller.update();
+                                      var sharedPref =
+                                          await SharedPreferences.getInstance();
+                                      sharedPref.setBool("isLogged", false);
+
                                       Get.offAll(
                                           () => const MainRegisterPage());
                                     },

@@ -89,4 +89,9 @@ class FireStoreServices {
   static searchFruits() {
     return firestore.collection(fruitsCollection).get();
   }
+
+//test
+  static getUploadedDate() {
+    var data = firestore.collection(fruitsCollection).snapshots();
+  }
 }

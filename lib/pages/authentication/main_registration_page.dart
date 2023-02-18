@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/authentication/reset_password_page.dart';
+import 'package:fresh_om/widgets/reusable_big_text.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../constants/firebase_consts.dart';
@@ -43,13 +46,20 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
         child: Column(
           children: [
             Image.asset("images/logoMain2.png"),
-            Dimensions.height10.heightBox,
-            "Fresh'Om"
-                .text
-                .bold
-                .color(AppColors.nicePurple)
-                .size(Dimensions.fontSize25)
-                .make(),
+            Dimensions.width8.heightBox,
+
+            BigText(
+              text: "Fresh'Om",
+              fontWeight: FontWeight.bold,
+              color: AppColors.nicePurple,
+              size: Dimensions.fontSize25,
+            )
+            // "Fresh'Om"
+            //     .text
+            //     .bold
+            //     .color(AppColors.nicePurple)
+            //     .size(Dimensions.fontSize25)
+            //     .make(),
           ],
         ),
       ),
@@ -73,36 +83,43 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                     RichText(
                       text: TextSpan(
                           text: isSignUpScreen ? "Welcome to" : "Welcome",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontSize: Dimensions.fontSize25,
                               color: Colors.yellow[200],
                               letterSpacing: 2),
                           children: [
                             TextSpan(
-                                text: isSignUpScreen ? " Fresh'Om," : " Back,",
-                                style: TextStyle(
+                              text: isSignUpScreen ? " Fresh'Om," : " Back,",
+                              style: GoogleFonts.poppins(
                                   fontSize: Dimensions.fontSize30,
-                                  fontWeight: FontWeight.bold,
                                   color: Colors.yellow[200],
-                                ))
+                                  fontWeight: FontWeight.bold),
+                              //
+                              // TextStyle(
+                              //   fontSize: Dimensions.fontSize30,
+                              //   fontWeight: FontWeight.bold,
+                              //   color: Colors.yellow[200],
+                              // )
+                              //
+                            )
                           ]),
                     ),
                     5.heightBox,
                     isSignUpScreen
-                        ? "Signup to Continue"
-                            .text
-                            .size(Dimensions.fontSize18)
-                            .letterSpacing(2)
-                            .color(Colors.white54)
-                            .semiBold
-                            .make()
-                        : "Signin to Continue"
-                            .text
-                            .size(Dimensions.fontSize18)
-                            .letterSpacing(2)
-                            .color(Colors.white54)
-                            .semiBold
-                            .make()
+                        ? BigText(
+                            text: "Signup to Continue",
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 2,
+                            color: Colors.white54,
+                            size: Dimensions.fontSize18,
+                          )
+                        : BigText(
+                            text: "SignIn to Continue",
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 2,
+                            color: Colors.white54,
+                            size: Dimensions.fontSize18,
+                          )
                   ],
                 ),
               )),
@@ -144,14 +161,14 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                             },
                             child: Column(
                               children: [
-                                "LOGIN"
-                                    .text
-                                    .size(Dimensions.fontSize20)
-                                    .extraBold
-                                    .color(isSignUpScreen
-                                        ? AppColors.inactiveTextColor
-                                        : AppColors.nicePurple)
-                                    .make(),
+                                BigText(
+                                  text: "LOGIN",
+                                  fontWeight: FontWeight.bold,
+                                  color: isSignUpScreen
+                                      ? AppColors.inactiveTextColor
+                                      : AppColors.nicePurple,
+                                  size: Dimensions.fontSize20,
+                                ),
                                 if (!isSignUpScreen)
                                   Container(
                                     margin: const EdgeInsets.only(top: 3),
@@ -170,14 +187,14 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                             },
                             child: Column(
                               children: [
-                                "SIGNUP"
-                                    .text
-                                    .size(Dimensions.fontSize20)
-                                    .extraBold
-                                    .color(isSignUpScreen
-                                        ? AppColors.nicePurple
-                                        : AppColors.inactiveTextColor)
-                                    .make(),
+                                BigText(
+                                  text: "SIGNUP",
+                                  fontWeight: FontWeight.bold,
+                                  color: isSignUpScreen
+                                      ? AppColors.nicePurple
+                                      : AppColors.inactiveTextColor,
+                                  size: Dimensions.fontSize20,
+                                ),
                                 if (isSignUpScreen)
                                   Container(
                                     margin: const EdgeInsets.only(top: 3),
@@ -217,15 +234,22 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-                onPressed: () {
-                  Get.to(() => const ResetPassword());
-                },
-                child: "Forgot Password?"
-                    .text
-                    .semiBold
-                    .size(Dimensions.fontSize16)
-                    .color(AppColors.nicePurple)
-                    .make()),
+              onPressed: () {
+                Get.to(() => const ResetPassword());
+              },
+              child: BigText(
+                text: "Forgot Password?",
+                fontWeight: FontWeight.bold,
+                color: AppColors.nicePurple,
+                size: Dimensions.fontSize15,
+              ),
+              // "Forgot Password?"
+              //     .text
+              //     .semiBold
+              //     .size(Dimensions.fontSize16)
+              //     .color(AppColors.nicePurple)
+              //     .make()
+            ),
           )
         ],
       ),
@@ -358,7 +382,12 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                     buyerName: nameController.text,
                     password: passwordController.text,
                   );
-                }).then((value) {
+                }).then((value) async {
+                  //setting value to shared preference
+
+                  var sharedPref = await SharedPreferences.getInstance();
+                  sharedPref.setBool('isLogged', true);
+
                   Get.offAll(() => const BuyerHomePage());
                 });
                 setState(() {
@@ -387,6 +416,8 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                 setState(() {
                   isLoading = false;
                 });
+                var sharedPref = await SharedPreferences.getInstance();
+                sharedPref.setBool('isLogged', true);
                 await Get.offAll(() => const BuyerHomePage());
               }
             });

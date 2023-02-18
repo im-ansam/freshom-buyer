@@ -13,7 +13,7 @@ class CartController extends GetxController {
   var postalCodeController = TextEditingController();
   var phoneController = TextEditingController();
 
-  var paymentIndex = 0.obs;
+  // var paymentIndex = 0.obs;
   late dynamic productSnapshot;
   var products = [];
   var sellers = [];
@@ -27,9 +27,9 @@ class CartController extends GetxController {
     }
   }
 
-  changePaymentIndex(index) {
-    paymentIndex.value == index;
-  }
+  // changePaymentIndex(index) {
+  //   paymentIndex.value == index;
+  // }
 
   placeMyOrder(
       {required orderPaymentMethod, required totalAmount, context}) async {

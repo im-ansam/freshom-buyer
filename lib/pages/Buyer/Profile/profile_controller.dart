@@ -62,7 +62,7 @@ class BuyerProfileController extends GetxController {
     });
   }
 
-  // // get buyer profile data from databse
+  // // get buyer profile data from database
   // late Map<String, dynamic> profileData;
   // profileDetails() async {
   //   var collection = firestore.collection(buyerCollection);

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
-import 'package:fresh_om/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -76,5 +75,25 @@ class ProductController extends GetxController {
         VxToast.show(context, msg: error.toString());
       });
     }
+  }
+
+  resetValues() {
+    f_quantity.value = 0;
+
+    f_totalPrice.value = 0;
+    v_quantity.value = 0;
+
+    v_totalPrice.value = 0;
+  }
+
+  var cartCount = 0.obs;
+  getCartCount() async {
+    cartCount.value = 0;
+    var data = await firestore
+        .collection(cartCollection)
+        .where('added_by', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    cartCount.value = data.docs.length;
   }
 }

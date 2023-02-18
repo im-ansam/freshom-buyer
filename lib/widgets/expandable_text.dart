@@ -40,8 +40,11 @@ class _ExpadableTextState extends State<ExpadableText> {
   Widget build(BuildContext context) {
     return Container(
         child: secondHalf.isEmpty
-            ? Text(
-                firstHalf,
+            ? SmallText(
+                text: firstHalf,
+                overFlow: TextOverflow.visible,
+                height: 1.6,
+                color: AppColors.nicePurple,
               )
             : Column(
                 children: [
@@ -54,7 +57,7 @@ class _ExpadableTextState extends State<ExpadableText> {
                     color: AppColors.tealColor,
                   ),
                   SizedBox(
-                    height:  Dimensions.height10,
+                    height: Dimensions.height10,
                   ),
                   InkWell(
                     onTap: () {

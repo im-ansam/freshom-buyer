@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/dimensions.dart';
 
 class SmallText extends StatelessWidget {
@@ -19,15 +20,13 @@ class SmallText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      overflow: overFlow,
-      style: TextStyle(
+    return Text(text,
+        overflow: overFlow,
+        style: GoogleFonts.poppins(
           height: height,
           color: color,
           fontWeight: FontWeight.w600,
           fontSize: size == 0 ? Dimensions.fontSize16 : size,
-          fontFamily: 'MerriweatherSans'),
-    );
+        ));
   }
 }

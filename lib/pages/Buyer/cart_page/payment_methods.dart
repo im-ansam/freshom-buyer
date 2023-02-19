@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/controller/cart_controller.dart';
 import 'package:fresh_om/pages/Buyer/home/buyer_home_page.dart';
-import 'package:fresh_om/pages/Buyer/lists/list.dart';
-import 'package:fresh_om/pages/Buyer/orders_screen/components/order_place_details.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
-import '../../../widgets/reusable_big_text.dart';
 
 class PaymentMethod extends StatelessWidget {
   const PaymentMethod({Key? key}) : super(key: key);

@@ -7,7 +7,6 @@ import 'package:fresh_om/pages/Buyer/detail%20page/fruits_detail.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/Reusables_functions.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';

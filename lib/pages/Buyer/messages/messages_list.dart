@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/messages/message_screen.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widgets/reusable_bold_text.dart';
-
 import '../Services/firestore_services.dart';
 
 class AllMessageList extends StatefulWidget {

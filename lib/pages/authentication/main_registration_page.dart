@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/authentication/reset_password_page.dart';
 import 'package:fresh_om/widgets/reusable_big_text.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../constants/firebase_consts.dart';
 import '../../controller/auth_controller.dart';
 import '../../utils/colors.dart';
-
 import '../../utils/dimensions.dart';
 import '../Buyer/home/buyer_home_page.dart';
 
@@ -47,19 +44,12 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
           children: [
             Image.asset("images/logoMain2.png"),
             Dimensions.width8.heightBox,
-
             BigText(
               text: "Fresh'Om",
               fontWeight: FontWeight.bold,
               color: AppColors.nicePurple,
               size: Dimensions.fontSize25,
             )
-            // "Fresh'Om"
-            //     .text
-            //     .bold
-            //     .color(AppColors.nicePurple)
-            //     .size(Dimensions.fontSize25)
-            //     .make(),
           ],
         ),
       ),
@@ -94,13 +84,6 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                                   fontSize: Dimensions.fontSize30,
                                   color: Colors.yellow[200],
                                   fontWeight: FontWeight.bold),
-                              //
-                              // TextStyle(
-                              //   fontSize: Dimensions.fontSize30,
-                              //   fontWeight: FontWeight.bold,
-                              //   color: Colors.yellow[200],
-                              // )
-                              //
                             )
                           ]),
                     ),
@@ -412,13 +395,10 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                 isLoading = true;
               });
               if (value != null) {
-                Get.snackbar("Logged", "Logged In Successfully");
                 setState(() {
                   isLoading = false;
                 });
-                var sharedPref = await SharedPreferences.getInstance();
-                sharedPref.setBool('isLogged', true);
-                await Get.offAll(() => const BuyerHomePage());
+                await controller.checkUserInCollection();
               }
             });
             VxToast.show(context, msg: "Enter required fields");

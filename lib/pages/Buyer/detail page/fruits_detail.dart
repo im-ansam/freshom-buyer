@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_om/controller/product_controller.dart';
-import 'package:fresh_om/pages/Buyer/Profile/profile_controller.dart';
-import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/cart_page.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -11,7 +9,6 @@ import '../../../widgets/expandable_text.dart';
 import '../../../widgets/reusable_bold_text.dart';
 import '../../../widgets/reusable_small_text.dart';
 import '../messages/message_screen.dart';
-import 'package:intl/intl.dart' as intl;
 
 class FruitsDetail extends StatelessWidget {
   final dynamic data;

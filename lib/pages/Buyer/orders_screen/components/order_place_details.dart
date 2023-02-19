@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fresh_om/widgets/reusable_big_text.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../utils/colors.dart';
@@ -19,12 +20,13 @@ Widget orderPlaceDetails({data, title1, title2, d1, d2}) {
                 .semiBold
                 .color(AppColors.tealColor)
                 .make(),
-            "$d1"
-                .text
-                .size(Dimensions.fontSize16)
-                .semiBold
-                .color(AppColors.priceColor)
-                .make(),
+            BigText(
+              text: "$d1",
+              fontWeight: FontWeight.w700,
+              size: Dimensions.fontSize16,
+              color: AppColors.priceColor,
+              overFlow: TextOverflow.ellipsis,
+            ).box.width(Dimensions.height120).make()
           ],
         ),
         SizedBox(

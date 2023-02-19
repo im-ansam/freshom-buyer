@@ -77,8 +77,8 @@ class OrdersDetail extends StatelessWidget {
                 children: [
                   orderPlaceDetails(
                       data: data,
-                      title1: "Order Code",
-                      d1: data['order_code'],
+                      title1: "Order By Id",
+                      d1: data['order_by'],
                       title2: "Delivery Method",
                       d2: data['delivery_method']),
                   orderPlaceDetails(
@@ -90,11 +90,18 @@ class OrdersDetail extends StatelessWidget {
                       title2: "Payment Method",
                       d2: data['payment_method']),
                   orderPlaceDetails(
-                      data: data,
-                      title1: "Payment Status",
-                      d1: "Unpaid",
-                      title2: "Delivery Status",
-                      d2: "Order Placed"),
+                    data: data,
+                    title1: "Payment Status",
+                    d1: data['order_delivered'] == true ? "Paid" : "Unpaid",
+                    title2: "Delivery Status",
+                    d2: data['order_delivered'] == true
+                        ? "Delivered"
+                        : data['order_on_delivery'] == true
+                            ? "On Delivery"
+                            : data['order_confirmed'] == true
+                                ? "Order Confirmed"
+                                : "Order Placed",
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

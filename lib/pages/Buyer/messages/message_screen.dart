@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/controller/chat_controller.dart';
 import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:get/get.dart';

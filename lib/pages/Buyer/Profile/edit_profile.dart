@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/pages/Buyer/Profile/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

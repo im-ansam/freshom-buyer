@@ -5,6 +5,7 @@ import 'package:fresh_om/pages/Buyer/orders_screen/orders_detail.dart';
 import 'package:fresh_om/utils/dimensions.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../../../constants/firebase_consts.dart';
 import '../../../utils/colors.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -60,11 +61,16 @@ class MyOrders extends StatelessWidget {
                           .make(),
                       title: Row(
                         children: [
-                          data[index]['order_code']
+                          auth.currentUser!.email
+                              // data[index]['order_code']
                               .toString()
                               .text
                               .semiBold
+                              .overflow(TextOverflow.ellipsis)
                               .color(AppColors.tealColor)
+                              .make()
+                              .box
+                              .width(Dimensions.height100)
                               .make(),
                           Dimensions.height10.widthBox,
                           "(${intl.DateFormat().add_yMd().format(data[index]['order_date'].toDate())})"

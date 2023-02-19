@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../../controller/home_controller.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/dimensions.dart';

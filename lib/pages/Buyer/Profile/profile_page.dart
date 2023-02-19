@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fresh_om/constants/firebase_consts.dart';
 import 'package:fresh_om/pages/Buyer/Profile/profile_controller.dart';
 import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:fresh_om/pages/Buyer/lists/list.dart';
@@ -86,6 +85,9 @@ class UserProfile extends StatelessWidget {
                                         context: context,
                                         builder: (context) {
                                           return AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
                                             content: BigText(
                                               letterSpacing: 1,
                                               overFlow: TextOverflow.visible,
@@ -94,22 +96,43 @@ class UserProfile extends StatelessWidget {
                                               // text: controller.profileData['email'],
                                               size: Dimensions.fontSize18,
                                             ),
-                                            title: const BigText(
-                                              letterSpacing: 1,
-                                              fontWeight: FontWeight.bold,
-                                              text: "Your Email",
+                                            title: Column(
+                                              children: const [
+                                                BigText(
+                                                  fontWeight: FontWeight.bold,
+                                                  text: "Your Email",
+                                                ),
+                                                Divider(
+                                                  thickness: 1,
+                                                )
+                                              ],
                                             ),
                                             actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                  child: Text(
-                                                    "OK",
-                                                    style: TextStyle(
-                                                        fontSize: Dimensions
-                                                            .fontSize20),
-                                                  ))
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    color:
+                                                        AppColors.nicePurple),
+                                                alignment: Alignment.center,
+                                                width: Dimensions.height90,
+                                                height: Dimensions.height40,
+                                                child: BigText(
+                                                  text: "OK",
+                                                  size: Dimensions.fontSize20,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.white,
+                                                ),
+                                              )
+                                                  .paddingOnly(
+                                                      right:
+                                                          Dimensions.height15,
+                                                      bottom:
+                                                          Dimensions.height15)
+                                                  .onTap(() {
+                                                Get.back();
+                                              })
                                             ],
                                           );
                                         });
@@ -119,28 +142,53 @@ class UserProfile extends StatelessWidget {
                                         context: context,
                                         builder: (context) {
                                           return AlertDialog(
-                                            content: BoldText(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            content: BigText(
                                               overFlow: TextOverflow.visible,
                                               fontWeight: FontWeight.w500,
                                               text:
                                                   "Ansam CD\nAlan\nBasil\nArchana",
                                               size: Dimensions.fontSize18,
                                             ),
-                                            title: const BoldText(
-                                              fontWeight: FontWeight.bold,
-                                              text: "Developers",
+                                            title: Column(
+                                              children: const [
+                                                BigText(
+                                                  fontWeight: FontWeight.bold,
+                                                  text: "Developed by",
+                                                ),
+                                                Divider(
+                                                  thickness: 1,
+                                                )
+                                              ],
                                             ),
                                             actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                  child: Text(
-                                                    "OK",
-                                                    style: TextStyle(
-                                                        fontSize: Dimensions
-                                                            .fontSize20),
-                                                  ))
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    color:
+                                                        AppColors.nicePurple),
+                                                alignment: Alignment.center,
+                                                width: Dimensions.height90,
+                                                height: Dimensions.height40,
+                                                child: BigText(
+                                                  text: "OK",
+                                                  size: Dimensions.fontSize20,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.white,
+                                                ),
+                                              )
+                                                  .paddingOnly(
+                                                      right:
+                                                          Dimensions.height15,
+                                                      bottom:
+                                                          Dimensions.height15)
+                                                  .onTap(() {
+                                                Get.back();
+                                              })
                                             ],
                                           );
                                         });

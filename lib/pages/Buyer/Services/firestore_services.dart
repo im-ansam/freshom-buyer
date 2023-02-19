@@ -1,11 +1,5 @@
-import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
-import 'package:fresh_om/pages/Buyer/home/buyer_home_page.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class FireStoreServices {
   //get products from firebase
@@ -88,10 +82,5 @@ class FireStoreServices {
 
   static searchFruits() {
     return firestore.collection(fruitsCollection).get();
-  }
-
-//test
-  static getUploadedDate() {
-    var data = firestore.collection(fruitsCollection).snapshots();
   }
 }

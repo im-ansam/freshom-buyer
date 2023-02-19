@@ -105,15 +105,6 @@ class _SplashScreenState extends State<SplashScreen> {
               text: "version 1.0.0",
               color: Colors.white70,
             ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.only(bottom: Dimensions.height10),
-              child: Text(
-                "@ansamcd",
-                style: TextStyle(
-                    color: Colors.white, fontSize: Dimensions.fontSize15),
-              ),
-            )
           ],
         ),
       ),

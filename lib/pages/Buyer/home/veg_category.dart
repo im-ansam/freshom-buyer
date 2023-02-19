@@ -169,7 +169,7 @@ class _VegCategoryState extends State<VegCategory> {
                 } else {
                   var data = snapshot.data!.docs;
                   return GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: data.length,
                       shrinkWrap: true,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

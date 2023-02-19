@@ -5,14 +5,10 @@ import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:fresh_om/widgets/reusable_small_text.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../utils/dimensions.dart';
-
 import '../../../widgets/expandable_text.dart';
-import '../Services/firestore_services.dart';
 import '../cart_page/cart_page.dart';
 import '../messages/message_screen.dart';
-import 'package:intl/intl.dart' as intl;
 
 class VegetableDetail extends StatelessWidget {
   final dynamic data;

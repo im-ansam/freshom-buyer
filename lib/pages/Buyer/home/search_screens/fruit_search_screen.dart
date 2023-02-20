@@ -26,10 +26,10 @@ class FruitSearchScreen extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back,
-            color: AppColors.nicePurple,
+            color: AppColors.mainAppColor,
           ),
         ),
-        foregroundColor: AppColors.nicePurple,
+        foregroundColor: AppColors.mainAppColor,
         backgroundColor: AppColors.mainBackGround,
         elevation: 0,
         title: title?.text.semiBold.size(Dimensions.fontSize18).make(),
@@ -122,7 +122,7 @@ class FruitSearchScreen extends StatelessWidget {
                                 BoldText(
                                   fontWeight: FontWeight.w700,
                                   text: "Rs${filtered[index]['f_price']}/kg",
-                                  color: AppColors.priceColor,
+                                  color: AppColors.orangeRed,
                                   size: Dimensions.fontSize16,
                                 )
                               ],

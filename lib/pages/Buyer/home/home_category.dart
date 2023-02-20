@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/constants/firebase_consts.dart';
+import 'package:fresh_om/controller/product_controller.dart';
 import 'package:fresh_om/pages/Buyer/detail%20page/fruits_detail.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -24,6 +25,7 @@ class HomeCategory extends StatefulWidget {
 }
 
 class _HomeCategoryState extends State<HomeCategory> {
+  var controller = Get.put(ProductController());
   @override
   void initState() {
     fruitIndex;
@@ -40,7 +42,7 @@ class _HomeCategoryState extends State<HomeCategory> {
           //popular fruits . list text
           buildPopularText(popularText: "New Fruits", list: ". List"),
           SizedBox(
-            height: Dimensions.height20,
+            height: Dimensions.height15,
           ),
           //VxSwiper for fruits
 
@@ -59,10 +61,13 @@ class _HomeCategoryState extends State<HomeCategory> {
                     color: AppColors.nicePurple,
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
+                  return Container(
+                    alignment: Alignment.center,
+                    height: 100,
                     child: BoldText(
-                      fontWeight: FontWeight.bold,
-                      text: "No Items",
+                      fontWeight: FontWeight.w600,
+                      text: "No new fruits",
+                      color: Colors.grey[600],
                     ),
                   );
                 } else {
@@ -78,13 +83,14 @@ class _HomeCategoryState extends State<HomeCategory> {
                           aspectRatio: 16 / 9,
                           reverse: false,
                           initialPage: 0,
-                          height: Dimensions.height160,
+                          height: Dimensions.height140,
                           enlargeCenterPage: true,
                           autoPlay: true,
                           itemCount: popularFruits.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                await controller.getCartCount();
                                 Get.to(() => FruitsDetail(
                                       data: popularFruits[index],
                                     ));
@@ -119,7 +125,7 @@ class _HomeCategoryState extends State<HomeCategory> {
                                             fit: BoxFit.cover,
                                             repeat: true,
                                             reverse: true,
-                                            height: 60))
+                                            height: Dimensions.height50))
                                   ],
                                 ),
                               ),
@@ -127,17 +133,17 @@ class _HomeCategoryState extends State<HomeCategory> {
                           }),
 
                       SizedBox(
-                        height: Dimensions.height30,
+                        height: Dimensions.height20,
                       ),
                       //horizontal scroll effect container
                       DotsIndicator(
                         dotsCount: popularFruits.length,
                         position: fruitIndex.toDouble(),
                         decorator: DotsDecorator(
-                          activeColor: AppColors.buttonColor,
-                          size: Size.square(Dimensions.width8 + 1),
+                          activeColor: AppColors.mainAppColor,
+                          size: Size.square(Dimensions.width8),
                           activeSize:
-                              Size(Dimensions.height18, Dimensions.width8 + 1),
+                              Size(Dimensions.height15, Dimensions.width8),
                           activeShape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(Dimensions.radius5)),
@@ -150,7 +156,7 @@ class _HomeCategoryState extends State<HomeCategory> {
 
           buildPopularText(popularText: "New Vegetables", list: ". List"),
           SizedBox(
-            height: Dimensions.height20,
+            height: Dimensions.height15,
           ),
 
           //VxSwiper for Vegetables
@@ -168,10 +174,13 @@ class _HomeCategoryState extends State<HomeCategory> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
+                  return Container(
+                    alignment: Alignment.center,
+                    height: 100,
                     child: BoldText(
-                      fontWeight: FontWeight.bold,
-                      text: "No Items",
+                      fontWeight: FontWeight.w600,
+                      text: "No new vegetables",
+                      color: Colors.grey[600],
                     ),
                   );
                 } else {
@@ -187,13 +196,14 @@ class _HomeCategoryState extends State<HomeCategory> {
                           aspectRatio: 16 / 9,
                           reverse: false,
                           initialPage: 0,
-                          height: Dimensions.height160,
+                          height: Dimensions.height140,
                           enlargeCenterPage: true,
                           autoPlay: true,
                           itemCount: popularVeg.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                await controller.getCartCount();
                                 Get.to(() => VegetableDetail(
                                       data: popularVeg[index],
                                     ));
@@ -228,7 +238,7 @@ class _HomeCategoryState extends State<HomeCategory> {
                                             fit: BoxFit.cover,
                                             repeat: true,
                                             reverse: true,
-                                            height: 60))
+                                            height: Dimensions.height50))
                                   ],
                                 ),
                               ),
@@ -236,17 +246,17 @@ class _HomeCategoryState extends State<HomeCategory> {
                           }),
 
                       SizedBox(
-                        height: Dimensions.height30,
+                        height: Dimensions.height20,
                       ),
                       //horizontal scroll effect container
                       DotsIndicator(
                         dotsCount: popularVeg.length,
                         position: vegIndex.toDouble(),
                         decorator: DotsDecorator(
-                          activeColor: AppColors.buttonColor,
-                          size: Size.square(Dimensions.width8 + 1),
+                          activeColor: AppColors.mainAppColor,
+                          size: Size.square(Dimensions.width8),
                           activeSize:
-                              Size(Dimensions.height18, Dimensions.width8 + 1),
+                              Size(Dimensions.height15, Dimensions.width8),
                           activeShape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(Dimensions.radius5)),

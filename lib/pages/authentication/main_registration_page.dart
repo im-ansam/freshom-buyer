@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../constants/firebase_consts.dart';
 import '../../controller/auth_controller.dart';
+import '../../utils/Reusables_functions.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../Buyer/home/buyer_home_page.dart';
@@ -44,11 +45,16 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
           children: [
             Image.asset("images/logoMain2.png"),
             Dimensions.width8.heightBox,
+            appNameText(
+                text: 'Fresh\'Om',
+                color: AppColors.mainAppColor,
+                size: Dimensions.fontSize25,
+                fontWeight: FontWeight.w500),
             BigText(
-              text: "Fresh'Om",
-              fontWeight: FontWeight.bold,
-              color: AppColors.nicePurple,
-              size: Dimensions.fontSize25,
+              text: "Version 1.0.0",
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[400],
+              size: Dimensions.fontSize16,
             )
           ],
         ),
@@ -66,7 +72,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                 padding: EdgeInsets.only(
                     top: Dimensions.height100, left: Dimensions.width20),
                 height: Dimensions.height300,
-                color: AppColors.nicePurple,
+                color: AppColors.mainAppColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -75,14 +81,14 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                           text: isSignUpScreen ? "Welcome to" : "Welcome",
                           style: GoogleFonts.poppins(
                               fontSize: Dimensions.fontSize25,
-                              color: Colors.yellow[200],
+                              color: Colors.white,
                               letterSpacing: 2),
                           children: [
                             TextSpan(
                               text: isSignUpScreen ? " Fresh'Om," : " Back,",
                               style: GoogleFonts.poppins(
-                                  fontSize: Dimensions.fontSize30,
-                                  color: Colors.yellow[200],
+                                  fontSize: Dimensions.fontSize27,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             )
                           ]),
@@ -149,7 +155,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                                   fontWeight: FontWeight.bold,
                                   color: isSignUpScreen
                                       ? AppColors.inactiveTextColor
-                                      : AppColors.nicePurple,
+                                      : AppColors.mainAppColor,
                                   size: Dimensions.fontSize20,
                                 ),
                                 if (!isSignUpScreen)
@@ -174,7 +180,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                                   text: "SIGNUP",
                                   fontWeight: FontWeight.bold,
                                   color: isSignUpScreen
-                                      ? AppColors.nicePurple
+                                      ? AppColors.mainAppColor
                                       : AppColors.inactiveTextColor,
                                   size: Dimensions.fontSize20,
                                 ),
@@ -223,7 +229,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
               child: BigText(
                 text: "Forgot Password?",
                 fontWeight: FontWeight.bold,
-                color: AppColors.nicePurple,
+                color: AppColors.mainAppColor,
                 size: Dimensions.fontSize15,
               ),
               // "Forgot Password?"
@@ -300,8 +306,8 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
             : Dimensions.height450 - Dimensions.height10,
         child: Container(
           alignment: Alignment.center,
-          height: Dimensions.height90,
-          width: Dimensions.height90,
+          height: Dimensions.height80,
+          width: Dimensions.height80,
           decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
@@ -314,8 +320,8 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                       offset: const Offset(0, 1))
               ]),
           child: Container(
-            height: Dimensions.height60,
-            width: Dimensions.height60,
+            height: Dimensions.height50,
+            width: Dimensions.height50,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.redAccent,

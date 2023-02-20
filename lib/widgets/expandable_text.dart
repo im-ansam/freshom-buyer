@@ -44,7 +44,7 @@ class _ExpadableTextState extends State<ExpadableText> {
                 text: firstHalf,
                 overFlow: TextOverflow.visible,
                 height: 1.6,
-                color: AppColors.nicePurple,
+                color: AppColors.mainAppColor,
               )
             : Column(
                 children: [
@@ -54,7 +54,7 @@ class _ExpadableTextState extends State<ExpadableText> {
                         : (firstHalf + secondHalf),
                     overFlow: TextOverflow.visible,
                     height: 1.6,
-                    color: AppColors.tealColor,
+                    color: AppColors.mainAppColor,
                   ),
                   SizedBox(
                     height: Dimensions.height10,
@@ -69,13 +69,13 @@ class _ExpadableTextState extends State<ExpadableText> {
                       children: [
                         const Text(
                           "Show more",
-                          style: TextStyle(color: AppColors.buttonColor),
+                          style: TextStyle(color: AppColors.nicePurple),
                         ),
                         Icon(
                           hiddenText
                               ? Icons.arrow_drop_down
                               : Icons.arrow_drop_up,
-                          color: AppColors.buttonColor,
+                          color: AppColors.nicePurple,
                         )
                       ],
                     ),

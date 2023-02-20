@@ -13,7 +13,7 @@ Widget orderStatus({icon, color, title, showDone}) {
     ),
     leading: Icon(
       icon,
-      size: Dimensions.fontSize23,
+      size: Dimensions.fontSize20,
       color: color,
     ).box.roundedSM.p4.border(color: color, width: 3).make(),
     trailing: SizedBox(

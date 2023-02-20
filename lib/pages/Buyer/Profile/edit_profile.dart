@@ -28,9 +28,9 @@ class EditBuyerProfile extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          foregroundColor: AppColors.nicePurple,
+          foregroundColor: AppColors.mainAppColor,
           elevation: 0,
-          backgroundColor: AppColors.nicePurple,
+          backgroundColor: AppColors.mainAppColor,
           title: BoldText(
             text: "Edit Profile",
             fontWeight: FontWeight.bold,
@@ -46,8 +46,8 @@ class EditBuyerProfile extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Container(
-                  color: AppColors.nicePurple,
-                  height: Dimensions.height260,
+                  color: AppColors.mainAppColor,
+                  height: Dimensions.height270,
                 )),
             Positioned(
                 top: Dimensions.height50,
@@ -115,7 +115,7 @@ class EditBuyerProfile extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radius5),
-                                    color: AppColors.nicePurple),
+                                    color: AppColors.mainAppColor),
                                 child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -142,7 +142,7 @@ class EditBuyerProfile extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 text: "Name",
                                 size: Dimensions.fontSize18,
-                                color: AppColors.nicePurple,
+                                color: AppColors.mainAppColor,
                               ),
                               Dimensions.height10.heightBox,
                               TextField(
@@ -163,7 +163,7 @@ class EditBuyerProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radius5),
                                     borderSide: const BorderSide(
-                                        color: AppColors.nicePurple),
+                                        color: AppColors.mainAppColor),
                                   ),
                                 ),
                               ),
@@ -172,7 +172,7 @@ class EditBuyerProfile extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 text: "Old Password",
                                 size: Dimensions.fontSize18,
-                                color: AppColors.nicePurple,
+                                color: AppColors.mainAppColor,
                               ),
                               Dimensions.height10.heightBox,
                               TextField(
@@ -195,7 +195,7 @@ class EditBuyerProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radius5),
                                     borderSide: const BorderSide(
-                                        color: AppColors.nicePurple),
+                                        color: AppColors.mainAppColor),
                                   ),
                                 ),
                               ),
@@ -204,7 +204,7 @@ class EditBuyerProfile extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 text: "New Password",
                                 size: Dimensions.fontSize18,
-                                color: AppColors.nicePurple,
+                                color: AppColors.mainAppColor,
                               ),
                               Dimensions.height10.heightBox,
                               TextField(
@@ -227,7 +227,7 @@ class EditBuyerProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radius5),
                                     borderSide: const BorderSide(
-                                        color: AppColors.nicePurple),
+                                        color: AppColors.mainAppColor),
                                   ),
                                 ),
                               ),
@@ -262,9 +262,18 @@ class EditBuyerProfile extends StatelessWidget {
                                         name: controller.nameController.text);
                                     VxToast.show(context, msg: "Updated");
                                     isLoading(false);
+                                  } else if (controller.oldPassController.text
+                                          .isEmptyOrNull &&
+                                      controller.newPassController.text
+                                          .isEmptyOrNull) {
+                                    controller.updateProfile(
+                                        imageUrl: controller.profileImgLink,
+                                        password: userData['password'],
+                                        name: controller.nameController.text);
+                                    VxToast.show(context, msg: "Updated");
                                   } else {
                                     VxToast.show(context,
-                                        msg: "Old Password Entered is wrong");
+                                        msg: "Something went wrong wrong");
                                   }
                                   isLoading(false);
                                 },
@@ -275,7 +284,7 @@ class EditBuyerProfile extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                           Dimensions.radius5),
-                                      color: AppColors.nicePurple),
+                                      color: AppColors.mainAppColor),
                                   child: isLoading.value == true
                                       ? const CircularProgressIndicator(
                                           color: Colors.white,

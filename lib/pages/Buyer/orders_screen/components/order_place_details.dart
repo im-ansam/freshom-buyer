@@ -18,13 +18,13 @@ Widget orderPlaceDetails({data, title1, title2, d1, d2}) {
                 .text
                 .size(Dimensions.fontSize16)
                 .semiBold
-                .color(AppColors.tealColor)
+                .color(AppColors.mainAppColor)
                 .make(),
             BigText(
               text: "$d1",
               fontWeight: FontWeight.w700,
               size: Dimensions.fontSize16,
-              color: AppColors.priceColor,
+              color: AppColors.orangeRed,
               overFlow: TextOverflow.ellipsis,
             ).box.width(Dimensions.height120).make()
           ],
@@ -38,7 +38,7 @@ Widget orderPlaceDetails({data, title1, title2, d1, d2}) {
                   .text
                   .size(Dimensions.fontSize16)
                   .semiBold
-                  .color(AppColors.tealColor)
+                  .color(AppColors.mainAppColor)
                   .make(),
               "$d2"
                   .text

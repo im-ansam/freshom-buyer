@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_om/controller/product_controller.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/cart_page.dart';
+import 'package:fresh_om/widgets/reusable_big_text.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../utils/colors.dart';
@@ -16,7 +17,7 @@ class FruitsDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<ProductController>();
+    var controller = Get.put(ProductController());
 
     return WillPopScope(
       onWillPop: () async {
@@ -54,7 +55,7 @@ class FruitsDetail extends StatelessWidget {
                   children: [
                     GestureDetector(
                         child: CircleAvatar(
-                            radius: Dimensions.radius20,
+                            radius: Dimensions.radius18,
                             backgroundColor: AppColors.lightGreen1,
                             child: Icon(
                               Icons.clear,
@@ -65,7 +66,7 @@ class FruitsDetail extends StatelessWidget {
                       controller.resetValues();
                     })),
                     CircleAvatar(
-                      radius: Dimensions.radius20,
+                      radius: Dimensions.radius18,
                       backgroundColor: AppColors.lightGreen1,
                       child: Icon(
                         Icons.shopping_cart_outlined,
@@ -124,36 +125,35 @@ class FruitsDetail extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.baseline,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "${data['f_name']}",
-                            style: TextStyle(
-                                fontSize: Dimensions.fontSize30,
-                                fontWeight: FontWeight.w500),
-                          ),
+                          BigText(
+                              text: "${data['f_name']}",
+                              size: Dimensions.fontSize25,
+                              fontWeight: FontWeight.w600),
                           BoldText(
                             fontWeight: FontWeight.bold,
                             text: "Rs ${data['f_price']}/Kg",
                             size: Dimensions.fontSize20,
-                            color: Colors.redAccent,
+                            color: AppColors.orangeRed,
                           )
                         ],
                       ),
                       SizedBox(
-                        height: Dimensions.height25,
+                        height: Dimensions.height20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SmallText(
+                          BigText(
                             text: "Quantity Available  -",
                             size: Dimensions.fontSize18,
-                            color: AppColors.nicePurple,
+                            color: AppColors.mainAppColor,
+                            fontWeight: FontWeight.w600,
                           ),
                           Text(
                             "${data['f_qty']}kg left",
                             style: TextStyle(
                                 fontSize: Dimensions.fontSize20,
-                                color: Colors.redAccent),
+                                color: AppColors.orangeRed),
                           ),
                         ],
                       ),
@@ -165,7 +165,7 @@ class FruitsDetail extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: Dimensions.width15),
-                        height: Dimensions.height70,
+                        height: Dimensions.height60,
                         width: Dimensions.screenWidth,
                         decoration: BoxDecoration(
                             borderRadius:
@@ -203,7 +203,7 @@ class FruitsDetail extends StatelessWidget {
                                 backgroundColor: Colors.white,
                                 child: Icon(
                                   Icons.message_rounded,
-                                  color: AppColors.nicePurple,
+                                  color: AppColors.mainAppColor,
                                 ),
                               ),
                             )
@@ -218,17 +218,17 @@ class FruitsDetail extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          BoldText(
-                            fontWeight: FontWeight.bold,
+                          BigText(
+                            fontWeight: FontWeight.w600,
                             text: "Product Uploaded Date :",
-                            size: Dimensions.fontSize20,
-                            color: AppColors.nicePurple,
+                            size: Dimensions.fontSize18,
+                            color: AppColors.mainAppColor,
                           ),
                           BoldText(
                             fontWeight: FontWeight.bold,
                             text: data['f_uploaded_date'],
                             size: Dimensions.fontSize16,
-                            color: Colors.redAccent,
+                            color: AppColors.orangeRed,
                           ),
                         ],
                       ),
@@ -242,12 +242,10 @@ class FruitsDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height10,
                       ),
-                      Text(
-                        "Description",
-                        style: TextStyle(
-                            fontSize: Dimensions.fontSize23,
-                            fontWeight: FontWeight.w500),
-                      ),
+                      BigText(
+                          text: "Description",
+                          fontWeight: FontWeight.w600,
+                          size: Dimensions.fontSize20),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -266,11 +264,11 @@ class FruitsDetail extends StatelessWidget {
         ),
         bottomNavigationBar: Container(
           padding: EdgeInsets.only(
-              top: Dimensions.height15,
+              top: Dimensions.height10,
               left: Dimensions.height15,
               bottom: Dimensions.height15,
               right: Dimensions.height15),
-          height: Dimensions.height90,
+          height: Dimensions.height80,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(Dimensions.radius30),
@@ -359,7 +357,7 @@ class FruitsDetail extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20),
-                          color: AppColors.nicePurple),
+                          color: AppColors.mainAppColor),
                       child: Text(
                         'Rs ${controller.f_totalPrice.value.numCurrency} | Add to cart',
                         style: TextStyle(

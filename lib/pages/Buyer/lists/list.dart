@@ -5,14 +5,14 @@ const profileButtonsText = ["My Orders", "Email", "Info"];
 const profileButtonsIcons = [
   Icon(
     Icons.list,
-    color: AppColors.nicePurple,
+    color: AppColors.mainAppColor,
   ),
   Icon(
     Icons.email_rounded,
-    color: AppColors.nicePurple,
+    color: AppColors.mainAppColor,
   ),
   Icon(
     Icons.info_outline_rounded,
-    color: AppColors.nicePurple,
+    color: AppColors.mainAppColor,
   )
 ];

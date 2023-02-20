@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
+import '../../../widgets/reusable_big_text.dart';
 
 class PaymentMethod extends StatelessWidget {
   const PaymentMethod({Key? key}) : super(key: key);
@@ -30,24 +31,28 @@ class PaymentMethod extends StatelessWidget {
             child: Container(
                 alignment: Alignment.center,
                 height: Dimensions.height60,
-                color: AppColors.nicePurple,
+                color: AppColors.mainAppColor,
                 child: controller.placingOrder.value
                     ? const CircularProgressIndicator(
                         color: Colors.white,
                       )
-                    : "Place my order"
-                        .text
-                        .semiBold
-                        .color(Colors.white)
-                        .size(Dimensions.fontSize20)
-                        .make()),
+                    : BigText(
+                        text: "Place my order",
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        size: Dimensions.fontSize18,
+                      )),
           ),
           appBar: AppBar(
-            elevation: 0,
-            foregroundColor: Colors.white,
-            backgroundColor: AppColors.nicePurple,
-            title: "Payment".text.semiBold.color(Colors.white).make(),
-          ),
+              elevation: 0,
+              foregroundColor: Colors.white,
+              backgroundColor: AppColors.mainAppColor,
+              title: BigText(
+                text: "Payment",
+                fontWeight: FontWeight.w600,
+                size: Dimensions.fontSize18,
+                color: Colors.white,
+              )),
           body: Padding(
             padding: EdgeInsets.all(Dimensions.height10),
             child: Column(
@@ -58,7 +63,7 @@ class PaymentMethod extends StatelessWidget {
                       borderRadius: BorderRadius.circular(Dimensions.radius15),
                       border: Border.all(
                         strokeAlign: StrokeAlign.outside,
-                        color: AppColors.nicePurple,
+                        color: AppColors.mainAppColor,
                         width: 4,
                       )),
                   margin: EdgeInsets.only(bottom: Dimensions.height10),
@@ -225,7 +230,7 @@ class PaymentMethod extends StatelessWidget {
       Text(
         title,
         style: GoogleFonts.poppins(
-            color: AppColors.nicePurple,
+            color: AppColors.mainAppColor,
             fontSize: 18,
             fontWeight: FontWeight.w700),
       ),

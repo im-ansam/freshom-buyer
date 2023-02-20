@@ -5,6 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../utils/colors.dart';
 import 'package:intl/intl.dart' as intl;
 import '../../../utils/dimensions.dart';
+import '../../../widgets/reusable_big_text.dart';
 
 class OrdersDetail extends StatelessWidget {
   final dynamic data;
@@ -16,16 +17,15 @@ class OrdersDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.mainBackGround,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.mainBackGround,
-        foregroundColor: AppColors.tealColor,
-        title: "Order Details"
-            .text
-            .semiBold
-            .color(AppColors.tealColor)
-            .size(Dimensions.fontSize18)
-            .make(),
-      ),
+          elevation: 0,
+          backgroundColor: AppColors.mainAppColor,
+          foregroundColor: Colors.white,
+          title: BigText(
+            text: "Order Details",
+            fontWeight: FontWeight.w600,
+            size: Dimensions.fontSize18,
+            color: Colors.white,
+          )),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
@@ -62,7 +62,7 @@ class OrdersDetail extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(Dimensions.height12),
               height: Dimensions.height370,
-              width: Dimensions.height360,
+              width: Dimensions.height350,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius10),
                 boxShadow: [
@@ -112,7 +112,7 @@ class OrdersDetail extends StatelessWidget {
                               .text
                               .semiBold
                               .size(Dimensions.fontSize15)
-                              .color(AppColors.tealColor)
+                              .color(AppColors.mainAppColor)
                               .make(),
                           addressDetails(
                               data: data['order_by_name'],
@@ -152,7 +152,7 @@ class OrdersDetail extends StatelessWidget {
                                 .text
                                 .bold
                                 .size(Dimensions.fontSize20)
-                                .color(AppColors.priceColor)
+                                .color(AppColors.orangeRed)
                                 .make(),
                           ],
                         ),
@@ -172,12 +172,12 @@ class OrdersDetail extends StatelessWidget {
                   width: Dimensions.width50 * 2,
                   color: Colors.grey.shade400,
                 ),
-                "Ordered Products"
-                    .text
-                    .semiBold
-                    .color(AppColors.tealColor)
-                    .size(Dimensions.fontSize20)
-                    .makeCentered(),
+                BigText(
+                  text: "Ordered Products",
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.mainAppColor,
+                  size: Dimensions.fontSize18,
+                ),
                 Container(
                   height: 1,
                   width: Dimensions.width50 * 2,

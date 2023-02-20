@@ -54,10 +54,13 @@ class _VegCategoryState extends State<VegCategory> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
+                  return Container(
+                    alignment: Alignment.center,
+                    height: 100,
                     child: BoldText(
-                      fontWeight: FontWeight.bold,
-                      text: "No Items",
+                      fontWeight: FontWeight.w600,
+                      text: "No new vegetables",
+                      color: Colors.grey[600],
                     ),
                   );
                 } else {
@@ -73,7 +76,7 @@ class _VegCategoryState extends State<VegCategory> {
                           aspectRatio: 16 / 9,
                           reverse: false,
                           initialPage: 0,
-                          height: Dimensions.height160,
+                          height: Dimensions.height140,
                           enlargeCenterPage: true,
                           autoPlay: true,
                           itemCount: popularData.length,
@@ -115,14 +118,14 @@ class _VegCategoryState extends State<VegCategory> {
                                             fit: BoxFit.cover,
                                             repeat: true,
                                             reverse: true,
-                                            height: 60))
+                                            height: Dimensions.height50))
                                   ],
                                 ),
                               ),
                             );
                           }),
                       SizedBox(
-                        height: Dimensions.height30,
+                        height: Dimensions.height20,
                       ),
                       //horizontal Dots indicator
                       Center(
@@ -130,10 +133,10 @@ class _VegCategoryState extends State<VegCategory> {
                           dotsCount: popularData.length,
                           position: vegIndex.toDouble(),
                           decorator: DotsDecorator(
-                            activeColor: AppColors.buttonColor,
-                            size: Size.square(Dimensions.width8 + 1),
-                            activeSize: Size(
-                                Dimensions.height18, Dimensions.width8 + 1),
+                            activeColor: AppColors.mainAppColor,
+                            size: Size.square(Dimensions.width8),
+                            activeSize:
+                                Size(Dimensions.height15, Dimensions.width8),
                             activeShape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(Dimensions.radius5)),
@@ -206,14 +209,7 @@ class _VegCategoryState extends State<VegCategory> {
                                           'animations/imgLoading.gif'),
                                       image:
                                           NetworkImage(data[index]['v_image']),
-                                    )
-
-                                    // Image.network(
-                                    //   data[index]['v_image'],
-                                    //   fit: BoxFit.cover,
-                                    // ),
-
-                                    ),
+                                    )),
                                 BoldText(
                                   fontWeight: FontWeight.w700,
                                   text: "${data[index]['v_name']}",
@@ -223,7 +219,7 @@ class _VegCategoryState extends State<VegCategory> {
                                 BoldText(
                                   fontWeight: FontWeight.w700,
                                   text: "Rs${data[index]['v_price']}/kg",
-                                  color: AppColors.priceColor,
+                                  color: AppColors.orangeRed,
                                   size: Dimensions.fontSize16,
                                 )
                               ],

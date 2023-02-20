@@ -7,10 +7,12 @@ import 'package:fresh_om/pages/Buyer/home/veg_category.dart';
 import 'package:fresh_om/pages/Buyer/messages/messages_list.dart';
 import 'package:fresh_om/pages/Buyer/orders_screen/orders_screen.dart';
 import 'package:fresh_om/pages/authentication/main_registration_page.dart';
+import 'package:fresh_om/utils/Reusables_functions.dart';
 import 'package:fresh_om/utils/colors.dart';
 import 'package:fresh_om/utils/reusable_text_button.dart';
 import 'package:fresh_om/widgets/exit_dialog.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../constants/firebase_consts.dart';
 import '../../../controller/home_controller.dart';
@@ -65,22 +67,17 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
                   BoxShadow(
                       color: Colors.black26, blurRadius: Dimensions.radius15)
                 ],
-                color: AppColors.buttonBackGroundColor,
-                borderRadius: BorderRadius.circular(Dimensions.radius50)
-                // borderRadius: BorderRadius.only(
-                //   topLeft: Radius.circular(Dimensions.radius25),
-                //   topRight: Radius.circular(Dimensions.radius25),
-                // ),
-                ),
-            padding: const EdgeInsets.all(4),
+                color: AppColors.mainBackGround,
+                borderRadius: BorderRadius.circular(Dimensions.radius50)),
+            padding: const EdgeInsets.all(3),
             child: GNav(
               onTabChange: (index) => setState(() => selectedIndex = index),
               selectedIndex: selectedIndex,
               tabBorderRadius: Dimensions.radius20,
-              tabMargin: EdgeInsets.all(Dimensions.height5),
-              padding: EdgeInsets.all(Dimensions.height10),
+              tabMargin: const EdgeInsets.all(3),
+              padding: EdgeInsets.all(Dimensions.width8),
               activeColor: Colors.white,
-              tabBackgroundColor: AppColors.nicePurple,
+              tabBackgroundColor: AppColors.mainAppColor,
               tabShadow: [
                 BoxShadow(
                     color: AppColors.buttonBackGroundColor,
@@ -105,7 +102,7 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
             ),
           ),
         ),
-        backgroundColor: AppColors.mainBackGround,
+        // backgroundColor: AppColors.mainBackGround,
         extendBody: true,
         body: screens[selectedIndex],
       ),
@@ -126,7 +123,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
     var controller = Get.find<HomeController>();
     return Scaffold(
       extendBody: true,
-      backgroundColor: AppColors.mainBackGround,
+      backgroundColor: Colors.white,
       drawer: Container(
         width: Dimensions.screenWidth / 1.4,
         height: double.infinity,
@@ -186,22 +183,21 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                           SizedBox(
                             height: Dimensions.height20,
                           ),
-                          Text(
-                            "${data['name']}",
+                          BigText(
+                            text: "${data['name']}",
+                            fontWeight: FontWeight.w600,
+                            size: Dimensions.fontSize23,
                             // controller.profileData['name'],
-                            style: TextStyle(
-                                fontSize: Dimensions.fontSize23,
-                                fontWeight: FontWeight.w700),
                           ),
                           SizedBox(
                             height: Dimensions.height10,
                           ),
-                          Text(
-                            "${data['email']}",
-                            // controller.profileData['email'],
-                            style: TextStyle(
-                                fontSize: Dimensions.fontSize16,
-                                fontWeight: FontWeight.w400),
+                          BigText(
+                            text: "${data['email']}",
+                            // controller.profileData['email']
+                            size: Dimensions.fontSize16,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.mainAppColor,
                           ),
                         ],
                       ),
@@ -251,9 +247,9 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
       ),
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        toolbarHeight: Dimensions.height70,
+        toolbarHeight: Dimensions.height80,
         elevation: 0,
-        backgroundColor: AppColors.mainBackGround,
+        backgroundColor: AppColors.mainAppColor,
         leading: Builder(builder: (context) {
           return IconButton(
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -263,21 +259,22 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
               },
               icon: Icon(
                 Icons.sort,
-                size: Dimensions.icon28,
-                color: Colors.black,
+                size: Dimensions.icon30,
+                color: AppColors.mainBackGround,
               ));
         }),
         actions: [
           Container(
-              alignment: Alignment.center,
-              width: Dimensions.width330,
-              height: Dimensions.height20,
+              width: Dimensions.width300,
+              // height: Dimensions.height5,
               margin: EdgeInsets.only(
-                  top: Dimensions.height10,
+                  top: Dimensions.height15,
                   right: Dimensions.height10,
-                  bottom: Dimensions.height10),
+                  bottom: Dimensions.height15),
               padding: EdgeInsets.only(
-                  left: Dimensions.height10, right: Dimensions.height10),
+                  left: Dimensions.height10,
+                  right: Dimensions.height10,
+                  top: Dimensions.width5),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius10),
                   color: categoryIsClicked1 == true
@@ -287,8 +284,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                           : Colors.white),
               child: categoryIsClicked2 == true
                   ? TextFormField(
-                      style: TextStyle(
-                          fontFamily: "Michroma",
+                      style: GoogleFonts.poppins(
                           color: Colors.grey.shade800,
                           fontWeight: FontWeight.w500,
                           fontSize: Dimensions.fontSize16),
@@ -299,7 +295,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                             borderSide: BorderSide.none),
                         suffixIcon: const Icon(
                           Icons.search_rounded,
-                          color: Colors.black,
+                          color: AppColors.mainAppColor,
                         ).onTap(() {
                           if (controller
                               .vegSearchController.text.isNotEmptyAndNotNull) {
@@ -311,21 +307,27 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                         filled: true,
                         fillColor: Colors.white,
                         hintText: "Search Veg Here..",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w600,
-                          fontSize: Dimensions.fontSize16,
-                        ),
+                        hintStyle: GoogleFonts.poppins(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                            fontSize: Dimensions.fontSize16),
                       ),
                     )
                   : categoryIsClicked1 == true
-                      ? const SizedBox()
+                      ? Padding(
+                          padding: EdgeInsets.only(left: Dimensions.height30),
+                          child: appNameText(
+                            text: "Fresh'Om",
+                            fontWeight: FontWeight.w200,
+                            size: 34.0,
+                            color: Colors.white,
+                          ),
+                        )
                       : TextFormField(
-                          style: TextStyle(
-                              fontFamily: "Michroma",
+                          style: GoogleFonts.poppins(
                               color: Colors.grey.shade800,
                               fontWeight: FontWeight.w500,
-                              fontSize: 16),
+                              fontSize: Dimensions.fontSize16),
                           controller: controller.fruitSearchController,
                           autocorrect: false,
                           decoration: InputDecoration(
@@ -333,7 +335,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                                 borderSide: BorderSide.none),
                             suffixIcon: const Icon(
                               Icons.search_rounded,
-                              color: Colors.black,
+                              color: AppColors.mainAppColor,
                             ).onTap(() {
                               if (controller.fruitSearchController.text
                                   .isNotEmptyAndNotNull) {
@@ -346,11 +348,10 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                             filled: true,
                             fillColor: Colors.white,
                             hintText: "Search Fruits Here..",
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w600,
-                              fontSize: Dimensions.fontSize16,
-                            ),
+                            hintStyle: GoogleFonts.poppins(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                                fontSize: Dimensions.fontSize16),
                           ),
                         ))
         ],
@@ -358,21 +359,48 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
       body: Column(
         children: [
           //main heading text
-          Row(
-            children: [
-              SizedBox(
-                width: Dimensions.width20,
+          Container(
+            padding: EdgeInsets.only(top: Dimensions.height10),
+            width: double.infinity,
+            height: Dimensions.height70,
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                    color: AppColors.mainAppColor,
+                    blurRadius: 1,
+                    // spreadRadius: 1,
+                    offset: Offset(2, -2))
+              ],
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(Dimensions.radius30),
+                // bottomRight: Radius.circular(Dimensions.radius20),
               ),
-              Text(
-                "Shop",
-                style: TextStyle(fontSize: Dimensions.fontSize23),
-              ),
-              const BigText(
-                  text: " Fruits And Vegetables", fontWeight: FontWeight.w600)
-            ],
+              color: AppColors.mainAppColor,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Shop",
+                  style: GoogleFonts.poiretOne(
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 25,
+                      color: Colors.white),
+                ),
+                5.widthBox,
+                const BigText(
+                  text: " Fruits And Vegetables",
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.mainBackGround,
+                ),
+                Dimensions.width10.widthBox
+              ],
+            ),
           ),
           SizedBox(
-            height: Dimensions.height20,
+            height: Dimensions.height40,
           ),
 
           //Top three category buttons
@@ -392,7 +420,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                     });
                   },
                   color: categoryIsClicked1 == true
-                      ? AppColors.nicePurple
+                      ? AppColors.mainAppColor
                       : AppColors.inactiveTextColor,
                   isSelected: categoryIsClicked1 ? true : false,
                 ),
@@ -406,7 +434,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                     });
                   },
                   color: categoryIsClicked2 == true
-                      ? AppColors.nicePurple
+                      ? AppColors.mainAppColor
                       : AppColors.inactiveTextColor,
                   isSelected: categoryIsClicked2 ? true : false,
                 ),
@@ -420,7 +448,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                     });
                   },
                   color: categoryIsClicked3 == true
-                      ? AppColors.nicePurple
+                      ? AppColors.mainAppColor
                       : AppColors.inactiveTextColor,
                   isSelected: categoryIsClicked3 ? true : false,
                 )

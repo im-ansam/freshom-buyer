@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
+import '../../../widgets/reusable_big_text.dart';
 import '../../../widgets/reusable_bold_text.dart';
 import '../../../utils/chat_bubble.dart';
 
@@ -19,12 +20,13 @@ class MessageSeller extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        foregroundColor: Colors.black87,
-        backgroundColor: AppColors.mainBackGround,
-        title: BoldText(
+        foregroundColor: Colors.white,
+        backgroundColor: AppColors.mainAppColor,
+        title: BigText(
           text: "${controller.friendName}",
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w600,
           size: Dimensions.fontSize20,
+          color: Colors.white,
         ),
       ),
       body: Padding(
@@ -87,10 +89,10 @@ class MessageSeller extends StatelessWidget {
                     decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(color: AppColors.nicePurple)),
+                                BorderSide(color: AppColors.mainAppColor)),
                         focusedBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(color: AppColors.nicePurple)),
+                                BorderSide(color: AppColors.mainAppColor)),
                         hintText: "Enter Message",
                         border: InputBorder.none),
                   )),
@@ -103,7 +105,7 @@ class MessageSeller extends StatelessWidget {
                       Icons.send,
                       size: Dimensions.icon30,
                     ),
-                    color: AppColors.tealColor,
+                    color: AppColors.mainAppColor,
                   )
                 ],
               ),

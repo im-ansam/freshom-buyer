@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/controller/auth_controller.dart';
+import 'package:fresh_om/utils/Reusables_functions.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../utils/colors.dart';
@@ -32,25 +33,27 @@ class _ResetPasswordState extends State<ResetPassword> {
                 right: 0,
                 child: Container(
                   padding: EdgeInsets.only(
-                      top: Dimensions.height100, left: Dimensions.width20),
+                      top: Dimensions.height90, left: Dimensions.width20),
                   height: Dimensions.height300,
-                  color: AppColors.nicePurple,
+                  color: AppColors.mainAppColor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      "Fresh\'Om"
-                          .text
-                          .extraBold
-                          .color(Colors.white)
-                          .size(Dimensions.fontSize40)
-                          .make(),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: appNameText(
+                            text: 'Fresh\'Om',
+                            color: Colors.white,
+                            size: Dimensions.fontSize50,
+                            fontWeight: FontWeight.w500),
+                      ),
                       Dimensions.height10.heightBox,
                       RichText(
                         text: TextSpan(
                             text: "Reset your",
                             style: TextStyle(
                                 fontSize: Dimensions.fontSize25,
-                                color: Colors.yellow[200],
+                                color: Colors.white,
                                 letterSpacing: 2),
                             children: [
                               TextSpan(
@@ -58,7 +61,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                   style: TextStyle(
                                     fontSize: Dimensions.fontSize30,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.yellow[200],
+                                    color: Colors.white,
                                   ))
                             ]),
                       ),
@@ -68,7 +71,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             buildBottomHalfContainer(true),
             //center reset password container
             Positioned(
-                top: Dimensions.height250,
+                top: Dimensions.height230,
                 left: 20,
                 right: 20,
                 child: Container(
@@ -76,7 +79,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       left: Dimensions.width10,
                       right: Dimensions.width10,
                       bottom: Dimensions.height20),
-                  height: Dimensions.height190,
+                  height: Dimensions.height167,
                   width: Dimensions.screenWidth - 40,
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                   decoration: BoxDecoration(
@@ -95,7 +98,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                           .text
                           .size(Dimensions.fontSize16)
                           .semiBold
-                          .color(AppColors.nicePurple)
+                          .color(AppColors.mainAppColor)
                           .make()
                           .paddingOnly(
                               left: Dimensions.width10,
@@ -136,8 +139,8 @@ class _ResetPasswordState extends State<ResetPassword> {
               bottom: Dimensions.height20,
               left: Dimensions.height20,
               child: Container(
-                height: Dimensions.height60,
-                width: Dimensions.height60,
+                height: Dimensions.height50,
+                width: Dimensions.height50,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.redAccent,
@@ -172,11 +175,11 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget buildBottomHalfContainer(bool showShadow) {
     // var controller = Get.find<AuthController>();
     return Positioned(
-        top: Dimensions.height360,
+        top: Dimensions.height350,
         child: Container(
           alignment: Alignment.center,
-          height: Dimensions.height90,
-          width: Dimensions.height90,
+          height: Dimensions.height80,
+          width: Dimensions.height80,
           decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
@@ -189,8 +192,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                       offset: Offset(0, 1))
               ]),
           child: Container(
-                  height: Dimensions.height60,
-                  width: Dimensions.height60,
+                  height: Dimensions.height50,
+                  width: Dimensions.height50,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.redAccent,

@@ -52,10 +52,13 @@ class _FruitCategoryState extends State<FruitCategory> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
+                  return Container(
+                    alignment: Alignment.center,
+                    height: 100,
                     child: BoldText(
-                      fontWeight: FontWeight.bold,
-                      text: "No Items",
+                      fontWeight: FontWeight.w600,
+                      text: "No new fruits",
+                      color: Colors.grey[600],
                     ),
                   );
                 } else {
@@ -72,7 +75,7 @@ class _FruitCategoryState extends State<FruitCategory> {
                           aspectRatio: 16 / 9,
                           reverse: false,
                           initialPage: 0,
-                          height: Dimensions.height160,
+                          height: Dimensions.height140,
                           enlargeCenterPage: true,
                           autoPlay: true,
                           itemCount: popularData.length,
@@ -118,14 +121,14 @@ class _FruitCategoryState extends State<FruitCategory> {
                                             fit: BoxFit.cover,
                                             repeat: true,
                                             reverse: true,
-                                            height: 60))
+                                            height: Dimensions.height50))
                                   ],
                                 ),
                               ),
                             );
                           }),
                       SizedBox(
-                        height: Dimensions.height30,
+                        height: Dimensions.height20,
                       ),
 
                       //horizontal scroll effect dots
@@ -134,10 +137,10 @@ class _FruitCategoryState extends State<FruitCategory> {
                           dotsCount: popularData.length,
                           position: fruitIndex.toDouble(),
                           decorator: DotsDecorator(
-                            activeColor: AppColors.buttonColor,
-                            size: Size.square(Dimensions.width8 + 1),
-                            activeSize: Size(
-                                Dimensions.height18, Dimensions.width8 + 1),
+                            activeColor: AppColors.mainAppColor,
+                            size: Size.square(Dimensions.width8),
+                            activeSize:
+                                Size(Dimensions.height15, Dimensions.width8),
                             activeShape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(Dimensions.radius5)),
@@ -220,7 +223,7 @@ class _FruitCategoryState extends State<FruitCategory> {
                                 BoldText(
                                   fontWeight: FontWeight.w700,
                                   text: "Rs ${data[index]['f_price']}/kg",
-                                  color: AppColors.priceColor,
+                                  color: AppColors.orangeRed,
                                   size: Dimensions.fontSize16,
                                 )
                               ],

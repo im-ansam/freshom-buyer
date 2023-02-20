@@ -8,6 +8,7 @@ import 'package:fresh_om/widgets/reusable_big_text.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:fresh_om/widgets/reusable_small_text.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
@@ -40,7 +41,7 @@ class CartPage extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: AppColors.nicePurple,
+        backgroundColor: AppColors.mainAppColor,
       ),
       backgroundColor: AppColors.mainBackGround,
       body: StreamBuilder(
@@ -55,11 +56,18 @@ class CartPage extends StatelessWidget {
             );
           } else if (snapshot.data!.docs.isEmpty) {
             return Center(
-              child: BoldText(
-                fontWeight: FontWeight.bold,
-                text: "Cart Is Empty",
-                color: AppColors.nicePurple,
-                size: Dimensions.fontSize20,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset('animations/emptyCart.json'),
+                  Dimensions.height20.heightBox,
+                  BigText(
+                    fontWeight: FontWeight.w700,
+                    text: "Cart Is Empty!",
+                    color: Colors.grey[700],
+                    size: Dimensions.fontSize20,
+                  ),
+                ],
               ),
             );
           } else {
@@ -100,19 +108,20 @@ class CartPage extends StatelessWidget {
                                   "${data[index]['title']}  (x${data[index]['qty']}kg)"
                                       .text
                                       .semiBold
+                                      .color(Colors.grey[900])
                                       .size(Dimensions.fontSize16)
                                       .make(),
                               subtitle: "${data[index]['tPrice']}"
                                   .numCurrency
                                   .text
                                   .semiBold
-                                  .color(AppColors.priceColor)
+                                  .color(AppColors.orangeRed)
                                   .size(14)
                                   .make(),
                               trailing: IconButton(
                                 icon: const Icon(
                                   Icons.delete,
-                                  color: AppColors.priceColor,
+                                  color: AppColors.orangeRed,
                                 ),
                                 onPressed: () {
                                   FireStoreServices.deleteDocument(
@@ -133,16 +142,16 @@ class CartPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        BoldText(
-                          fontWeight: FontWeight.w700,
+                        BigText(
+                          fontWeight: FontWeight.w600,
                           text: "Total Price",
-                          size: Dimensions.fontSize18,
+                          size: Dimensions.fontSize16,
                           color: Colors.black87,
                         ),
                         Obx(() => "${controller.totalPrice.value}"
                             .text
                             .semiBold
-                            .color(AppColors.priceColor)
+                            .color(AppColors.orangeRed)
                             .size(Dimensions.fontSize16)
                             .make())
                       ],
@@ -157,16 +166,17 @@ class CartPage extends StatelessWidget {
                     },
                     child: Container(
                         alignment: Alignment.center,
-                        height: Dimensions.height50,
+                        height: Dimensions.height40,
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius10),
-                            color: AppColors.nicePurple),
+                            color: AppColors.mainAppColor),
                         width: Dimensions.screenWidth - 60,
-                        child: SmallText(
+                        child: BigText(
                           text: "Place Order",
                           color: Colors.white,
-                          size: Dimensions.fontSize20,
+                          size: Dimensions.fontSize18,
+                          fontWeight: FontWeight.w600,
                         )),
                   )
                 ],

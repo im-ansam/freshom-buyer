@@ -25,4 +25,18 @@ class AppColors {
   static const Color mattRed = Color(0xffcf6754);
   static const Color textYellow = Color(0xffd4bf63);
   static const Color nicePurple = Color(0xff2d2b4e);
+
+  //new trying combination
+  static const Color newBlue = Color(0xff00314a);
+  static const Color newGreen = Color(0xff72ff73);
+
+  //try colors
+  static const Color mainAppColor = Color(0xff136050);
+  static const Color newLightGreen = Color(0xff01ba9b);
+  static const Color green = Color(0xff35b678);
+  static const Color gPayGreen = Color(0xff29a952);
+  static const Color newTeal = Color(0xff028c8c);
+  static const Color orangeRed = Color(0xfff74d00);
 }
+
+Color? goldYellow = Colors.yellow[200];

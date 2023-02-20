@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
 import 'dimensions.dart';
@@ -39,10 +40,10 @@ class ReusableButtonContainer extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
-              color: isSelected ? Colors.white : Colors.black,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'MerriweatherSans'),
+          style: GoogleFonts.poppins(
+            color: isSelected ? Colors.white : Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

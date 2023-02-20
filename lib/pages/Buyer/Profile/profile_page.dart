@@ -42,14 +42,14 @@ class UserProfile extends StatelessWidget {
 
               return Stack(
                 children: [
-                  //background teal color
+                  //top background color
                   Positioned(
                       top: 0,
                       left: 0,
                       right: 0,
                       child: Container(
-                        color: AppColors.nicePurple,
-                        height: Dimensions.height450,
+                        color: AppColors.mainAppColor,
+                        height: Dimensions.height400,
                       )),
 
                   //center white container
@@ -58,7 +58,7 @@ class UserProfile extends StatelessWidget {
                     left: Dimensions.width20,
                     right: Dimensions.width20,
                     child: Container(
-                      height: Dimensions.height300,
+                      height: Dimensions.height270,
                       decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
@@ -114,7 +114,7 @@ class UserProfile extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             5),
                                                     color:
-                                                        AppColors.nicePurple),
+                                                        AppColors.mainAppColor),
                                                 alignment: Alignment.center,
                                                 width: Dimensions.height90,
                                                 height: Dimensions.height40,
@@ -170,7 +170,7 @@ class UserProfile extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             5),
                                                     color:
-                                                        AppColors.nicePurple),
+                                                        AppColors.mainAppColor),
                                                 alignment: Alignment.center,
                                                 width: Dimensions.height90,
                                                 height: Dimensions.height40,
@@ -213,13 +213,14 @@ class UserProfile extends StatelessWidget {
                   Positioned(
                       top: 70,
                       child: Container(
-                        padding: EdgeInsets.only(left: Dimensions.width20),
+                        padding: EdgeInsets.only(left: Dimensions.height10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsets.only(left: Dimensions.height300),
+                              padding: EdgeInsets.only(
+                                  left: Dimensions.height300,
+                                  right: Dimensions.width20),
                               child: GestureDetector(
                                 child: const Icon(
                                   Icons.edit,
@@ -240,8 +241,8 @@ class UserProfile extends StatelessWidget {
                                 //user image
                                 Container(
                                   clipBehavior: Clip.antiAlias,
-                                  height: Dimensions.height70,
-                                  width: Dimensions.height70,
+                                  height: Dimensions.height60,
+                                  width: Dimensions.height60,
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
@@ -281,7 +282,7 @@ class UserProfile extends StatelessWidget {
                                         // text: controller.profileData['email'],
                                         fontWeight: FontWeight.w400,
                                         size: Dimensions.fontSize14,
-                                        color: Colors.redAccent,
+                                        color: const Color(0xffff5349),
                                       )
                                     ],
                                   ),
@@ -348,7 +349,7 @@ class UserProfile extends StatelessWidget {
                                                 text: '${countData[0]}',
                                                 // text: controller.profileData['cart_count'],
                                                 size: Dimensions.fontSize18,
-                                                color: AppColors.nicePurple,
+                                                color: AppColors.mainAppColor,
                                               ),
                                               BoldText(
                                                 fontWeight: FontWeight.w500,
@@ -359,7 +360,7 @@ class UserProfile extends StatelessWidget {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: Dimensions.width30,
+                                          width: Dimensions.width20,
                                         ),
                                         Container(
                                           height: Dimensions.height70,
@@ -378,7 +379,7 @@ class UserProfile extends StatelessWidget {
                                                 text: '${countData[1]}',
                                                 // text: controller.profileData['order_count'],
                                                 size: Dimensions.fontSize18,
-                                                color: AppColors.nicePurple,
+                                                color: AppColors.mainAppColor,
                                               ),
                                               BoldText(
                                                 fontWeight: FontWeight.w500,
@@ -389,7 +390,7 @@ class UserProfile extends StatelessWidget {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: Dimensions.width30,
+                                          width: Dimensions.width20,
                                         ),
                                         GestureDetector(
                                           onTap: () {
@@ -410,7 +411,7 @@ class UserProfile extends StatelessWidget {
                                               children: [
                                                 const Icon(
                                                   Icons.message_rounded,
-                                                  color: AppColors.nicePurple,
+                                                  color: AppColors.mainAppColor,
                                                 ),
                                                 BoldText(
                                                   fontWeight: FontWeight.w500,

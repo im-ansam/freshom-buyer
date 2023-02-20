@@ -3,6 +3,7 @@ import 'package:fresh_om/controller/cart_controller.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/payment_methods.dart';
 import 'package:fresh_om/utils/colors.dart';
 import 'package:fresh_om/utils/dimensions.dart';
+import 'package:fresh_om/widgets/reusable_big_text.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -35,18 +36,26 @@ class ConfirmOrder extends StatelessWidget {
           }
         },
         child: Container(
-          alignment: Alignment.center,
-          height: Dimensions.height60,
-          color: AppColors.nicePurple,
-          child: "Continue".text.semiBold.color(Colors.white).size(20).make(),
-        ),
+            alignment: Alignment.center,
+            height: Dimensions.height60,
+            color: AppColors.mainAppColor,
+            child: BigText(
+              text: "Continue",
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              size: Dimensions.fontSize18,
+            )),
       ),
       appBar: AppBar(
-        elevation: 0,
-        foregroundColor: Colors.white,
-        backgroundColor: AppColors.nicePurple,
-        title: "Address Details".text.semiBold.color(Colors.white).make(),
-      ),
+          elevation: 0,
+          foregroundColor: Colors.white,
+          backgroundColor: AppColors.mainAppColor,
+          title: BigText(
+            text: "Address Details",
+            fontWeight: FontWeight.w600,
+            size: Dimensions.fontSize18,
+            color: Colors.white,
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
@@ -59,7 +68,7 @@ class ConfirmOrder extends StatelessWidget {
               "Your Address"
                   .text
                   .semiBold
-                  .color(AppColors.nicePurple)
+                  .color(AppColors.mainAppColor)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -79,7 +88,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.nicePurple),
+                    borderSide: const BorderSide(color: AppColors.mainAppColor),
                   ),
                 ),
               ),
@@ -87,7 +96,7 @@ class ConfirmOrder extends StatelessWidget {
               "Home City"
                   .text
                   .semiBold
-                  .color(AppColors.nicePurple)
+                  .color(AppColors.mainAppColor)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -107,7 +116,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.nicePurple),
+                    borderSide: const BorderSide(color: AppColors.mainAppColor),
                   ),
                 ),
               ),
@@ -115,7 +124,7 @@ class ConfirmOrder extends StatelessWidget {
               "Pin Code"
                   .text
                   .semiBold
-                  .color(AppColors.nicePurple)
+                  .color(AppColors.mainAppColor)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -135,7 +144,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.nicePurple),
+                    borderSide: const BorderSide(color: AppColors.mainAppColor),
                   ),
                 ),
               ),
@@ -143,7 +152,7 @@ class ConfirmOrder extends StatelessWidget {
               "Contact Number"
                   .text
                   .semiBold
-                  .color(AppColors.nicePurple)
+                  .color(AppColors.mainAppColor)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -163,7 +172,7 @@ class ConfirmOrder extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radius5),
-                    borderSide: const BorderSide(color: AppColors.nicePurple),
+                    borderSide: const BorderSide(color: AppColors.mainAppColor),
                   ),
                 ),
               ),

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
+import '../../../widgets/reusable_big_text.dart';
 import '../../../widgets/reusable_bold_text.dart';
 import '../Services/firestore_services.dart';
 
@@ -20,15 +21,15 @@ class _AllMessageListState extends State<AllMessageList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.mainBackGround,
-        foregroundColor: AppColors.nicePurple,
-        title: BoldText(
-          fontWeight: FontWeight.w800,
-          size: Dimensions.fontSize20,
-          text: "Your Messages",
-        ),
-      ),
+          elevation: 0,
+          backgroundColor: AppColors.mainAppColor,
+          foregroundColor: Colors.white,
+          title: BigText(
+            text: "Your Messages",
+            fontWeight: FontWeight.w600,
+            size: Dimensions.fontSize18,
+            color: Colors.white,
+          )),
       backgroundColor: AppColors.mainBackGround,
       body: StreamBuilder(
         stream: FireStoreServices.getAllMessages(),
@@ -77,7 +78,7 @@ class _AllMessageListState extends State<AllMessageList> {
                                 title: "${data[index]['friend_name']}"
                                     .text
                                     .bold
-                                    .color(AppColors.nicePurple)
+                                    .color(Colors.grey[800])
                                     .size(Dimensions.fontSize18)
                                     .make(),
                                 subtitle: "${data[index]['last_msg']}"

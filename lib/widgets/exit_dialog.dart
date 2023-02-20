@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fresh_om/utils/dimensions.dart';
+import 'package:fresh_om/widgets/reusable_big_text.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 
 import '../utils/colors.dart';
@@ -12,21 +13,21 @@ Widget exitDialog(context) {
       padding: EdgeInsets.all(Dimensions.height12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.radius15),
-          color: AppColors.lightBlue1),
+          color: AppColors.lightGreen2),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          BoldText(
-            fontWeight: FontWeight.w800,
+          BigText(
+            fontWeight: FontWeight.w700,
             text: "Confirm",
-            color: Colors.black54,
+            color: AppColors.mainAppColor,
             size: Dimensions.fontSize25,
           ),
           const Divider(),
           SizedBox(
             height: Dimensions.height10,
           ),
-          BoldText(
+          BigText(
             fontWeight: FontWeight.w600,
             text: "Are you sure you want to exit?",
             color: Colors.black54,
@@ -41,7 +42,7 @@ Widget exitDialog(context) {
               TextButton(
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(AppColors.tealColor)),
+                        MaterialStateProperty.all(AppColors.mainAppColor)),
                 onPressed: () {
                   SystemNavigator.pop();
                 },
@@ -55,7 +56,7 @@ Widget exitDialog(context) {
               TextButton(
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(AppColors.tealColor)),
+                        MaterialStateProperty.all(AppColors.mainAppColor)),
                 onPressed: () {
                   Navigator.pop(context);
                 },

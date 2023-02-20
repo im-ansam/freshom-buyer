@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fresh_om/widgets/reusable_big_text.dart';
 
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
@@ -24,7 +25,7 @@ class DrawerRow extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: AppColors.nicePurple,
+                backgroundColor: AppColors.mainAppColor,
                 radius: Dimensions.radius18,
                 child: Icon(
                   icon,
@@ -35,12 +36,11 @@ class DrawerRow extends StatelessWidget {
               SizedBox(
                 width: Dimensions.width20,
               ),
-              Text(
-                text,
-                style: TextStyle(
-                    color: fontColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: Dimensions.fontSize18),
+              BigText(
+                text: text,
+                color: fontColor,
+                fontWeight: FontWeight.w600,
+                size: Dimensions.fontSize16,
               ),
             ],
           ),

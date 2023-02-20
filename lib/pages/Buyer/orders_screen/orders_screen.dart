@@ -4,10 +4,13 @@ import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:fresh_om/pages/Buyer/orders_screen/orders_detail.dart';
 import 'package:fresh_om/utils/dimensions.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../constants/firebase_consts.dart';
 import '../../../utils/colors.dart';
 import 'package:intl/intl.dart' as intl;
+
+import '../../../widgets/reusable_big_text.dart';
 
 class MyOrders extends StatelessWidget {
   const MyOrders({Key? key}) : super(key: key);
@@ -17,17 +20,15 @@ class MyOrders extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.mainBackGround,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.mainBackGround,
-        foregroundColor: AppColors.tealColor,
-        title: "My Orders"
-            .text
-            .semiBold
-            .size(Dimensions.fontSize18)
-            .color(AppColors.tealColor)
-            .semiBold
-            .make(),
-      ),
+          elevation: 0,
+          backgroundColor: AppColors.mainAppColor,
+          foregroundColor: Colors.white,
+          title: BigText(
+            text: "My Orders",
+            fontWeight: FontWeight.w600,
+            size: Dimensions.fontSize18,
+            color: Colors.white,
+          )),
       body: StreamBuilder(
         stream: FireStoreServices.getAllOrders(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -38,12 +39,21 @@ class MyOrders extends StatelessWidget {
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
-            return "No orders yet!"
-                .text
-                .semiBold
-                .color(AppColors.tealColor)
-                .size(Dimensions.fontSize20)
-                .makeCentered();
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset('animations/noOrders.json'),
+                  20.heightBox,
+                  BigText(
+                    fontWeight: FontWeight.w700,
+                    text: "No orders yet!",
+                    color: Colors.grey[700],
+                    size: Dimensions.fontSize20,
+                  ),
+                ],
+              ),
+            );
           } else {
             var data = snapshot.data!.docs;
             return ListView.builder(
@@ -83,16 +93,14 @@ class MyOrders extends StatelessWidget {
                       subtitle: "Rs ${data[index]['total_amount']}"
                           .text
                           .bold
-                          .color(AppColors.priceColor)
+                          .color(AppColors.orangeRed)
                           .make(),
                       trailing: IconButton(
                         onPressed: () {
                           Get.to(() => OrdersDetail(data: data[index]));
                         },
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: Colors.black54,
-                        ),
+                        icon: const Icon(Icons.arrow_forward_ios_rounded,
+                            color: AppColors.mainAppColor),
                       ),
                     ),
                   );

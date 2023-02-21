@@ -317,8 +317,7 @@ class FruitsDetail extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            controller.f_IncreaseQty(
-                                context, int.parse(data['f_qty']));
+                            controller.f_IncreaseQty(context, data['f_qty']);
                             controller.f_CalculateTotalPrice(
                                 int.parse(data['f_price']));
                           },
@@ -331,9 +330,10 @@ class FruitsDetail extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (controller.f_quantity.value > 0) {
                         controller.addToCart(
+                            pId: data['f_id'],
                             title: data['f_name'],
                             img: data['f_image'],
                             qty: controller.f_quantity.value,
@@ -341,6 +341,10 @@ class FruitsDetail extends StatelessWidget {
                             sellerName: data['seller_name'],
                             tPrice: controller.f_totalPrice.value,
                             context: context);
+                        await controller.setNewFruitQty(
+                            docId: data['f_id'],
+                            newQty:
+                                data['f_qty'] - controller.f_quantity.value);
                         VxToast.show(context, msg: "Added To Cart");
                       } else {
                         return VxToast.show(context,

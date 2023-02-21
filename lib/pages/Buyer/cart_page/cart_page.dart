@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/controller/cart_controller.dart';
+import 'package:fresh_om/controller/product_controller.dart';
 import 'package:fresh_om/pages/Buyer/Services/firestore_services.dart';
 import 'package:fresh_om/pages/Buyer/cart_page/confirm_order.dart';
 import 'package:fresh_om/widgets/reusable_big_text.dart';
@@ -19,6 +20,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(CartController());
+    var productController = Get.put(ProductController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -123,9 +125,15 @@ class CartPage extends StatelessWidget {
                                   Icons.delete,
                                   color: AppColors.orangeRed,
                                 ),
-                                onPressed: () {
+                                onPressed: () async {
                                   FireStoreServices.deleteDocument(
                                       data[index].id);
+                                  await productController.resetFruitQty(
+                                      docId: data[index]['p_id'],
+                                      newQty: data[index]['qty']);
+                                  await productController.resetVegQty(
+                                      docId: data[index]['p_id'],
+                                      newQty: data[index]['qty']);
                                 },
                               ),
                             );

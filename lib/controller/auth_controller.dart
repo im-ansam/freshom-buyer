@@ -70,9 +70,6 @@ class AuthController extends GetxController {
       'email': email,
       'imageUrl': '',
       'id': FirebaseAuth.instance.currentUser!.uid,
-      'cart_count': "00",
-      'order_count': "00",
-      "address": ''
     });
   }
 

@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh_om/pages/Buyer/detail%20page/fruits_detail.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/dimensions.dart';
+import '../../../../widgets/reusable_big_text.dart';
 import '../../../../widgets/reusable_bold_text.dart';
 import '../../Services/firestore_services.dart';
 
@@ -59,12 +61,20 @@ class FruitSearchScreen extends StatelessWidget {
                     .contains(title!.toLowerCase()))
                 .toList();
             if (filtered.isEmpty) {
-              return "No results found..."
-                  .text
-                  .size(Dimensions.fontSize20)
-                  .semiBold
-                  .color(AppColors.tealColor)
-                  .makeCentered();
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset('animations/searchNotFound.json'),
+                    BigText(
+                      fontWeight: FontWeight.w500,
+                      text: "No results found",
+                      color: Colors.grey[600],
+                      size: Dimensions.fontSize20,
+                    ),
+                  ],
+                ),
+              );
             }
             return GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

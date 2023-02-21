@@ -13,6 +13,8 @@ import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
 import 'package:intl/intl.dart' as intl;
 
+import '../../../widgets/reusable_big_text.dart';
+
 class VegCategory extends StatefulWidget {
   const VegCategory({Key? key}) : super(key: key);
 
@@ -56,11 +58,16 @@ class _VegCategoryState extends State<VegCategory> {
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(
                     alignment: Alignment.center,
-                    height: 100,
-                    child: BoldText(
-                      fontWeight: FontWeight.w600,
-                      text: "No new vegetables",
-                      color: Colors.grey[600],
+                    child: Column(
+                      children: [
+                        Lottie.asset('animations/noItems.json', width: 150),
+                        BigText(
+                          fontWeight: FontWeight.w500,
+                          text: "No new vegetables",
+                          color: Colors.grey[600],
+                          size: Dimensions.fontSize16,
+                        ),
+                      ],
                     ),
                   );
                 } else {
@@ -163,10 +170,19 @@ class _VegCategoryState extends State<VegCategory> {
                     ),
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
-                    child: BoldText(
-                      fontWeight: FontWeight.bold,
-                      text: "No Items",
+                  return Container(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Lottie.asset('animations/noItems.json', width: 140),
+                        BigText(
+                          fontWeight: FontWeight.w500,
+                          text: "No items",
+                          color: Colors.grey[600],
+                          size: Dimensions.fontSize16,
+                        ),
+                        70.heightBox
+                      ],
                     ),
                   );
                 } else {

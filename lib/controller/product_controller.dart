@@ -61,7 +61,8 @@ class ProductController extends GetxController {
     v_totalPrice.value = price * v_quantity.value;
   }
 
-  addToCart({title, img, sellerName, qty, tPrice, context, sellerID}) async {
+  addToCart(
+      {title, img, sellerName, qty, tPrice, context, sellerID, pId}) async {
     if (qty > 0) {
       await firestore.collection(cartCollection).doc().set({
         'title': title,
@@ -70,7 +71,8 @@ class ProductController extends GetxController {
         'qty': qty,
         'seller_id': sellerID,
         'tPrice': tPrice,
-        'added_by': FirebaseAuth.instance.currentUser!.uid
+        'added_by': FirebaseAuth.instance.currentUser!.uid,
+        'p_id': pId
       }).catchError((error) {
         VxToast.show(context, msg: error.toString());
       });
@@ -95,5 +97,47 @@ class ProductController extends GetxController {
         .get();
 
     cartCount.value = data.docs.length;
+  }
+
+  //decrease quantity on fireStore while adding to cart
+
+  setNewVegQty({newQty, docId}) async {
+    var collection = firestore.collection(vegetableCollection);
+    var querySnapshots = await collection.where('v_id', isEqualTo: docId).get();
+    for (var doc in querySnapshots.docs) {
+      await doc.reference.update({
+        'v_qty': newQty,
+      });
+    }
+  }
+  //decrease quantity on fireStore while adding to cart
+
+  setNewFruitQty({newQty, docId}) async {
+    var collection = firestore.collection(fruitsCollection);
+    var querySnapshots = await collection.where('f_id', isEqualTo: docId).get();
+    for (var doc in querySnapshots.docs) {
+      await doc.reference.update({
+        'f_qty': newQty,
+      });
+    }
+  }
+
+  //reset the quantity of vegetable while removing from cart
+
+  resetFruitQty({newQty, docId}) async {
+    var collection = firestore.collection(fruitsCollection);
+    var querySnapshots = await collection.where('f_id', isEqualTo: docId).get();
+    for (var doc in querySnapshots.docs) {
+      await doc.reference.update({'f_qty': doc['f_qty'] + newQty});
+    }
+  }
+
+//reset the quantity of vegetable while removing from cart
+  resetVegQty({newQty, docId}) async {
+    var collection = firestore.collection(vegetableCollection);
+    var querySnapshots = await collection.where('v_id', isEqualTo: docId).get();
+    for (var doc in querySnapshots.docs) {
+      await doc.reference.update({'v_qty': doc['v_qty'] + newQty});
+    }
   }
 }

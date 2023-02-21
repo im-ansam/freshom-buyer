@@ -319,7 +319,7 @@ class VegetableDetail extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             productController.v_IncreaseQty(
-                                context, int.parse(data['v_qty']));
+                                context, data['v_qty']);
                             productController.v_CalculateTotalPrice(
                                 int.parse(data['v_price']));
                           },
@@ -332,9 +332,10 @@ class VegetableDetail extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (productController.v_quantity.value > 0) {
                         productController.addToCart(
+                            pId: data['v_id'],
                             title: data['v_name'],
                             img: data['v_image'],
                             qty: productController.v_quantity.value,
@@ -342,6 +343,10 @@ class VegetableDetail extends StatelessWidget {
                             sellerID: data['seller_id'],
                             tPrice: productController.v_totalPrice.value,
                             context: context);
+                        await productController.setNewVegQty(
+                            docId: data['v_id'],
+                            newQty: data['v_qty'] -
+                                productController.v_quantity.value);
                         VxToast.show(context, msg: "Added To Cart");
                       } else {
                         return VxToast.show(context,

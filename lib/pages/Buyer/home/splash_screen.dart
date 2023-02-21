@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+  //deletes fruits after 3 days from uploaded date
   autoDeleteFruit() async {
     var collection = FirebaseFirestore.instance.collection(fruitsCollection);
     var snapshot = await collection
@@ -50,6 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+//deletes vegetables after 3 days from uploaded date
   autoDeleteVeg() async {
     var collection = FirebaseFirestore.instance.collection(vegetableCollection);
     var snapshot = await collection
@@ -61,12 +63,32 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+  //deletes fruits if count is zero
+  autoDeleteZeroCountFruit() async {
+    var collection = FirebaseFirestore.instance.collection(fruitsCollection);
+    var snapshot = await collection.where("f_qty", isEqualTo: 0).get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
+
+//deletes vegetables if count is zero
+  autoDeleteZeroCountVeg() async {
+    var collection = FirebaseFirestore.instance.collection(vegetableCollection);
+    var snapshot = await collection.where("v_qty", isEqualTo: 0).get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     autoDeleteFruit();
     autoDeleteVeg();
     changeScreen();
+    autoDeleteZeroCountFruit();
+    autoDeleteZeroCountVeg();
   }
 
   @override

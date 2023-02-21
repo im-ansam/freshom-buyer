@@ -10,6 +10,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../utils/Reusables_functions.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
+import '../../../widgets/reusable_big_text.dart';
 import '../../../widgets/reusable_bold_text.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -54,11 +55,16 @@ class _FruitCategoryState extends State<FruitCategory> {
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(
                     alignment: Alignment.center,
-                    height: 100,
-                    child: BoldText(
-                      fontWeight: FontWeight.w600,
-                      text: "No new fruits",
-                      color: Colors.grey[600],
+                    child: Column(
+                      children: [
+                        Lottie.asset('animations/noItems.json', width: 150),
+                        BigText(
+                          fontWeight: FontWeight.w500,
+                          text: "No new fruits",
+                          color: Colors.grey[600],
+                          size: Dimensions.fontSize16,
+                        ),
+                      ],
                     ),
                   );
                 } else {
@@ -167,10 +173,19 @@ class _FruitCategoryState extends State<FruitCategory> {
                     ),
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
-                    child: BoldText(
-                      fontWeight: FontWeight.bold,
-                      text: "No Items",
+                  return Container(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Lottie.asset('animations/noItems.json', width: 140),
+                        BigText(
+                          fontWeight: FontWeight.w500,
+                          text: "No items",
+                          color: Colors.grey[600],
+                          size: Dimensions.fontSize16,
+                        ),
+                        70.heightBox
+                      ],
                     ),
                   );
                 } else {

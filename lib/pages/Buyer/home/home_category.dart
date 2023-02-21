@@ -9,6 +9,7 @@ import 'package:lottie/lottie.dart';
 import '../../../utils/Reusables_functions.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';
+import '../../../widgets/reusable_big_text.dart';
 import '../../../widgets/reusable_bold_text.dart';
 import '../detail page/vegetable_detail.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -63,11 +64,17 @@ class _HomeCategoryState extends State<HomeCategory> {
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(
                     alignment: Alignment.center,
-                    height: 100,
-                    child: BoldText(
-                      fontWeight: FontWeight.w600,
-                      text: "No new fruits",
-                      color: Colors.grey[600],
+                    child: Column(
+                      children: [
+                        Lottie.asset('animations/noItems.json',
+                            width: 150, fit: BoxFit.contain),
+                        BigText(
+                          fontWeight: FontWeight.w500,
+                          text: "No new Fruits",
+                          color: Colors.grey[600],
+                          size: Dimensions.fontSize16,
+                        ),
+                      ],
                     ),
                   );
                 } else {
@@ -176,11 +183,17 @@ class _HomeCategoryState extends State<HomeCategory> {
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(
                     alignment: Alignment.center,
-                    height: 100,
-                    child: BoldText(
-                      fontWeight: FontWeight.w600,
-                      text: "No new vegetables",
-                      color: Colors.grey[600],
+                    child: Column(
+                      children: [
+                        Lottie.asset('animations/noItems.json', width: 150),
+                        BigText(
+                          fontWeight: FontWeight.w500,
+                          text: "No new vegetables",
+                          color: Colors.grey[600],
+                          size: Dimensions.fontSize16,
+                        ),
+                        70.heightBox
+                      ],
                     ),
                   );
                 } else {

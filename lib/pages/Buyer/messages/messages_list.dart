@@ -8,6 +8,7 @@ import '../../../utils/dimensions.dart';
 import '../../../widgets/reusable_big_text.dart';
 import '../../../widgets/reusable_bold_text.dart';
 import '../Services/firestore_services.dart';
+import 'package:intl/intl.dart' as intl;
 
 class AllMessageList extends StatefulWidget {
   const AllMessageList({Key? key}) : super(key: key);
@@ -37,16 +38,16 @@ class _AllMessageListState extends State<AllMessageList> {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.nicePurple,
+                color: AppColors.mainAppColor,
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
-            return "No Messages yet!"
-                .text
-                .semiBold
-                .color(AppColors.tealColor)
-                .size(Dimensions.fontSize20)
-                .makeCentered();
+            return BigText(
+              fontWeight: FontWeight.w500,
+              text: "You have no messages",
+              color: Colors.grey[600],
+              size: Dimensions.fontSize20,
+            );
           } else {
             var data = snapshot.data!.docs;
             return Padding(
@@ -87,7 +88,8 @@ class _AllMessageListState extends State<AllMessageList> {
                                     .color(Colors.black54)
                                     .size(Dimensions.fontSize16)
                                     .make(),
-                                trailing: "10:04"
+                                trailing: intl.DateFormat('dd-MM-yyyy')
+                                    .format(data[index]['created_on'].toDate())
                                     .text
                                     .semiBold
                                     .color(Colors.black54)

@@ -274,7 +274,7 @@ class UserProfile extends StatelessWidget {
                                         text: "${data['name']}",
                                         // text: controller.profileData['name'],
                                         size: Dimensions.fontSize18,
-                                        color: Colors.white70,
+                                        color: Colors.white,
                                       ),
                                       BigText(
                                         letterSpacing: 1,
@@ -282,7 +282,7 @@ class UserProfile extends StatelessWidget {
                                         // text: controller.profileData['email'],
                                         fontWeight: FontWeight.w400,
                                         size: Dimensions.fontSize14,
-                                        color: const Color(0xffff5349),
+                                        color: Colors.white54,
                                       )
                                     ],
                                   ),

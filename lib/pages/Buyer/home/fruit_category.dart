@@ -49,8 +49,8 @@ class _FruitCategoryState extends State<FruitCategory> {
                   .snapshots(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return const CircularProgressIndicator(
+                    color: AppColors.mainAppColor,
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(
@@ -169,7 +169,7 @@ class _FruitCategoryState extends State<FruitCategory> {
                 if (!snapshot.hasData) {
                   return const Center(
                     child: CircularProgressIndicator(
-                      color: AppColors.tealColor,
+                      color: AppColors.mainAppColor,
                     ),
                   );
                 } else if (snapshot.data!.docs.isEmpty) {

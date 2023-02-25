@@ -36,7 +36,7 @@ class MessageSeller extends StatelessWidget {
             Obx(() => controller.isLoading.value
                 ? const Center(
                     child: CircularProgressIndicator(
-                      color: AppColors.tealColor,
+                      color: AppColors.mainAppColor,
                     ),
                   )
                 : Expanded(

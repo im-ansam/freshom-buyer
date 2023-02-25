@@ -13,7 +13,7 @@ import 'colors.dart';
 Widget chatBubble(DocumentSnapshot data) {
   var t =
       data['created_on'] == null ? DateTime.now() : data['created_on'].toDate();
-  var time = intl.DateFormat("h,mma").format(t);
+  var time = intl.DateFormat("h:mma").format(t);
   return Directionality(
     textDirection: data['uid'] == FirebaseAuth.instance.currentUser!.uid
         ? TextDirection.rtl

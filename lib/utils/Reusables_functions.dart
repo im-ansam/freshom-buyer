@@ -18,8 +18,8 @@ Container buildPopularText({String popularText = "", String list = ""}) {
         BigText(
           text: popularText,
           size: Dimensions.fontSize18,
-          fontWeight: FontWeight.w600,
-          color: AppColors.mainAppColor,
+          fontWeight: FontWeight.w500,
+          color: Colors.black87,
         ),
         SizedBox(
           width: Dimensions.width10,
@@ -35,14 +35,31 @@ Container buildPopularText({String popularText = "", String list = ""}) {
   );
 }
 
-Text appNameText(
-    {text, FontWeight? fontWeight, Color? color, size, letterSpacing}) {
-  return Text(
-    text,
-    style: GoogleFonts.lobster(
-        letterSpacing: letterSpacing ?? 3.0,
-        fontSize: size,
-        fontWeight: fontWeight ?? FontWeight.w200,
-        color: color ?? AppColors.mainAppColor),
+RichText appNameText(
+    {text,
+    FontWeight? fontWeight1,
+    fontWeight2,
+    Color? color,
+    size,
+    letterSpacing1,
+    letterSpacing2}) {
+  return RichText(
+    text: TextSpan(
+        text: "Fresh",
+        style: GoogleFonts.poppins(
+          letterSpacing: letterSpacing1 ?? 1.0,
+          fontSize: size,
+          fontWeight: fontWeight1,
+          color: color ?? AppColors.nicePurple,
+        ),
+        children: [
+          TextSpan(
+              text: "'Om",
+              style: GoogleFonts.poppins(
+                  letterSpacing: letterSpacing2 ?? 1.0,
+                  fontWeight: fontWeight2,
+                  fontSize: size,
+                  color: color ?? AppColors.nicePurple))
+        ]),
   );
 }

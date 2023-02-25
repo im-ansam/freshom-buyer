@@ -78,12 +78,6 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
               padding: EdgeInsets.all(Dimensions.width8),
               activeColor: Colors.white,
               tabBackgroundColor: AppColors.mainAppColor,
-              tabShadow: [
-                BoxShadow(
-                    color: AppColors.buttonBackGroundColor,
-                    blurRadius: Dimensions.radius10,
-                    spreadRadius: 1)
-              ],
               gap: Dimensions.height5,
               tabs: const [
                 GButton(
@@ -155,7 +149,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                       width: double.infinity,
                       height: Dimensions.height300,
                       decoration: BoxDecoration(
-                        color: AppColors.lightBlue1,
+                        color: AppColors.lightGreen2,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(Dimensions.fontSize20)),
                       ),
@@ -189,15 +183,12 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                             size: Dimensions.fontSize23,
                             // controller.profileData['name'],
                           ),
-                          SizedBox(
-                            height: Dimensions.height10,
-                          ),
                           BigText(
                             text: "${data['email']}",
                             // controller.profileData['email']
                             size: Dimensions.fontSize16,
                             fontWeight: FontWeight.w400,
-                            color: AppColors.mainAppColor,
+                            color: Colors.grey[600],
                           ),
                         ],
                       ),
@@ -315,12 +306,30 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                     )
                   : categoryIsClicked1 == true
                       ? Padding(
-                          padding: EdgeInsets.only(left: Dimensions.height30),
-                          child: appNameText(
-                            text: "Fresh'Om",
-                            fontWeight: FontWeight.w200,
-                            size: 34.0,
-                            color: Colors.white,
+                          padding: EdgeInsets.only(left: Dimensions.height10),
+                          child: Row(
+                            children: [
+                              appNameText(
+                                text: "Fresh'Om",
+                                fontWeight1: FontWeight.w500,
+                                fontWeight2: FontWeight.w700,
+                                size: 34.0,
+                                color: Colors.white,
+                              ),
+                              10.widthBox,
+                              Container(
+                                padding: EdgeInsets.all(Dimensions.width5),
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white),
+                                child: Image.asset(
+                                  'images/freshLogo.png',
+                                  height: 40,
+                                ),
+                              )
+                            ],
                           ),
                         )
                       : TextFormField(
@@ -381,19 +390,21 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Dimensions.width35.widthBox,
                 Text(
                   "Shop",
                   style: GoogleFonts.poiretOne(
-                      letterSpacing: 2,
+                      letterSpacing: 0,
                       fontWeight: FontWeight.w500,
-                      fontSize: 25,
+                      fontSize: Dimensions.fontSize23,
                       color: Colors.white),
                 ),
                 5.widthBox,
-                const BigText(
+                BigText(
                   text: " Fruits And Vegetables",
                   fontWeight: FontWeight.w500,
                   color: AppColors.mainBackGround,
+                  size: Dimensions.fontSize23,
                 ),
                 Dimensions.width10.widthBox
               ],

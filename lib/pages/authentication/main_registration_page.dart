@@ -46,15 +46,17 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
             Image.asset("images/logoMain2.png"),
             Dimensions.width8.heightBox,
             appNameText(
-                text: 'Fresh\'Om',
-                color: AppColors.mainAppColor,
-                size: Dimensions.fontSize25,
-                fontWeight: FontWeight.w500),
+              text: 'Fresh\'Om',
+              color: AppColors.mainAppColor,
+              size: Dimensions.fontSize23,
+              fontWeight1: FontWeight.w500,
+              fontWeight2: FontWeight.w700,
+            ),
             BigText(
               text: "Version 1.0.0",
               fontWeight: FontWeight.w500,
               color: Colors.grey[400],
-              size: Dimensions.fontSize16,
+              size: Dimensions.fontSize14,
             )
           ],
         ),
@@ -82,7 +84,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                           style: GoogleFonts.poppins(
                               fontSize: Dimensions.fontSize25,
                               color: Colors.white,
-                              letterSpacing: 2),
+                              letterSpacing: 1),
                           children: [
                             TextSpan(
                               text: isSignUpScreen ? " Fresh'Om," : " Back,",
@@ -98,14 +100,14 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                         ? BigText(
                             text: "Signup to Continue",
                             fontWeight: FontWeight.w600,
-                            letterSpacing: 2,
+                            letterSpacing: 1,
                             color: Colors.white54,
                             size: Dimensions.fontSize18,
                           )
                         : BigText(
                             text: "SignIn to Continue",
                             fontWeight: FontWeight.w600,
-                            letterSpacing: 2,
+                            letterSpacing: 1,
                             color: Colors.white54,
                             size: Dimensions.fontSize18,
                           )
@@ -232,12 +234,6 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                 color: AppColors.mainAppColor,
                 size: Dimensions.fontSize15,
               ),
-              // "Forgot Password?"
-              //     .text
-              //     .semiBold
-              //     .size(Dimensions.fontSize16)
-              //     .color(AppColors.nicePurple)
-              //     .make()
             ),
           )
         ],

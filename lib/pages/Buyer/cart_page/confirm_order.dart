@@ -68,7 +68,7 @@ class ConfirmOrder extends StatelessWidget {
               "Your Address"
                   .text
                   .semiBold
-                  .color(AppColors.mainAppColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -96,7 +96,7 @@ class ConfirmOrder extends StatelessWidget {
               "Home City"
                   .text
                   .semiBold
-                  .color(AppColors.mainAppColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -124,7 +124,7 @@ class ConfirmOrder extends StatelessWidget {
               "Pin Code"
                   .text
                   .semiBold
-                  .color(AppColors.mainAppColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,
@@ -152,7 +152,7 @@ class ConfirmOrder extends StatelessWidget {
               "Contact Number"
                   .text
                   .semiBold
-                  .color(AppColors.mainAppColor)
+                  .color(AppColors.nicePurple)
                   .size(Dimensions.fontSize18)
                   .make(),
               Dimensions.height10.heightBox,

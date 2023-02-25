@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
+import '../../widgets/reusable_big_text.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.mainBackGround,
+        backgroundColor: AppColors.lightBlue1,
         body: Stack(
           alignment: Alignment.center,
           children: [
@@ -42,10 +43,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                       Align(
                         alignment: Alignment.topCenter,
                         child: appNameText(
-                            text: 'Fresh\'Om',
-                            color: Colors.white,
-                            size: Dimensions.fontSize50,
-                            fontWeight: FontWeight.w500),
+                          text: 'Fresh\'Om',
+                          color: Colors.white,
+                          size: Dimensions.fontSize40,
+                          fontWeight1: FontWeight.w500,
+                          fontWeight2: FontWeight.w700,
+                        ),
                       ),
                       Dimensions.height10.heightBox,
                       RichText(
@@ -94,15 +97,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      "Email"
-                          .text
-                          .size(Dimensions.fontSize16)
-                          .semiBold
-                          .color(AppColors.mainAppColor)
-                          .make()
-                          .paddingOnly(
-                              left: Dimensions.width10,
-                              bottom: Dimensions.width10),
+                      BigText(
+                        text: "Email",
+                        fontWeight: FontWeight.w700,
+                        size: Dimensions.fontSize16,
+                        color: AppColors.mainAppColor,
+                      ).paddingOnly(
+                          left: Dimensions.width10, bottom: Dimensions.width10),
                       TextFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -189,7 +190,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       color: Colors.black.withOpacity(.3),
                       blurRadius: Dimensions.radius10,
                       spreadRadius: 1.5,
-                      offset: Offset(0, 1))
+                      offset: const Offset(0, 1))
               ]),
           child: Container(
                   height: Dimensions.height50,

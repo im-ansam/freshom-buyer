@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,7 +39,7 @@ class CartController extends GetxController {
     await getProductDetails();
     try {
       await firestore.collection(ordersCollection).doc().set({
-        'order_code': "233911400",
+        'order_code': Random().nextInt(100000000), //remove if not needed
         'order_date': FieldValue.serverTimestamp(),
         'order_by': FirebaseAuth.instance.currentUser!.uid,
         'order_by_name': Get.find<HomeController>().userName,
@@ -87,6 +89,17 @@ class CartController extends GetxController {
     for (var i = 0; i < productSnapshot.length; i++) {
       //productSnapshot has list of all products of current user in cart
       firestore.collection(cartCollection).doc(productSnapshot[i].id).delete();
+    }
+  }
+
+  randomNumber() {
+    List<int> numberList = [];
+    Random randomizer = Random();
+    while (numberList.length < 5) {
+      int random_number = randomizer.nextInt(50);
+      if (!numberList.contains(random_number)) {
+        return numberList.add(random_number);
+      }
     }
   }
 }

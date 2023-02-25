@@ -126,9 +126,11 @@ class FruitsDetail extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BigText(
-                              text: "${data['f_name']}",
-                              size: Dimensions.fontSize25,
-                              fontWeight: FontWeight.w600),
+                            text: "${data['f_name']}",
+                            size: Dimensions.fontSize25,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.nicePurple,
+                          ),
                           BoldText(
                             fontWeight: FontWeight.bold,
                             text: "Rs ${data['f_price']}/Kg",
@@ -146,7 +148,7 @@ class FruitsDetail extends StatelessWidget {
                           BigText(
                             text: "Quantity Available  -",
                             size: Dimensions.fontSize18,
-                            color: AppColors.mainAppColor,
+                            color: Colors.black87,
                             fontWeight: FontWeight.w600,
                           ),
                           Text(
@@ -170,7 +172,7 @@ class FruitsDetail extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius10),
-                            color: Colors.grey.shade400),
+                            color: Colors.grey.shade300),
                         child: Row(
                           children: [
                             Expanded(
@@ -180,14 +182,15 @@ class FruitsDetail extends StatelessWidget {
                                 children: [
                                   SmallText(
                                     text: "Seller Name",
-                                    color: Colors.white,
+                                    color: AppColors.mainAppColor,
                                   ),
                                   SizedBox(
                                     height: Dimensions.height5,
                                   ),
                                   SmallText(
+                                    size: Dimensions.fontSize14,
                                     text: "${data['seller_name']}",
-                                    color: Colors.black,
+                                    color: AppColors.nicePurple,
                                   )
                                 ],
                               ),
@@ -222,7 +225,7 @@ class FruitsDetail extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             text: "Product Uploaded Date :",
                             size: Dimensions.fontSize18,
-                            color: AppColors.mainAppColor,
+                            color: Colors.black87,
                           ),
                           BoldText(
                             fontWeight: FontWeight.bold,
@@ -245,7 +248,8 @@ class FruitsDetail extends StatelessWidget {
                       BigText(
                           text: "Description",
                           fontWeight: FontWeight.w600,
-                          size: Dimensions.fontSize20),
+                          size: Dimensions.fontSize20,
+                          color: Colors.black87),
                       SizedBox(
                         height: Dimensions.height20,
                       ),

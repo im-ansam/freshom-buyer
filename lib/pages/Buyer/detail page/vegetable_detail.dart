@@ -127,9 +127,11 @@ class VegetableDetail extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BigText(
-                              text: "${data['v_name']}",
-                              size: Dimensions.fontSize25,
-                              fontWeight: FontWeight.w600),
+                            text: "${data['v_name']}",
+                            size: Dimensions.fontSize25,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.nicePurple,
+                          ),
                           BoldText(
                             fontWeight: FontWeight.bold,
                             text: "Rs ${data['v_price']}/Kg",
@@ -147,7 +149,7 @@ class VegetableDetail extends StatelessWidget {
                           BigText(
                             text: "Quantity Available  -",
                             size: Dimensions.fontSize18,
-                            color: AppColors.mainAppColor,
+                            color: Colors.black87,
                             fontWeight: FontWeight.w600,
                           ),
                           Text(
@@ -171,7 +173,7 @@ class VegetableDetail extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius10),
-                            color: Colors.grey.shade400),
+                            color: Colors.grey.shade300),
                         child: Row(
                           children: [
                             Expanded(
@@ -181,14 +183,15 @@ class VegetableDetail extends StatelessWidget {
                                 children: [
                                   SmallText(
                                     text: "Seller Name",
-                                    color: Colors.white,
+                                    color: AppColors.mainAppColor,
                                   ),
                                   SizedBox(
                                     height: Dimensions.height5,
                                   ),
                                   SmallText(
-                                    text: "Ansam CD",
-                                    color: Colors.black,
+                                    size: Dimensions.fontSize14,
+                                    text: "${data['seller_name']}",
+                                    color: AppColors.nicePurple,
                                   )
                                 ],
                               ),
@@ -223,7 +226,7 @@ class VegetableDetail extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             text: "Product Uploaded Date :",
                             size: Dimensions.fontSize18,
-                            color: AppColors.mainAppColor,
+                            color: Colors.black87,
                           ),
                           BoldText(
                             fontWeight: FontWeight.bold,
@@ -246,7 +249,8 @@ class VegetableDetail extends StatelessWidget {
                       BigText(
                           text: "Description",
                           fontWeight: FontWeight.w600,
-                          size: Dimensions.fontSize20),
+                          size: Dimensions.fontSize20,
+                          color: Colors.black87),
                       SizedBox(
                         height: Dimensions.height20,
                       ),

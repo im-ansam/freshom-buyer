@@ -52,8 +52,8 @@ class _VegCategoryState extends State<VegCategory> {
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return const CircularProgressIndicator(
+                    color: AppColors.mainAppColor,
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(
@@ -166,7 +166,7 @@ class _VegCategoryState extends State<VegCategory> {
                 if (!snapshot.hasData) {
                   return const Center(
                     child: CircularProgressIndicator(
-                      color: AppColors.tealColor,
+                      color: AppColors.mainAppColor,
                     ),
                   );
                 } else if (snapshot.data!.docs.isEmpty) {

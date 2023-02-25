@@ -5,13 +5,13 @@ import 'package:fresh_om/pages/Buyer/home/buyer_home_page.dart';
 import 'package:fresh_om/pages/authentication/main_registration_page.dart';
 import 'package:fresh_om/utils/Reusables_functions.dart';
 import 'package:fresh_om/utils/colors.dart';
-import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:fresh_om/widgets/reusable_small_text.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../constants/firebase_consts.dart';
 import '../../../utils/dimensions.dart';
+import '../../../widgets/reusable_big_text.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -47,6 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
             isLessThan: DateTime.now().subtract(const Duration(days: 3)))
         .get();
     for (var doc in snapshot.docs) {
+      await setDeletedFruits(doc);
       await doc.reference.delete();
     }
   }
@@ -59,27 +60,50 @@ class _SplashScreenState extends State<SplashScreen> {
             isLessThan: DateTime.now().subtract(const Duration(days: 3)))
         .get();
     for (var doc in snapshot.docs) {
+      await setDeletedVeg(doc);
       await doc.reference.delete();
     }
+  }
+
+  //get all field of fruits table
+  setDeletedFruits(QueryDocumentSnapshot document) async {
+    await firestore.collection('Deleted Fruits').doc().set({
+      'f_image': document['f_image'],
+      'seller_id': document['seller_id'],
+      'seller_name': document['seller_name'],
+      'f_name': document['f_name'],
+      'f_id': document['f_id'],
+      'f_uploaded_date': document['f_uploaded_date'],
+    });
+  }
+
+  setDeletedVeg(QueryDocumentSnapshot document) async {
+    await firestore.collection('Deleted Veg').doc().set({
+      'v_image': document['v_image'],
+      'seller_id': document['seller_id'],
+      'seller_name': document['seller_name'],
+      'v_name': document['v_name'],
+      'v_uploaded_date': document['v_uploaded_date'],
+    });
   }
 
   //deletes fruits if count is zero
-  autoDeleteZeroCountFruit() async {
-    var collection = FirebaseFirestore.instance.collection(fruitsCollection);
-    var snapshot = await collection.where("f_qty", isEqualTo: 0).get();
-    for (var doc in snapshot.docs) {
-      await doc.reference.delete();
-    }
-  }
+  // autoDeleteZeroCountFruit() async {
+  //   var collection = FirebaseFirestore.instance.collection(fruitsCollection);
+  //   var snapshot = await collection.where("f_qty", isEqualTo: 0).get();
+  //   for (var doc in snapshot.docs) {
+  //     await doc.reference.delete();
+  //   }
+  // }
 
 //deletes vegetables if count is zero
-  autoDeleteZeroCountVeg() async {
-    var collection = FirebaseFirestore.instance.collection(vegetableCollection);
-    var snapshot = await collection.where("v_qty", isEqualTo: 0).get();
-    for (var doc in snapshot.docs) {
-      await doc.reference.delete();
-    }
-  }
+//   autoDeleteZeroCountVeg() async {
+//     var collection = FirebaseFirestore.instance.collection(vegetableCollection);
+//     var snapshot = await collection.where("v_qty", isEqualTo: 0).get();
+//     for (var doc in snapshot.docs) {
+//       await doc.reference.delete();
+//     }
+//   }
 
   @override
   void initState() {
@@ -87,8 +111,8 @@ class _SplashScreenState extends State<SplashScreen> {
     autoDeleteFruit();
     autoDeleteVeg();
     changeScreen();
-    autoDeleteZeroCountFruit();
-    autoDeleteZeroCountVeg();
+    // autoDeleteZeroCountFruit();
+    // autoDeleteZeroCountVeg();
   }
 
   @override
@@ -97,47 +121,30 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: Dimensions.height300,
-            ),
-            // Container(
-            //   height: Dimensions.height120,
-            //   width: Dimensions.width50 * 2,
-            //   decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.only(
-            //           bottomLeft: Radius.circular(Dimensions.radius30),
-            //           topRight: Radius.circular(Dimensions.radius30)),
-            //       color: Colors.white70,
-            //       image: DecorationImage(
-            //           image: AssetImage('images/logoMain1.png'))),
-            // ),
-
+            Dimensions.height50.heightBox,
             Image.asset(
-              'images/logoMain1.png',
-              height: 140,
+              'images/freshLogo.png',
+              height: 130,
             ),
-            SizedBox(
-              height: Dimensions.height10,
-            ),
-
+            Dimensions.height20.heightBox,
             appNameText(
-                text: 'Fresh\'Om',
-                color: AppColors.mainAppColor,
-                size: 30.0,
-                fontWeight: FontWeight.w500),
+                color: AppColors.nicePurple,
+                size: Dimensions.fontSize25,
+                fontWeight1: FontWeight.w500,
+                fontWeight2: FontWeight.w700),
+            Dimensions.height10.heightBox,
             // BoldText(
             //   fontWeight: FontWeight.bold,
             //   text: "Fresh'Om",
             //   color: AppColors.mainAppColor,
             //   size: Dimensions.fontSize30,
             // ),
-            SizedBox(
-              height: Dimensions.height10,
-            ),
+
             SmallText(
               text: "version 1.0.0",
-              color: Colors.grey[400],
+              color: Colors.grey[300],
             ),
           ],
         ),

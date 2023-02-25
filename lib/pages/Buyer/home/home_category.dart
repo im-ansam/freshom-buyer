@@ -59,7 +59,7 @@ class _HomeCategoryState extends State<HomeCategory> {
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator(
-                    color: AppColors.nicePurple,
+                    color: AppColors.mainAppColor,
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(
@@ -177,8 +177,8 @@ class _HomeCategoryState extends State<HomeCategory> {
                   .snapshots(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return const CircularProgressIndicator(
+                    color: AppColors.mainAppColor,
                   );
                 } else if (snapshot.data!.docs.isEmpty) {
                   return Container(

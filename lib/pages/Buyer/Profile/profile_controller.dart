@@ -57,7 +57,7 @@ class BuyerProfileController extends GetxController {
         .then((value) {
       FirebaseAuth.instance.currentUser!.updatePassword(newPassword);
     }).catchError((error) {
-      print(error.toString());
+      Get.snackbar('Error', error.toString());
     });
   }
 

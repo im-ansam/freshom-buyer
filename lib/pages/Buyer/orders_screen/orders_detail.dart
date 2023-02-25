@@ -61,7 +61,6 @@ class OrdersDetail extends StatelessWidget {
             //center address details container
             Container(
               padding: EdgeInsets.all(Dimensions.height12),
-              height: Dimensions.height370,
               width: Dimensions.height350,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius10),
@@ -108,12 +107,13 @@ class OrdersDetail extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          "Delivery Address"
-                              .text
-                              .semiBold
-                              .size(Dimensions.fontSize15)
-                              .color(AppColors.mainAppColor)
-                              .make(),
+                          BigText(
+                            text: "Delivery Address",
+                            fontWeight: FontWeight.w700,
+                            size: Dimensions.fontSize15,
+                            color: AppColors.nicePurple,
+                          ),
+                          5.heightBox,
                           addressDetails(
                               data: data['order_by_name'],
                               leading: "Name    :"),
@@ -141,12 +141,12 @@ class OrdersDetail extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            "Total Amount"
-                                .text
-                                .semiBold
-                                .size(Dimensions.fontSize15)
-                                .color(AppColors.tealColor)
-                                .make(),
+                            BigText(
+                              text: "Total Amount",
+                              fontWeight: FontWeight.w700,
+                              size: Dimensions.fontSize16,
+                              color: AppColors.nicePurple,
+                            ),
                             Dimensions.height30.heightBox,
                             "Rs.${data['total_amount']}"
                                 .text
@@ -191,7 +191,7 @@ class OrdersDetail extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               height: Dimensions.height100 * 2,
-              width: Dimensions.height360,
+              width: Dimensions.height350,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius10),
                 boxShadow: [

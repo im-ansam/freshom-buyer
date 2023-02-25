@@ -99,26 +99,25 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 ),
                 Dimensions.height20.heightBox,
-                "Provided details"
-                    .text
-                    .semiBold
-                    .size(Dimensions.fontSize16)
-                    .color(Colors.grey[600])
-                    .make()
+                BigText(
+                  text: "Provided details",
+                  fontWeight: FontWeight.w600,
+                  size: Dimensions.fontSize16,
+                  color: Colors.grey[800],
+                )
                     .box
                     .alignCenterLeft
                     .padding(EdgeInsets.only(left: Dimensions.width10))
                     .width(Dimensions.screenWidth - 30)
                     .height(Dimensions.height40)
-                    .color(Colors.grey.shade300)
+                    .color(Colors.grey.shade200)
                     .shadowSm
                     .roundedSM
                     .make(),
                 Dimensions.height30.heightBox,
                 Container(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(Dimensions.height15),
                   width: Dimensions.screenWidth - 30,
-                  height: 350,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
@@ -128,109 +127,58 @@ class PaymentMethod extends StatelessWidget {
                           blurRadius: 10,
                         )
                       ]),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                  child:
+                      // ListTile(
+                      //   leading: Text("Address"),
+                      //   title: Text(controller.addressController.text),
+                      // )
+
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                         buildAddressRow(
                           title: "Address     :",
                           detail: controller.addressController.text,
                         ),
+                        10.heightBox,
                         buildAddressRow(
                           title: "Home city :",
                           detail: controller.cityController.text,
                         ),
+                        10.heightBox,
                         buildAddressRow(
-                          title: "Pin Code   :",
+                          title: "Pin Code    :",
                           detail: controller.postalCodeController.text,
                         ),
+                        10.heightBox,
                         buildAddressRow(
-                          title: "Phone        :",
+                          title: "Phone          :",
                           detail: controller.phoneController.text,
                         ),
+                        10.heightBox,
                         buildAddressRow(
-                            title: "Payable \nAmount    :",
+                            title: "Payable \nAmount      :",
                             detail:
                                 "Rs:${controller.totalPrice.value.toString()}"),
+                        10.heightBox,
                         buildAddressRow(
-                          title: "Payment \nMethod:",
+                          title: "Payment \nMethod       :",
                           detail: cod,
                         )
                       ]),
                 )
               ],
             ),
-
-            // Obx(() => Column(
-            //       children: List.generate(paymentMethods.length, (index) {
-            //         return GestureDetector(
-            //           onTap: () {
-            //             controller.paymentIndex(index);
-            //           },
-            //           child: Container(
-            //             clipBehavior: Clip.antiAlias,
-            //             decoration: BoxDecoration(
-            //                 borderRadius:
-            //                     BorderRadius.circular(Dimensions.radius15),
-            //                 border: Border.all(
-            //                   color: controller.paymentIndex.value == index
-            //                       ? AppColors.tealColor
-            //                       : Colors.transparent,
-            //                   width: 4,
-            //                 )),
-            //             margin: EdgeInsets.only(bottom: Dimensions.height10),
-            //             child: Stack(
-            //               alignment: Alignment.topRight,
-            //               children: [
-            //                 Image.asset(
-            //                   paymentMethodImg[index],
-            //                   width: double.infinity,
-            //                   height: Dimensions.height60 * 2,
-            //                   fit: BoxFit.cover,
-            //                   colorBlendMode:
-            //                       controller.paymentIndex.value == index
-            //                           ? BlendMode.darken
-            //                           : BlendMode.color,
-            //                   color: controller.paymentIndex == index
-            //                       ? Colors.black.withOpacity(0.4)
-            //                       : Colors.transparent,
-            //                 ),
-            //                 controller.paymentIndex.value == index
-            //                     ? Transform.scale(
-            //                         scale: 1.3,
-            //                         child: Checkbox(
-            //                             activeColor: Colors.green,
-            //                             shape: RoundedRectangleBorder(
-            //                                 borderRadius: BorderRadius.circular(
-            //                                     Dimensions.radius50)),
-            //                             value: true,
-            //                             onChanged: (value) {}),
-            //                       )
-            //                     : SizedBox(),
-            //                 Positioned(
-            //                     bottom: 7,
-            //                     right: Dimensions.width10,
-            //                     child: paymentMethods[index]
-            //                         .text
-            //                         .semiBold
-            //                         .color(AppColors.lightBlue1)
-            //                         .size(Dimensions.fontSize16)
-            //                         .make())
-            //               ],
-            //             ),
-            //           ),
-            //         );
-            //       }),
-            //     )),
           ),
         ));
   }
 
-  Row buildAddressRow({title, detail}) {
+  Widget buildAddressRow({title, detail}) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Text(
         title,
         style: GoogleFonts.poppins(
-            color: AppColors.mainAppColor,
+            color: AppColors.nicePurple,
             fontSize: 18,
             fontWeight: FontWeight.w700),
       ),
@@ -244,6 +192,12 @@ class PaymentMethod extends StatelessWidget {
               fontWeight: FontWeight.w600),
         ),
       ),
-    ]);
+    ])
+        .box
+        .width(Dimensions.screenWidth - Dimensions.width5)
+        .color(Vx.gray100)
+        .roundedSM
+        .padding(EdgeInsets.all(5))
+        .make();
   }
 }

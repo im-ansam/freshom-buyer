@@ -42,7 +42,7 @@ class VegSearchScreen extends StatelessWidget {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.nicePurple,
+                color: AppColors.mainAppColor,
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
@@ -50,7 +50,7 @@ class VegSearchScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Lottie.asset('animations/searchNotFound.json'),
+                  Lottie.asset('animations/searchNotFound.json', repeat: false),
                   BigText(
                     fontWeight: FontWeight.w500,
                     text: "No results found",
@@ -68,6 +68,23 @@ class VegSearchScreen extends StatelessWidget {
                     .toLowerCase()
                     .contains(title!.toLowerCase()))
                 .toList();
+            if (filtered.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset('animations/searchNotFound.json',
+                        repeat: false),
+                    BigText(
+                      fontWeight: FontWeight.w500,
+                      text: "No results found",
+                      color: Colors.grey[600],
+                      size: Dimensions.fontSize20,
+                    ),
+                  ],
+                ),
+              );
+            }
             return GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,

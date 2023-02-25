@@ -35,7 +35,7 @@ class MyOrders extends StatelessWidget {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.tealColor,
+                color: AppColors.mainAppColor,
               ),
             );
           } else if (snapshot.data!.docs.isEmpty) {
@@ -43,7 +43,7 @@ class MyOrders extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Lottie.asset('animations/noOrders.json'),
+                  Lottie.asset('animations/searchNotFound.json', repeat: false),
                   20.heightBox,
                   BigText(
                     fontWeight: FontWeight.w700,
@@ -61,7 +61,8 @@ class MyOrders extends StatelessWidget {
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: Dimensions.width8),
+                    padding: EdgeInsets.only(
+                        bottom: Dimensions.width8, top: Dimensions.height10),
                     child: ListTile(
                       tileColor: Colors.grey.shade200,
                       leading: "${index + 1}"
@@ -77,7 +78,7 @@ class MyOrders extends StatelessWidget {
                               .text
                               .semiBold
                               .overflow(TextOverflow.ellipsis)
-                              .color(AppColors.tealColor)
+                              .color(AppColors.nicePurple)
                               .make()
                               .box
                               .width(Dimensions.height100)

@@ -64,7 +64,7 @@ class CartPage extends StatelessWidget {
                   Lottie.asset('animations/emptyCart.json'),
                   Dimensions.height20.heightBox,
                   BigText(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                     text: "Cart Is Empty!",
                     color: Colors.grey[700],
                     size: Dimensions.fontSize20,
@@ -88,57 +88,55 @@ class CartPage extends StatelessWidget {
 
                   //list of cart items
                   Expanded(
-                    child: Container(
-                      child: ListView.builder(
-                          itemCount: data.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ListTile(
-                              // visualDensity: VisualDensity(vertical: 2),
-                              leading: Container(
-                                width: Dimensions.height90,
-                                height: Dimensions.height100,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        Dimensions.radius10)),
-                                child: Image.network(
-                                  "${data[index]['img']}",
-                                  fit: BoxFit.cover,
-                                ),
+                    child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            // visualDensity: VisualDensity(vertical: 2),
+                            leading: Container(
+                              width: Dimensions.height90,
+                              height: Dimensions.height100,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius10)),
+                              child: Image.network(
+                                "${data[index]['img']}",
+                                fit: BoxFit.cover,
                               ),
-                              title:
-                                  "${data[index]['title']}  (x${data[index]['qty']}kg)"
-                                      .text
-                                      .semiBold
-                                      .color(Colors.grey[900])
-                                      .size(Dimensions.fontSize16)
-                                      .make(),
-                              subtitle: "${data[index]['tPrice']}"
-                                  .numCurrency
-                                  .text
-                                  .semiBold
-                                  .color(AppColors.orangeRed)
-                                  .size(14)
-                                  .make(),
-                              trailing: IconButton(
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: AppColors.orangeRed,
-                                ),
-                                onPressed: () async {
-                                  FireStoreServices.deleteDocument(
-                                      data[index].id);
-                                  await productController.resetFruitQty(
-                                      docId: data[index]['p_id'],
-                                      newQty: data[index]['qty']);
-                                  await productController.resetVegQty(
-                                      docId: data[index]['p_id'],
-                                      newQty: data[index]['qty']);
-                                },
+                            ),
+                            title:
+                                "${data[index]['title']}  (x${data[index]['qty']}kg)"
+                                    .text
+                                    .semiBold
+                                    .color(Colors.grey[900])
+                                    .size(Dimensions.fontSize16)
+                                    .make(),
+                            subtitle: "${data[index]['tPrice']}"
+                                .numCurrency
+                                .text
+                                .semiBold
+                                .color(AppColors.orangeRed)
+                                .size(14)
+                                .make(),
+                            trailing: IconButton(
+                              icon: const Icon(
+                                Icons.delete,
+                                color: AppColors.orangeRed,
                               ),
-                            );
-                          }),
-                    ),
+                              onPressed: () async {
+                                FireStoreServices.deleteDocument(
+                                    data[index].id);
+                                await productController.resetFruitQty(
+                                    docId: data[index]['p_id'],
+                                    newQty: data[index]['qty']);
+                                await productController.resetVegQty(
+                                    docId: data[index]['p_id'],
+                                    newQty: data[index]['qty']);
+                              },
+                            ),
+                          );
+                        }),
                   ),
                   Container(
                     width: Dimensions.screenWidth - 60,

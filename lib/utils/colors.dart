@@ -31,7 +31,8 @@ class AppColors {
   static const Color newGreen = Color(0xff72ff73);
 
   //try colors
-  static const Color mainAppColor = Color(0xff136050);
+  static const Color darkGreen = Color(0xff136050);
+  static const Color mainAppColor = Color(0xff04843c);
   static const Color newLightGreen = Color(0xff01ba9b);
   static const Color green = Color(0xff35b678);
   static const Color gPayGreen = Color(0xff29a952);

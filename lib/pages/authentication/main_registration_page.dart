@@ -43,21 +43,23 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
             isSignUpScreen ? Dimensions.height167 : Dimensions.height100 * 2,
         child: Column(
           children: [
-            Image.asset("images/logoMain2.png"),
-            Dimensions.width8.heightBox,
+            Image.asset("images/freshLogo.png", height: Dimensions.height70),
+            Dimensions.height10.heightBox,
             appNameText(
-              text: 'Fresh\'Om',
-              color: AppColors.mainAppColor,
-              size: Dimensions.fontSize23,
+              letterSpacing1: 0.0,
+              letterSpacing2: 0.0,
               fontWeight1: FontWeight.w500,
               fontWeight2: FontWeight.w700,
+              size: Dimensions.fontSize23,
+              color: AppColors.nicePurple,
             ),
             BigText(
-              text: "Version 1.0.0",
+              letterSpacing: 0.0,
+              text: "version 1.0.0",
               fontWeight: FontWeight.w500,
               color: Colors.grey[400],
               size: Dimensions.fontSize14,
-            )
+            ),
           ],
         ),
       ),
@@ -157,7 +159,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                                   fontWeight: FontWeight.bold,
                                   color: isSignUpScreen
                                       ? AppColors.inactiveTextColor
-                                      : AppColors.mainAppColor,
+                                      : AppColors.nicePurple,
                                   size: Dimensions.fontSize20,
                                 ),
                                 if (!isSignUpScreen)
@@ -182,7 +184,7 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
                                   text: "SIGNUP",
                                   fontWeight: FontWeight.bold,
                                   color: isSignUpScreen
-                                      ? AppColors.mainAppColor
+                                      ? AppColors.nicePurple
                                       : AppColors.inactiveTextColor,
                                   size: Dimensions.fontSize20,
                                 ),
@@ -230,8 +232,8 @@ class _MainRegisterPageState extends State<MainRegisterPage> {
               },
               child: BigText(
                 text: "Forgot Password?",
-                fontWeight: FontWeight.bold,
-                color: AppColors.mainAppColor,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey[600],
                 size: Dimensions.fontSize15,
               ),
             ),

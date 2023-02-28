@@ -27,14 +27,14 @@ class _SplashScreenState extends State<SplashScreen> {
     var isLoggedIn = sharedPref.getBool('isLogged');
     if (isLoggedIn != null) {
       if (isLoggedIn) {
-        Future.delayed(const Duration(seconds: 4),
+        Future.delayed(const Duration(seconds: 5),
             () => Get.offAll(() => const BuyerHomePage()));
       } else {
-        Future.delayed(const Duration(seconds: 4),
+        Future.delayed(const Duration(seconds: 5),
             () => Get.offAll(() => const MainRegisterPage()));
       }
     } else {
-      Future.delayed(const Duration(seconds: 4),
+      Future.delayed(const Duration(seconds: 5),
           () => Get.offAll(() => const MainRegisterPage()));
     }
   }
@@ -118,7 +118,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.mainBackGround,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -126,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Dimensions.height50.heightBox,
             Image.asset(
               'images/freshLogo.png',
-              height: 130,
+              height: Dimensions.height120,
             ),
             Dimensions.height20.heightBox,
             appNameText(
@@ -135,13 +135,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 fontWeight1: FontWeight.w500,
                 fontWeight2: FontWeight.w700),
             Dimensions.height10.heightBox,
-            // BoldText(
-            //   fontWeight: FontWeight.bold,
-            //   text: "Fresh'Om",
-            //   color: AppColors.mainAppColor,
-            //   size: Dimensions.fontSize30,
-            // ),
-
             SmallText(
               text: "version 1.0.0",
               color: Colors.grey[300],

@@ -60,7 +60,8 @@ class _BuyerHomePageState extends State<BuyerHomePage> {
       },
       child: Scaffold(
         bottomNavigationBar: Padding(
-          padding: EdgeInsets.all(Dimensions.height10),
+          padding:
+              EdgeInsets.only(bottom: Dimensions.height10, left: 50, right: 50),
           child: Container(
             decoration: BoxDecoration(
                 boxShadow: [
@@ -119,7 +120,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
       extendBody: true,
       backgroundColor: Colors.white,
       drawer: Container(
-        width: Dimensions.screenWidth / 1.4,
+        width: Dimensions.screenWidth - Dimensions.width150,
         height: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -180,7 +181,7 @@ class _BuyerHomeBodyState extends State<BuyerHomeBody> {
                           BigText(
                             text: "${data['name']}",
                             fontWeight: FontWeight.w600,
-                            size: Dimensions.fontSize23,
+                            size: Dimensions.fontSize20,
                             // controller.profileData['name'],
                           ),
                           BigText(

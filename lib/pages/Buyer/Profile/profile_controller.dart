@@ -13,6 +13,7 @@ import 'package:path/path.dart';
 class BuyerProfileController extends GetxController {
   var profileImgPath = "".obs;
   var profileImgLink = "";
+  var name;
   //text-field
   var nameController = TextEditingController();
   var newPassController = TextEditingController();

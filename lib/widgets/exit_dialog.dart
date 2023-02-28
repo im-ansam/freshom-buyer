@@ -18,7 +18,7 @@ Widget exitDialog(context) {
         mainAxisSize: MainAxisSize.min,
         children: [
           BigText(
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
             text: "Confirm",
             color: AppColors.mainAppColor,
             size: Dimensions.fontSize25,

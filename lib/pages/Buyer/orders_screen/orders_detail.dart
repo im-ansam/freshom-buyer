@@ -61,9 +61,7 @@ class OrdersDetail extends StatelessWidget {
             //center address details container
             Container(
               padding: EdgeInsets.all(Dimensions.height12),
-              width: Dimensions.height350,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius10),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade200,
@@ -190,10 +188,7 @@ class OrdersDetail extends StatelessWidget {
             //bottom order products container
             Container(
               alignment: Alignment.center,
-              height: Dimensions.height100 * 2,
-              width: Dimensions.height350,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius10),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade200,

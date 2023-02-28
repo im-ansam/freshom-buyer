@@ -21,29 +21,27 @@ class DrawerRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          child: Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: AppColors.mainAppColor,
-                radius: Dimensions.radius18,
-                child: Icon(
-                  icon,
-                  size: Dimensions.icon25,
-                  color: Colors.white,
-                ),
+        Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: AppColors.mainAppColor,
+              radius: Dimensions.radius15,
+              child: Icon(
+                icon,
+                size: Dimensions.icon20,
+                color: Colors.white,
               ),
-              SizedBox(
-                width: Dimensions.width20,
-              ),
-              BigText(
-                text: text,
-                color: fontColor,
-                fontWeight: FontWeight.w600,
-                size: Dimensions.fontSize16,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              width: Dimensions.width20,
+            ),
+            BigText(
+              text: text,
+              color: fontColor,
+              fontWeight: FontWeight.w500,
+              size: Dimensions.fontSize15,
+            ),
+          ],
         ),
       ],
     );

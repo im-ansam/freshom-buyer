@@ -41,6 +41,7 @@ class ReusableButtonContainer extends StatelessWidget {
         child: Text(
           text,
           style: GoogleFonts.poppins(
+            fontSize: Dimensions.fontSize12,
             color: isSelected ? Colors.white : Colors.black,
             fontWeight: FontWeight.w600,
           ),

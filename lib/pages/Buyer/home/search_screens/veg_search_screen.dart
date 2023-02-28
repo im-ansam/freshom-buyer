@@ -28,10 +28,10 @@ class VegSearchScreen extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back,
-            color: AppColors.nicePurple,
+            color: AppColors.mainAppColor,
           ),
         ),
-        foregroundColor: AppColors.tealColor,
+        foregroundColor: AppColors.mainAppColor,
         backgroundColor: AppColors.mainBackGround,
         elevation: 0,
         title: title?.text.semiBold.size(Dimensions.fontSize18).make(),

@@ -22,9 +22,31 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Dimensions.screenHeight);
     var controller = Get.put(AuthController());
     var profileController = Get.put(BuyerProfileController());
     return Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 40,
+          backgroundColor: AppColors.mainAppColor,
+          elevation: 0.0,
+          automaticallyImplyLeading: false,
+          actions: [
+            const Icon(
+              Icons.edit,
+              color: Colors.white,
+            ).paddingOnly(right: Dimensions.width20).onTap(() {
+              profileController.nameController.text =
+                  profileController.name['name'];
+              Get.to(() => EditBuyerProfile(
+                    userData: profileController.name,
+                  ));
+            })
+
+            // controller.profileDetails();
+            //     },,
+          ],
+        ),
         backgroundColor: AppColors.mainBackGround,
         body: StreamBuilder(
           stream:
@@ -39,7 +61,7 @@ class UserProfile extends StatelessWidget {
               );
             } else {
               var data = snapshot.data!.docs[0];
-
+              profileController.name = data;
               return Stack(
                 children: [
                   //top background color
@@ -48,13 +70,12 @@ class UserProfile extends StatelessWidget {
                       left: 0,
                       right: 0,
                       child: Container(
-                        color: AppColors.mainAppColor,
-                        height: Dimensions.height400,
-                      )),
+                          color: AppColors.mainAppColor,
+                          height: Dimensions.height330)),
 
                   //center white container
                   Positioned(
-                    top: Dimensions.height300,
+                    top: 200,
                     left: Dimensions.width20,
                     right: Dimensions.width20,
                     child: Container(
@@ -210,227 +231,199 @@ class UserProfile extends StatelessWidget {
                   ),
 
                   //top user details
-                  Positioned(
-                      top: 70,
-                      child: Container(
-                        padding: EdgeInsets.only(left: Dimensions.height10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                  Padding(
+                    padding: EdgeInsets.only(left: Dimensions.height25),
+                    child: Column(
+                      children: [
+                        Row(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: Dimensions.height300,
-                                  right: Dimensions.width20),
-                              child: GestureDetector(
-                                child: const Icon(
-                                  Icons.edit,
-                                  color: Colors.white,
-                                ).paddingOnly(left: Dimensions.width20),
-                                onTap: () {
-                                  profileController.nameController.text =
-                                      data['name'];
-                                  Get.to(() => EditBuyerProfile(
-                                        userData: data,
-                                      ));
-                                  // controller.profileDetails();
-                                },
+                            //user image
+                            Container(
+                              clipBehavior: Clip.antiAlias,
+                              height: Dimensions.height60,
+                              width: Dimensions.height60,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: data['imageUrl'] == ''
+                                  ? Image.asset(
+                                      "images/cameraLogo2.png",
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.network(
+                                      data['imageUrl'],
+                                      fit: BoxFit.cover,
+                                    ),
+                            ),
+
+                            SizedBox(
+                              width: Dimensions.width20,
+                            ),
+
+                            //user name and email
+                            SizedBox(
+                              width: Dimensions.width150,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  BigText(
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.w500,
+                                    text: "${data['name']}",
+                                    // text: controller.profileData['name'],
+                                    size: Dimensions.fontSize18,
+                                    color: Colors.white,
+                                  ),
+                                  BigText(
+                                    letterSpacing: 1,
+                                    text: '${data['email']}',
+                                    // text: controller.profileData['email'],
+                                    fontWeight: FontWeight.w400,
+                                    size: Dimensions.fontSize14,
+                                    color: Colors.white54,
+                                  )
+                                ],
                               ),
                             ),
-                            Row(
-                              children: [
-                                //user image
-                                Container(
-                                  clipBehavior: Clip.antiAlias,
-                                  height: Dimensions.height60,
-                                  width: Dimensions.height60,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: data['imageUrl'] == ''
-                                      ? Image.asset(
-                                          "images/cameraLogo2.png",
-                                          fit: BoxFit.cover,
-                                        )
-                                      : Image.network(
-                                          data['imageUrl'],
-                                          fit: BoxFit.cover,
-                                        ),
-                                ),
-
-                                SizedBox(
-                                  width: Dimensions.width20,
-                                ),
-
-                                //user name and email
-                                SizedBox(
-                                  width: Dimensions.width150,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      BigText(
-                                        letterSpacing: 1,
-                                        fontWeight: FontWeight.w500,
-                                        text: "${data['name']}",
-                                        // text: controller.profileData['name'],
-                                        size: Dimensions.fontSize18,
-                                        color: Colors.white,
-                                      ),
-                                      BigText(
-                                        letterSpacing: 1,
-                                        text: '${data['email']}',
-                                        // text: controller.profileData['email'],
-                                        fontWeight: FontWeight.w400,
-                                        size: Dimensions.fontSize14,
-                                        color: Colors.white54,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: Dimensions.width30,
-                                ),
-
-                                //logout button
-                                OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                        visualDensity:
-                                            const VisualDensity(vertical: 1),
-                                        side: const BorderSide(
-                                            color: Colors.white70)),
-                                    onPressed: () async {
-                                      await controller.signOutMethod(context);
-                                      var sharedPref =
-                                          await SharedPreferences.getInstance();
-                                      sharedPref.setBool("isLogged", false);
-
-                                      Get.offAll(
-                                          () => const MainRegisterPage());
-                                    },
-                                    child: BigText(
-                                      text: "Logout",
-                                      fontWeight: FontWeight.w400,
-                                      size: Dimensions.fontSize16,
-                                      color: Colors.white70,
-                                    ))
-                              ],
+                            SizedBox(
+                              width: Dimensions.width30,
                             ),
-                            FutureBuilder(
-                              future: FireStoreServices.getCount(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot snapshot) {
-                                if (!snapshot.hasData) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                    ),
-                                  );
-                                } else {
-                                  var countData = snapshot.data;
-                                  return Padding(
-                                    padding: EdgeInsets.only(
-                                        top: Dimensions.height30),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      Dimensions.radius10),
-                                              color: Colors.white),
-                                          height: Dimensions.height70,
-                                          width: Dimensions.height100,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              BoldText(
-                                                fontWeight: FontWeight.w800,
-                                                text: '${countData[0]}',
-                                                // text: controller.profileData['cart_count'],
-                                                size: Dimensions.fontSize18,
-                                                color: AppColors.mainAppColor,
-                                              ),
-                                              BoldText(
-                                                fontWeight: FontWeight.w500,
-                                                text: "In Your Cart",
-                                                size: Dimensions.fontSize12,
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: Dimensions.width20,
-                                        ),
-                                        Container(
-                                          height: Dimensions.height70,
-                                          width: Dimensions.height100,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      Dimensions.radius10),
-                                              color: Colors.white),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              BoldText(
-                                                fontWeight: FontWeight.w800,
-                                                text: '${countData[1]}',
-                                                // text: controller.profileData['order_count'],
-                                                size: Dimensions.fontSize18,
-                                                color: AppColors.mainAppColor,
-                                              ),
-                                              BoldText(
-                                                fontWeight: FontWeight.w500,
-                                                text: "Your Orders",
-                                                size: Dimensions.fontSize12,
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: Dimensions.width20,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            Get.to(
-                                                () => const AllMessageList());
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        Dimensions.radius10),
-                                                color: Colors.white),
-                                            height: Dimensions.height70,
-                                            width: Dimensions.height100,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                const Icon(
-                                                  Icons.message_rounded,
-                                                  color: AppColors.mainAppColor,
-                                                ),
-                                                BoldText(
-                                                  fontWeight: FontWeight.w500,
-                                                  text: "Messages",
-                                                  size: Dimensions.fontSize12,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }
-                              },
-                            )
+
+                            //logout button
+                            OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                    visualDensity:
+                                        const VisualDensity(vertical: 1),
+                                    side: const BorderSide(
+                                        color: Colors.white70)),
+                                onPressed: () async {
+                                  await controller.signOutMethod(context);
+                                  var sharedPref =
+                                      await SharedPreferences.getInstance();
+                                  sharedPref.setBool("isLogged", false);
+
+                                  Get.offAll(() => const MainRegisterPage());
+                                },
+                                child: BigText(
+                                  text: "Logout",
+                                  fontWeight: FontWeight.w400,
+                                  size: Dimensions.fontSize16,
+                                  color: Colors.white70,
+                                ))
                           ],
                         ),
-                      ))
+                        FutureBuilder(
+                          future: FireStoreServices.getCount(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (!snapshot.hasData) {
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              );
+                            } else {
+                              var countData = snapshot.data;
+                              return Padding(
+                                padding:
+                                    EdgeInsets.only(top: Dimensions.height30),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius10),
+                                          color: Colors.white),
+                                      height: Dimensions.height70,
+                                      width: Dimensions.height100,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          BoldText(
+                                            fontWeight: FontWeight.w800,
+                                            text: '${countData[0]}',
+                                            // text: controller.profileData['cart_count'],
+                                            size: Dimensions.fontSize18,
+                                            color: AppColors.mainAppColor,
+                                          ),
+                                          BoldText(
+                                            fontWeight: FontWeight.w500,
+                                            text: "In Your Cart",
+                                            size: Dimensions.fontSize12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: Dimensions.width20,
+                                    ),
+                                    Container(
+                                      height: Dimensions.height70,
+                                      width: Dimensions.height100,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius10),
+                                          color: Colors.white),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          BoldText(
+                                            fontWeight: FontWeight.w800,
+                                            text: '${countData[1]}',
+                                            // text: controller.profileData['order_count'],
+                                            size: Dimensions.fontSize18,
+                                            color: AppColors.mainAppColor,
+                                          ),
+                                          BoldText(
+                                            fontWeight: FontWeight.w500,
+                                            text: "Your Orders",
+                                            size: Dimensions.fontSize12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: Dimensions.width20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(() => const AllMessageList());
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.radius10),
+                                            color: Colors.white),
+                                        height: Dimensions.height70,
+                                        width: Dimensions.height100,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.message_rounded,
+                                              color: AppColors.mainAppColor,
+                                            ),
+                                            BoldText(
+                                              fontWeight: FontWeight.w500,
+                                              text: "Messages",
+                                              size: Dimensions.fontSize12,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }
+                          },
+                        )
+                      ],
+                    ),
+                  )
                 ],
               );
             }

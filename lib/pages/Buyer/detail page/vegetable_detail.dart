@@ -54,23 +54,23 @@ class VegetableDetail extends StatelessWidget {
                   children: [
                     GestureDetector(
                         child: CircleAvatar(
-                            radius: Dimensions.radius18,
+                            radius: Dimensions.radius15,
                             backgroundColor: AppColors.lightGreen1,
                             child: Icon(
                               Icons.clear,
                               color: AppColors.nicePurple,
-                              size: Dimensions.icon25,
+                              size: Dimensions.icon20,
                             )).onTap(() {
                       Get.back();
                       productController.resetValues();
                     })),
                     CircleAvatar(
-                      radius: Dimensions.radius18,
+                      radius: Dimensions.radius15,
                       backgroundColor: AppColors.lightGreen1,
                       child: Icon(
                         Icons.shopping_cart_outlined,
                         color: AppColors.nicePurple,
-                        size: Dimensions.icon25,
+                        size: Dimensions.icon20,
                       ),
                     ).onTap(() {
                       Get.to(() => const CartPage());
@@ -82,10 +82,10 @@ class VegetableDetail extends StatelessWidget {
             productController.cartCount.value == 0
                 ? Container()
                 : Positioned(
-                    top: Dimensions.height45,
+                    top: Dimensions.height50,
                     right: Dimensions.width15,
                     child: CircleAvatar(
-                      radius: Dimensions.radius12,
+                      radius: Dimensions.radius10,
                       backgroundColor: Colors.yellow,
                       child: "${productController.cartCount.value}"
                           .text

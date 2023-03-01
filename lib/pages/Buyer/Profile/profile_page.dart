@@ -10,6 +10,7 @@ import 'package:fresh_om/pages/authentication/main_registration_page.dart';
 import 'package:fresh_om/widgets/reusable_bold_text.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../controller/auth_controller.dart';
 import '../../../utils/colors.dart';
@@ -22,7 +23,6 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Dimensions.screenHeight);
     var controller = Get.put(AuthController());
     var profileController = Get.put(BuyerProfileController());
     return Scaffold(
@@ -65,177 +65,16 @@ class UserProfile extends StatelessWidget {
               return Stack(
                 children: [
                   //top background color
-                  Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                          color: AppColors.mainAppColor,
-                          height: Dimensions.height330)),
 
-                  //center white container
-                  Positioned(
-                    top: 200,
-                    left: Dimensions.width20,
-                    right: Dimensions.width20,
-                    child: Container(
-                      height: Dimensions.height270,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 0.2,
-                                blurRadius: Dimensions.radius10,
-                                color: Colors.black26,
-                                offset: const Offset(-1, 5))
-                          ],
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius10),
-                          color: Colors.white),
-                      child: ListView.separated(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (BuildContext context, int index) {
-                            return ListTile(
-                              onTap: () {
-                                switch (index) {
-                                  case 0:
-                                    Get.to(() => const MyOrders());
-                                    break;
-                                  case 1:
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            content: BigText(
-                                              letterSpacing: 1,
-                                              overFlow: TextOverflow.visible,
-                                              fontWeight: FontWeight.w600,
-                                              text: "${data['email']}",
-                                              // text: controller.profileData['email'],
-                                              size: Dimensions.fontSize18,
-                                            ),
-                                            title: Column(
-                                              children: const [
-                                                BigText(
-                                                  fontWeight: FontWeight.bold,
-                                                  text: "Your Email",
-                                                ),
-                                                Divider(
-                                                  thickness: 1,
-                                                )
-                                              ],
-                                            ),
-                                            actions: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    color:
-                                                        AppColors.mainAppColor),
-                                                alignment: Alignment.center,
-                                                width: Dimensions.height90,
-                                                height: Dimensions.height40,
-                                                child: BigText(
-                                                  text: "OK",
-                                                  size: Dimensions.fontSize20,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.white,
-                                                ),
-                                              )
-                                                  .paddingOnly(
-                                                      right:
-                                                          Dimensions.height15,
-                                                      bottom:
-                                                          Dimensions.height15)
-                                                  .onTap(() {
-                                                Get.back();
-                                              })
-                                            ],
-                                          );
-                                        });
-                                    break;
-                                  case 2:
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            content: BigText(
-                                              overFlow: TextOverflow.visible,
-                                              fontWeight: FontWeight.w500,
-                                              text:
-                                                  "Ansam CD\nAlan\nBasil\nArchana",
-                                              size: Dimensions.fontSize18,
-                                            ),
-                                            title: Column(
-                                              children: const [
-                                                BigText(
-                                                  fontWeight: FontWeight.bold,
-                                                  text: "Developed by",
-                                                ),
-                                                Divider(
-                                                  thickness: 1,
-                                                )
-                                              ],
-                                            ),
-                                            actions: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    color:
-                                                        AppColors.mainAppColor),
-                                                alignment: Alignment.center,
-                                                width: Dimensions.height90,
-                                                height: Dimensions.height40,
-                                                child: BigText(
-                                                  text: "OK",
-                                                  size: Dimensions.fontSize20,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.white,
-                                                ),
-                                              )
-                                                  .paddingOnly(
-                                                      right:
-                                                          Dimensions.height15,
-                                                      bottom:
-                                                          Dimensions.height15)
-                                                  .onTap(() {
-                                                Get.back();
-                                              })
-                                            ],
-                                          );
-                                        });
-                                    break;
-                                }
-                              },
-                              leading: profileButtonsIcons[index],
-                              title: profileButtonsText[index].text.make(),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const Divider(
-                              thickness: 1,
-                              color: Colors.grey,
-                            );
-                          },
-                          itemCount: profileButtonsText.length),
-                    ),
-                  ),
-
-                  //top user details
-                  Padding(
-                    padding: EdgeInsets.only(left: Dimensions.height25),
+                  Container(
+                    color: AppColors.mainAppColor,
+                    height: Dimensions.height330,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             //user image
                             Container(
@@ -311,7 +150,7 @@ class UserProfile extends StatelessWidget {
                                   color: Colors.white70,
                                 ))
                           ],
-                        ),
+                        ).paddingOnly(left: 5, right: 5),
                         FutureBuilder(
                           future: FireStoreServices.getCount(),
                           builder:
@@ -325,9 +164,12 @@ class UserProfile extends StatelessWidget {
                             } else {
                               var countData = snapshot.data;
                               return Padding(
-                                padding:
-                                    EdgeInsets.only(top: Dimensions.height30),
+                                padding: EdgeInsets.only(
+                                    top: Dimensions.height30,
+                                    left: 5,
+                                    right: 5),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -335,7 +177,7 @@ class UserProfile extends StatelessWidget {
                                               Dimensions.radius10),
                                           color: Colors.white),
                                       height: Dimensions.height70,
-                                      width: Dimensions.height100,
+                                      width: Dimensions.height90,
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -360,7 +202,7 @@ class UserProfile extends StatelessWidget {
                                     ),
                                     Container(
                                       height: Dimensions.height70,
-                                      width: Dimensions.height100,
+                                      width: Dimensions.height90,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
                                               Dimensions.radius10),
@@ -397,7 +239,7 @@ class UserProfile extends StatelessWidget {
                                                 Dimensions.radius10),
                                             color: Colors.white),
                                         height: Dimensions.height70,
-                                        width: Dimensions.height100,
+                                        width: Dimensions.height90,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -423,11 +265,578 @@ class UserProfile extends StatelessWidget {
                         )
                       ],
                     ),
-                  )
+                  ),
+
+                  //center white container
+                  Stack(
+                    children: [
+                      Positioned(
+                        top: 200,
+                        left: Dimensions.width20,
+                        right: Dimensions.width20,
+                        child: Container(
+                            padding: EdgeInsets.only(
+                                top: 10,
+                                bottom: Dimensions.screenHeight / 84.342),
+                            height: Dimensions.height300,
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      spreadRadius: 0.2,
+                                      blurRadius: Dimensions.radius10,
+                                      color: Colors.black26,
+                                      offset: const Offset(-1, 5))
+                                ],
+                                borderRadius:
+                                    BorderRadius.circular(Dimensions.radius10),
+                                color: Colors.white),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                buildProfileRow(0).onTap(() {
+                                  Get.to(() => const MyOrders());
+                                }),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                buildProfileRow(1).onTap(() {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          content: BigText(
+                                            letterSpacing: 1,
+                                            overFlow: TextOverflow.visible,
+                                            fontWeight: FontWeight.w600,
+                                            text: "${data['email']}",
+                                            // text: controller.profileData['email'],
+                                            size: Dimensions.fontSize16,
+                                          ),
+                                          title: Column(
+                                            children: const [
+                                              BigText(
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.nicePurple,
+                                                text: "Your Email",
+                                              ),
+                                              Divider(
+                                                thickness: 1,
+                                              )
+                                            ],
+                                          ),
+                                          actions: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color:
+                                                      AppColors.mainAppColor),
+                                              alignment: Alignment.center,
+                                              width: Dimensions.height90,
+                                              height: Dimensions.height40,
+                                              child: BigText(
+                                                text: "OK",
+                                                size: Dimensions.fontSize20,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                                .paddingOnly(
+                                                    right: Dimensions.height15,
+                                                    bottom: Dimensions.height15)
+                                                .onTap(() {
+                                              Get.back();
+                                            })
+                                          ],
+                                        );
+                                      });
+                                }),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                buildProfileRow(2).onTap(() {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          content: BigText(
+                                            overFlow: TextOverflow.visible,
+                                            fontWeight: FontWeight.w500,
+                                            text:
+                                                "Ansam CD\nAlan\nBasil\nArchana",
+                                            size: Dimensions.fontSize18,
+                                          ),
+                                          title: Column(
+                                            children: const [
+                                              BigText(
+                                                fontWeight: FontWeight.bold,
+                                                text: "Developed by",
+                                              ),
+                                              Divider(
+                                                thickness: 1,
+                                              )
+                                            ],
+                                          ),
+                                          actions: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color:
+                                                      AppColors.mainAppColor),
+                                              alignment: Alignment.center,
+                                              width: Dimensions.height90,
+                                              height: Dimensions.height40,
+                                              child: BigText(
+                                                text: "OK",
+                                                size: Dimensions.fontSize20,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                                .paddingOnly(
+                                                    right: Dimensions.height15,
+                                                    bottom: Dimensions.height15)
+                                                .onTap(() {
+                                              Get.back();
+                                            })
+                                          ],
+                                        );
+                                      });
+                                }),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                buildProfileRow(3).onTap(() {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          content: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              BigText(
+                                                overFlow: TextOverflow.visible,
+                                                fontWeight: FontWeight.w500,
+                                                text: "Administration -",
+                                                size: Dimensions.fontSize18,
+                                              ),
+                                              Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: AppColors
+                                                          .mainAppColor),
+                                                  alignment: Alignment.center,
+                                                  width: Dimensions.height60,
+                                                  height: Dimensions.height40,
+                                                  child: Icon(
+                                                    Icons.email_outlined,
+                                                    color: Colors.white,
+                                                  )).onTap(() {
+                                                launchUrlString(
+                                                    'mailto:ansamcd@gmail.com');
+                                              })
+                                            ],
+                                          ),
+                                          title: Column(
+                                            children: [
+                                              BigText(
+                                                color: AppColors.nicePurple,
+                                                fontWeight: FontWeight.w600,
+                                                text:
+                                                    "Report problem via email",
+                                                size: Dimensions.fontSize16,
+                                              ),
+                                              Divider(
+                                                thickness: 1,
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                })
+                              ],
+                            )
+
+                            // ListView.separated(
+                            //     physics: const BouncingScrollPhysics(),
+                            //     itemBuilder: (BuildContext context, int index) {
+                            //       return ListTile(
+                            //         onTap: () {
+                            //           switch (index) {
+                            //             case 0:
+                            //               Get.to(() => const MyOrders());
+                            //               break;
+                            //             case 1:
+                            //               showDialog(
+                            //                   context: context,
+                            //                   builder: (context) {
+                            //                     return AlertDialog(
+                            //                       shape: RoundedRectangleBorder(
+                            //                           borderRadius:
+                            //                               BorderRadius.circular(
+                            //                                   10)),
+                            //                       content: BigText(
+                            //                         letterSpacing: 1,
+                            //                         overFlow:
+                            //                             TextOverflow.visible,
+                            //                         fontWeight: FontWeight.w600,
+                            //                         text: "${data['email']}",
+                            //                         // text: controller.profileData['email'],
+                            //                         size: Dimensions.fontSize18,
+                            //                       ),
+                            //                       title: Column(
+                            //                         children: const [
+                            //                           BigText(
+                            //                             fontWeight:
+                            //                                 FontWeight.bold,
+                            //                             text: "Your Email",
+                            //                           ),
+                            //                           Divider(
+                            //                             thickness: 1,
+                            //                           )
+                            //                         ],
+                            //                       ),
+                            //                       actions: [
+                            //                         Container(
+                            //                           decoration: BoxDecoration(
+                            //                               borderRadius:
+                            //                                   BorderRadius
+                            //                                       .circular(5),
+                            //                               color: AppColors
+                            //                                   .mainAppColor),
+                            //                           alignment: Alignment.center,
+                            //                           width: Dimensions.height90,
+                            //                           height: Dimensions.height40,
+                            //                           child: BigText(
+                            //                             text: "OK",
+                            //                             size:
+                            //                                 Dimensions.fontSize20,
+                            //                             fontWeight:
+                            //                                 FontWeight.w600,
+                            //                             color: Colors.white,
+                            //                           ),
+                            //                         )
+                            //                             .paddingOnly(
+                            //                                 right: Dimensions
+                            //                                     .height15,
+                            //                                 bottom: Dimensions
+                            //                                     .height15)
+                            //                             .onTap(() {
+                            //                           Get.back();
+                            //                         })
+                            //                       ],
+                            //                     );
+                            //                   });
+                            //               break;
+                            //             case 2:
+                            //               showDialog(
+                            //                   context: context,
+                            //                   builder: (context) {
+                            //                     return AlertDialog(
+                            //                       shape: RoundedRectangleBorder(
+                            //                           borderRadius:
+                            //                               BorderRadius.circular(
+                            //                                   10)),
+                            //                       content: BigText(
+                            //                         overFlow:
+                            //                             TextOverflow.visible,
+                            //                         fontWeight: FontWeight.w500,
+                            //                         text:
+                            //                             "Ansam CD\nAlan\nBasil\nArchana",
+                            //                         size: Dimensions.fontSize18,
+                            //                       ),
+                            //                       title: Column(
+                            //                         children: const [
+                            //                           BigText(
+                            //                             fontWeight:
+                            //                                 FontWeight.bold,
+                            //                             text: "Developed by",
+                            //                           ),
+                            //                           Divider(
+                            //                             thickness: 1,
+                            //                           )
+                            //                         ],
+                            //                       ),
+                            //                       actions: [
+                            //                         Container(
+                            //                           decoration: BoxDecoration(
+                            //                               borderRadius:
+                            //                                   BorderRadius
+                            //                                       .circular(5),
+                            //                               color: AppColors
+                            //                                   .mainAppColor),
+                            //                           alignment: Alignment.center,
+                            //                           width: Dimensions.height90,
+                            //                           height: Dimensions.height40,
+                            //                           child: BigText(
+                            //                             text: "OK",
+                            //                             size:
+                            //                                 Dimensions.fontSize20,
+                            //                             fontWeight:
+                            //                                 FontWeight.w600,
+                            //                             color: Colors.white,
+                            //                           ),
+                            //                         )
+                            //                             .paddingOnly(
+                            //                                 right: Dimensions
+                            //                                     .height15,
+                            //                                 bottom: Dimensions
+                            //                                     .height15)
+                            //                             .onTap(() {
+                            //                           Get.back();
+                            //                         })
+                            //                       ],
+                            //                     );
+                            //                   });
+                            //               break;
+                            //           }
+                            //         },
+                            //         leading: profileButtonsIcons[index],
+                            //         title: profileButtonsText[index].text.make(),
+                            //       );
+                            //     },
+                            //     separatorBuilder: (context, index) {
+                            //       return const Divider(
+                            //         thickness: 1,
+                            //         color: Colors.grey,
+                            //       );
+                            //     },
+                            //     itemCount: profileButtonsText.length),
+                            ),
+                      ),
+                    ],
+                  ),
+
+                  //top user details
+                  // Padding(
+                  //   padding: EdgeInsets.only(left: Dimensions.height25),
+                  //   child: Column(
+                  //     children: [
+                  //       Row(
+                  //         children: [
+                  //           //user image
+                  //           Container(
+                  //             clipBehavior: Clip.antiAlias,
+                  //             height: Dimensions.height60,
+                  //             width: Dimensions.height60,
+                  //             decoration: const BoxDecoration(
+                  //               shape: BoxShape.circle,
+                  //             ),
+                  //             child: data['imageUrl'] == ''
+                  //                 ? Image.asset(
+                  //                     "images/cameraLogo2.png",
+                  //                     fit: BoxFit.cover,
+                  //                   )
+                  //                 : Image.network(
+                  //                     data['imageUrl'],
+                  //                     fit: BoxFit.cover,
+                  //                   ),
+                  //           ),
+                  //
+                  //           SizedBox(
+                  //             width: Dimensions.width20,
+                  //           ),
+                  //
+                  //           //user name and email
+                  //           SizedBox(
+                  //             width: Dimensions.width150,
+                  //             child: Column(
+                  //               crossAxisAlignment: CrossAxisAlignment.start,
+                  //               children: [
+                  //                 BigText(
+                  //                   letterSpacing: 1,
+                  //                   fontWeight: FontWeight.w500,
+                  //                   text: "${data['name']}",
+                  //                   // text: controller.profileData['name'],
+                  //                   size: Dimensions.fontSize18,
+                  //                   color: Colors.white,
+                  //                 ),
+                  //                 BigText(
+                  //                   letterSpacing: 1,
+                  //                   text: '${data['email']}',
+                  //                   // text: controller.profileData['email'],
+                  //                   fontWeight: FontWeight.w400,
+                  //                   size: Dimensions.fontSize14,
+                  //                   color: Colors.white54,
+                  //                 )
+                  //               ],
+                  //             ),
+                  //           ),
+                  //           SizedBox(
+                  //             width: Dimensions.width30,
+                  //           ),
+                  //
+                  //           //logout button
+                  //           OutlinedButton(
+                  //               style: OutlinedButton.styleFrom(
+                  //                   visualDensity:
+                  //                       const VisualDensity(vertical: 1),
+                  //                   side: const BorderSide(
+                  //                       color: Colors.white70)),
+                  //               onPressed: () async {
+                  //                 await controller.signOutMethod(context);
+                  //                 var sharedPref =
+                  //                     await SharedPreferences.getInstance();
+                  //                 sharedPref.setBool("isLogged", false);
+                  //
+                  //                 Get.offAll(() => const MainRegisterPage());
+                  //               },
+                  //               child: BigText(
+                  //                 text: "Logout",
+                  //                 fontWeight: FontWeight.w400,
+                  //                 size: Dimensions.fontSize16,
+                  //                 color: Colors.white70,
+                  //               ))
+                  //         ],
+                  //       ),
+                  //       FutureBuilder(
+                  //         future: FireStoreServices.getCount(),
+                  //         builder:
+                  //             (BuildContext context, AsyncSnapshot snapshot) {
+                  //           if (!snapshot.hasData) {
+                  //             return const Center(
+                  //               child: CircularProgressIndicator(
+                  //                 color: Colors.white,
+                  //               ),
+                  //             );
+                  //           } else {
+                  //             var countData = snapshot.data;
+                  //             return Padding(
+                  //               padding:
+                  //                   EdgeInsets.only(top: Dimensions.height30),
+                  //               child: Row(
+                  //                 children: [
+                  //                   Container(
+                  //                     decoration: BoxDecoration(
+                  //                         borderRadius: BorderRadius.circular(
+                  //                             Dimensions.radius10),
+                  //                         color: Colors.white),
+                  //                     height: Dimensions.height70,
+                  //                     width: Dimensions.height100,
+                  //                     child: Column(
+                  //                       mainAxisAlignment:
+                  //                           MainAxisAlignment.center,
+                  //                       children: [
+                  //                         BoldText(
+                  //                           fontWeight: FontWeight.w800,
+                  //                           text: '${countData[0]}',
+                  //                           // text: controller.profileData['cart_count'],
+                  //                           size: Dimensions.fontSize18,
+                  //                           color: AppColors.mainAppColor,
+                  //                         ),
+                  //                         BoldText(
+                  //                           fontWeight: FontWeight.w500,
+                  //                           text: "In Your Cart",
+                  //                           size: Dimensions.fontSize12,
+                  //                         )
+                  //                       ],
+                  //                     ),
+                  //                   ),
+                  //                   SizedBox(
+                  //                     width: Dimensions.width20,
+                  //                   ),
+                  //                   Container(
+                  //                     height: Dimensions.height70,
+                  //                     width: Dimensions.height100,
+                  //                     decoration: BoxDecoration(
+                  //                         borderRadius: BorderRadius.circular(
+                  //                             Dimensions.radius10),
+                  //                         color: Colors.white),
+                  //                     child: Column(
+                  //                       mainAxisAlignment:
+                  //                           MainAxisAlignment.center,
+                  //                       children: [
+                  //                         BoldText(
+                  //                           fontWeight: FontWeight.w800,
+                  //                           text: '${countData[1]}',
+                  //                           // text: controller.profileData['order_count'],
+                  //                           size: Dimensions.fontSize18,
+                  //                           color: AppColors.mainAppColor,
+                  //                         ),
+                  //                         BoldText(
+                  //                           fontWeight: FontWeight.w500,
+                  //                           text: "Your Orders",
+                  //                           size: Dimensions.fontSize12,
+                  //                         )
+                  //                       ],
+                  //                     ),
+                  //                   ),
+                  //                   SizedBox(
+                  //                     width: Dimensions.width20,
+                  //                   ),
+                  //                   GestureDetector(
+                  //                     onTap: () {
+                  //                       Get.to(() => const AllMessageList());
+                  //                     },
+                  //                     child: Container(
+                  //                       decoration: BoxDecoration(
+                  //                           borderRadius: BorderRadius.circular(
+                  //                               Dimensions.radius10),
+                  //                           color: Colors.white),
+                  //                       height: Dimensions.height70,
+                  //                       width: Dimensions.height100,
+                  //                       child: Column(
+                  //                         mainAxisAlignment:
+                  //                             MainAxisAlignment.center,
+                  //                         children: [
+                  //                           const Icon(
+                  //                             Icons.message_rounded,
+                  //                             color: AppColors.mainAppColor,
+                  //                           ),
+                  //                           BoldText(
+                  //                             fontWeight: FontWeight.w500,
+                  //                             text: "Messages",
+                  //                             size: Dimensions.fontSize12,
+                  //                           )
+                  //                         ],
+                  //                       ),
+                  //                     ),
+                  //                   )
+                  //                 ],
+                  //               ),
+                  //             );
+                  //           }
+                  //         },
+                  //       )
+                  //     ],
+                  //   ),
+                  // )
                 ],
               );
             }
           },
         ));
+  }
+
+  Padding buildProfileRow(index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          profileButtonsIcons[index],
+          40.widthBox,
+          BigText(
+            text: profileButtonsText[index],
+            fontWeight: FontWeight.w500,
+            color: Vx.black,
+            size: Dimensions.fontSize16,
+          )
+        ],
+      ),
+    );
   }
 }
